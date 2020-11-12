@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Tanque.h"
+#include "Bala.h"
 #include "./Escenario/MuroLadrillo.h"
 #include "./Escenario/MuroMetal.h"
 #include <conio.h>
@@ -9,6 +10,7 @@
 using namespace std;
 
 Tanque t01;
+Bala b01;
 Tanque t02;
 MuroLadrillo m01;
 MuroLadrillo m02;
@@ -51,8 +53,12 @@ bool Tecla() {
 		gameOver = true;
 	}
 
-	if (key == 113) {
-
+	if (key == 13) {
+		b01.setX(t01.getX());
+		b01.setY(t01.getY());
+		b01.setDx(dx);
+		b01.setDy(dy);
+		b01.setEstado(EstadoMunicion::EnCurso);
 	}
 	return teclaPresionada;
 }
@@ -67,6 +73,11 @@ int main()
 	t01.setDx(0);
 	t01.setDy(0);
 	t01.Mostrar();
+
+	b01.setAvatar("o");
+	b01.setEstado(EstadoMunicion::Activado);
+	b01.setDx(0);
+	b01.setDy(0);
 
 	t02.setAvatar("[-T-]");
 	t02.setX(5);
@@ -94,8 +105,16 @@ int main()
 		if (Tecla()) {
 			t01.setDx(dx);
 			t01.setDy(dy);
+			
 			t01.Mover();
 		}
+
+		if (b01.getEstado() == EstadoMunicion::EnCurso) {
+
+			b01.Mover();
+		}
+
+
 		dx = 0;
 		dy = 0;
 	}
