@@ -4,17 +4,19 @@
 void Tanque::Mover()
 {
 	OcultarCursor();
-	gotoxy(x, y);
+	gotoxy(getX(), getY());
 	cout << "   " << endl;
 
-	x = x + dx;
-	y = y + dy;
+	setX(getX() + getDx());
+	setY(getY() + getDy());
+	/*x = x + dx;
+	y = y + dy;*/
 
 	Mostrar();
 }
 
 void Tanque::Mostrar() {
 	OcultarCursor();
-	gotoxy(x, y);
-	cout << avatar << endl;
+	gotoxy(getX(), getY());
+	cout << getAvatar() << endl;
 }

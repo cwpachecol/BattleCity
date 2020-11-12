@@ -10,6 +10,12 @@ using namespace std;
 void gotoxy(int x, int y);
 void OcultarCursor();
 
+enum Direccion {
+	izquierda,
+	derecha,
+	arriba,
+	abajo
+};
 
 
 
