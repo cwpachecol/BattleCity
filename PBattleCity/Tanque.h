@@ -12,6 +12,7 @@ private:
 	int numeroVidas;
 	int energia;
 public:
+	Tanque(int _x, int _y, string _avatar, int _ancho, int _alto, int _dx, int _dy, int _velocidad, int _numeroVidas, int _energia) :Actor(_x, _y, _avatar, _ancho, _alto, _dx, _dy, _velocidad), numeroVidas(_numeroVidas), energia(_energia) {};
 	int getNumeroVidas() { return numeroVidas; }
 	void setNumeroVidas(int _numeroVidas) { numeroVidas = _numeroVidas; }
 

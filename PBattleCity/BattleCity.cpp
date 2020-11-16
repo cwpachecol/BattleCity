@@ -6,12 +6,13 @@
 #include <conio.h>
 #include <stdio.h>
 #include <time.h>
+#include "Municion.h"
 
 using namespace std;
 
-Tanque t01;
-Bala b01;
-Tanque t02;
+Tanque t01(10, 10, "[]-T-[]", 7, 1, 0, 0, 1, 3, 100);
+Bala b01(5, 5, "o", 1, 1, 0, 1, 1, Direccion::abajo, EstadoMunicion::Inactivo, "`.'", 10);
+Tanque t02(20, 20, "[]-I-[]", 7, 1, 0, 0, 1, 3, 100);
 MuroLadrillo m01;
 MuroLadrillo m02;
 int dx = 0;
@@ -54,11 +55,11 @@ bool Tecla() {
 	}
 
 	if (key == 13) {
-		b01.setX(t01.getX());
-		b01.setY(t01.getY());
-		b01.setDx(dx);
-		b01.setDy(dy);
-		b01.setEstado(EstadoMunicion::EnCurso);
+		b01.setDx(0);
+		b01.setDy(1);
+		b01.Disparar();
+		b01.Mostrar();
+		b01.Mover();
 	}
 	return teclaPresionada;
 }
@@ -67,21 +68,8 @@ bool Tecla() {
 
 int main()
 {
-	t01.setAvatar("ITI");
-	t01.setX(20);
-	t01.setY(10);
-	t01.setDx(0);
-	t01.setDy(0);
+	
 	t01.Mostrar();
-
-	b01.setAvatar("o");
-	b01.setEstado(EstadoMunicion::Activado);
-	b01.setDx(0);
-	b01.setDy(0);
-
-	t02.setAvatar("[-T-]");
-	t02.setX(5);
-	t02.setY(5);
 	t02.Mostrar();
 
 	m01.setAvatar("=");
@@ -110,11 +98,8 @@ int main()
 		}
 
 		if (b01.getEstado() == EstadoMunicion::EnCurso) {
-
 			b01.Mover();
 		}
-
-
 		dx = 0;
 		dy = 0;
 	}

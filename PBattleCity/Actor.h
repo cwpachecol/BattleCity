@@ -27,6 +27,7 @@ private:
 	int velocidad;
 
 public:
+	Actor(int, int, string, int, int, int, int, int);
 	int getX() { return x; }
 	int getY() { return y; }
 	string getAvatar() { return avatar; }

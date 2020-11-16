@@ -5,7 +5,7 @@ void Tanque::Mover()
 {
 	OcultarCursor();
 	gotoxy(getX(), getY());
-	cout << "   " << endl;
+	cout << "       " << endl;
 
 	setX(getX() + getDx());
 	setY(getY() + getDy());
