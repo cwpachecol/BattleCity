@@ -147,17 +147,20 @@
     <ClCompile Include="Granada.cpp" />
     <ClCompile Include="Misil.cpp" />
     <ClCompile Include="Municion.cpp" />
+    <ClCompile Include="SistemaRenderizacion.cpp" />
     <ClCompile Include="Tanque.cpp" />
     <ClCompile Include="Utilitarios.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Bala.h" />
+    <ClInclude Include="ColorConsola.h" />
     <ClInclude Include="Escenario\MuroLadrillo.h" />
     <ClInclude Include="Escenario\MuroMetal.h" />
     <ClInclude Include="Granada.h" />
     <ClInclude Include="Misil.h" />
     <ClInclude Include="Municion.h" />
+    <ClInclude Include="SistemaRenderizacion.h" />
     <ClInclude Include="Tanque.h" />
     <ClInclude Include="Utilitarios.h" />
   </ItemGroup>
