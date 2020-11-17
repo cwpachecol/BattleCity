@@ -26,7 +26,7 @@ public:
 	void limpiar();
 	void dibujarCaracter(int _fila, int _columna, char _simbolo, ColorConsola _colorSimbolo, ColorConsola _colorFondo);
 	void dibujarTexto(int _fila, int _columna, const string _texto, ColorConsola _colorSimbolo, ColorConsola _colorFondo);
-	void liberar();
+	void ejecutar();
 
 	void setCursorConsola(int _fila, int _columna);
 	void setColorConsola(ColorConsola _colorSimbolo, ColorConsola _colorFondo);

@@ -1,5 +1,6 @@
 #include "SistemaRenderizacion.h"
 #include <iostream>
+#include <cstdio>
 using namespace std;
 
 SistemaRenderizacion::SistemaRenderizacion()
@@ -58,7 +59,7 @@ void SistemaRenderizacion::dibujarTexto(int _fila, int _columna, const string _t
 	}
 }
 
-void SistemaRenderizacion::liberar()
+void SistemaRenderizacion::ejecutar()
 {
 	bool bufferPantallaModificado = false;
 

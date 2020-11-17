@@ -144,6 +144,7 @@
     <ClCompile Include="BattleCity.cpp" />
     <ClCompile Include="Escenario\MuroLadrillo.cpp" />
     <ClCompile Include="Escenario\MuroMetal.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Granada.cpp" />
     <ClCompile Include="Misil.cpp" />
     <ClCompile Include="Municion.cpp" />
@@ -155,13 +156,17 @@
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Bala.h" />
     <ClInclude Include="ColorConsola.h" />
+    <ClInclude Include="Direccion.h" />
     <ClInclude Include="Escenario\MuroLadrillo.h" />
     <ClInclude Include="Escenario\MuroMetal.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="Granada.h" />
     <ClInclude Include="Misil.h" />
     <ClInclude Include="Municion.h" />
+    <ClInclude Include="Nivel.h" />
     <ClInclude Include="SistemaRenderizacion.h" />
     <ClInclude Include="Tanque.h" />
+    <ClInclude Include="TipoActor.h" />
     <ClInclude Include="Utilitarios.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

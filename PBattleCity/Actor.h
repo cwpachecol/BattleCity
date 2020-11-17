@@ -43,6 +43,7 @@ public:
 	void setDy(int _dy) { dy = _dy; }
 
 	virtual void Mostrar() = 0;
-
+	void renderizar(SistemaRenderizacion* _sistemaRenderizacion) {};
+	void actualizar(float _dt) {};
 };
 
