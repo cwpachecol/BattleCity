@@ -8,6 +8,8 @@
 
 const int numeroMaximoActores = 1024;
 
+class Actor;
+
 class GameManager
 {
 private:

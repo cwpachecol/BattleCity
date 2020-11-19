@@ -146,3 +146,111 @@ void GameManager::abandonarJuego()
 		}
 	}
 }
+
+Actor* GameManager::crearActor(TipoActor _tipoActor, float _x, float _y)
+{
+	// Encuentra puntero libre y crea objeto
+	for (int i = 0; i <  numeroMaximoActores; i++)
+	{
+		if (actores[i] == 0)
+		{
+			Actor* actor = 0;
+
+			/*switch (_tipoActor)
+			{
+			case TipoActor_Pared:				actor = new Pared();			break;
+			case TipoActor_Base:				actor = new Base();				break;
+			case TipoActor_Bala:				actor = new Bala();				break;
+			case TipoActor_TanqueJugador:		actor = new TanqueJugador();	break;
+			case TipoActor_TanqueEnemigo:		actor = new TanqueEnemigo();	break;
+			case TipoActor_GeneradorEnemigo:	actor = new GeneradorEnemigo();	break;
+			}*/
+
+			if (actor == 0)
+				return 0;
+
+			actor->setGameManager(this);
+
+			if (moverActorA(actor, _x, _y) == false)
+			{
+				delete actor;
+				//return 0;
+				return nullptr;
+			}
+
+			actores[i] = actor;
+
+			return actor;
+		}
+	}
+
+	//return 0;
+	return nullptr;
+}
+
+void GameManager::destruirActor(Actor* _actor)
+{
+	for (int i = 0; i < numeroMaximoActores; i++)
+	{
+		if (actores[i] == _actor)
+		{
+			delete actores[i];
+			actores[i] = 0;
+
+			return;
+		}
+	}
+}
+
+Actor* GameManager::detectarColisiones(float _x, float _y, float _ancho, float _alto, Actor* _actorExcluido)
+{
+	int f00 = int(_y);
+	int c00 = int(_x);
+	int f01 = f00 + _alto - 1;
+	int c01 = c00 + _ancho - 1;
+
+	for (int i = 0; i < numeroMaximoActores; i++)
+		if (actores[i] != 0 && actores[i]->getFisico() && actores[i] != _actorExcluido)
+		{
+			int f10 = int(actores[i]->getY());
+			int c10 = int(actores[i]->getX());
+			int f11 = f10 + actores[i]->getAlto() - 1;
+			int c11 = c10 + actores[i]->getAncho() - 1;
+
+			if (f00 <= f11 && f01 >= f10 && c00 <= c11 && c01 >= c10)
+				return actores[i];
+		}
+
+	return nullptr;
+}
+
+bool GameManager::moverActorA(Actor* actor, float _x, float _y)
+{
+	int f0 = int(_y);
+	int c0 = int(_x);
+	int f1 = f0 + actor->getAlto() - 1;
+	int c1 = c0 + actor->getAncho() - 1;
+
+	if (f0 < 0 || c0 < 0 || f1 >= filasNivel || c1 >= columnasNivel)
+		return false;
+
+
+	bool puedeMoverACelda = false;
+
+	Actor* otroActor = detectarColisiones(_x, _y, actor->getAncho(), actor->getAncho(), actor);
+
+	if (otroActor)
+		actor->intersectar(otroActor);
+	else
+		puedeMoverACelda = true;
+
+
+	if (puedeMoverACelda)
+	{
+		actor->setX(_x);
+		actor->setY(_y);
+	}
+
+	return puedeMoverACelda;
+}
+
