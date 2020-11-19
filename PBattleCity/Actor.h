@@ -21,8 +21,6 @@ protected:
 	string avatar;
 	int ancho;
 	int alto;
-	int dx;
-	int dy;
 	int energia;
 
 	bool destruirDespuesMuerte;
@@ -32,18 +30,14 @@ protected:
 
 public:
 	Actor();
-	Actor(float _x, float _y, float _xVelocidad, float _yVelocidad, string _avatar, int _ancho, int _alto, int _dx, int _dy, int _energia);
-	Actor(GameManager* _gameManager, TipoActor _tipoActor, float _x, float _y, float _xVelocidad, float _yVelocidad, string _avatar, int _ancho, int _alto,
-		int _dx, int _dy, int _energia, bool _destrirDespuesMuerte, bool _invulnerable, bool _fisico, Direccion _direccion);
+	Actor(float _x, float _y, float _xVelocidad, float _yVelocidad, int _ancho, int _alto, int _energia);
+	Actor(GameManager* _gameManager, TipoActor _tipoActor, float _x, float _y, float _xVelocidad, float _yVelocidad, int _ancho, int _alto, int _energia, bool _destrirDespuesMuerte, bool _invulnerable, bool _fisico, Direccion _direccion);
 	float getX() { return x; }
 	float getY() { return y; }
 	float getXVelocidad() { return xVelocidad; }
 	float getYVelocidad() { return yVelocidad; }
-	string getAvatar() { return avatar; }
 	int getAncho() { return ancho; }
 	int getAlto() { return alto; }
-	int getDx() { return dx; }
-	int getDy() { return dy; }
 	bool getDestruirDespuesMuerte() { return destruirDespuesMuerte; }
 	bool getInvulnerable() { return invulnerable; }
 	bool getFisico() { return fisico; }
@@ -53,11 +47,8 @@ public:
 	void setXVelocidad(float _xVelocidad) { xVelocidad = _xVelocidad; }
 	void setYVelocidad(float _yVelocidad) { yVelocidad = _yVelocidad; }
 	
-	void setAvatar(string _avatar) { avatar = _avatar; }
 	void setAncho(int _ancho) { ancho = _ancho; }
 	void setAlto(int _alto) { alto = _alto; }
-	void setDx(int _dx) { dx = _dx; }
-	void setDy(int _dy) { dy = _dy; }
 	void setDireccion(Direccion _direccion) { direccion = _direccion; }
 
 	//virtual void Mostrar() = 0;

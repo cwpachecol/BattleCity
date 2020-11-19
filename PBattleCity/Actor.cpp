@@ -9,11 +9,8 @@ Actor::Actor()
 	y = 0.0;
 	xVelocidad = 0.0;
 	yVelocidad = 0.0;
-
 	ancho = 1;
 	alto = 1;
-	dx = 0;
-	dy = 0;
 	energia = 1;
 	destruirDespuesMuerte = true;
 	invulnerable = false;
@@ -22,7 +19,8 @@ Actor::Actor()
 	direccion = Direccion_Arriba;
 }
 
-Actor::Actor(float _x, float _y, float _xVelocidad, float _yVelocidad, string _avatar, int _ancho, int _alto, int _dx, int _dy, int _energia)
+//Actor::Actor(float _x = 0.0, float _y = 0.0, float _xVelocidad = 0.0, float _yVelocidad = 0.0, int _ancho = 1, int _alto = 1, int _energia = 1)
+Actor::Actor(float _x , float _y, float _xVelocidad, float _yVelocidad, int _ancho, int _alto, int _energia)
 {
 	gameManager = nullptr;
 	tipoActor = TipoActor_None;
@@ -31,11 +29,8 @@ Actor::Actor(float _x, float _y, float _xVelocidad, float _yVelocidad, string _a
 	y = _y;
 	xVelocidad = _xVelocidad;
 	yVelocidad = _yVelocidad;
-	avatar = _avatar;
 	ancho = _ancho;
 	alto = _alto;
-	dx = _dx;
-	dy = _dy;
 	energia = _energia;
 	destruirDespuesMuerte = true;
 	invulnerable = false;
@@ -44,7 +39,8 @@ Actor::Actor(float _x, float _y, float _xVelocidad, float _yVelocidad, string _a
 	direccion = Direccion_Arriba;
 }
 
-Actor::Actor(GameManager* _gameManager, TipoActor _tipoActor, float _x, float _y, float _xVelocidad, float _yVelocidad, string _avatar, int _ancho, int _alto, int _dx, int _dy, int _energia, bool _destrirDespuesMuerte, bool _invulnerable, bool _fisico, Direccion _direccion)
+Actor::Actor(GameManager* _gameManager, TipoActor _tipoActor, float _x, float _y, float _xVelocidad, float _yVelocidad, int _ancho, int _alto, 
+	int _energia, bool _destrirDespuesMuerte, bool _invulnerable, bool _fisico, Direccion _direccion)
 {
 	gameManager = _gameManager;
 	tipoActor = _tipoActor;
@@ -53,18 +49,14 @@ Actor::Actor(GameManager* _gameManager, TipoActor _tipoActor, float _x, float _y
 	y = _y;
 	xVelocidad = _xVelocidad;
 	yVelocidad = _yVelocidad;
-	avatar = _avatar;
 	ancho = _ancho;
 	alto = _alto;
-	dx = _dx;
-	dy = _dy;
 	energia = _energia;
 	destruirDespuesMuerte = _destrirDespuesMuerte;
 	invulnerable = _invulnerable;
 	fisico = _fisico;
 
 	direccion = _direccion;
-
 }
 
 void Actor::renderizar(SistemaRenderizacion* _sistemaRenderizacion)
