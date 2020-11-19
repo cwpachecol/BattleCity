@@ -55,7 +55,7 @@ const ColorConsola metalParedColorSimbolo = ColorConsola_Gris;
 const ColorConsola metalParedColorFondo = ColorConsola_GrisOscuro;
 
 // Tanques
-const float tiempoEnfriamientoFuegoTanque = 0.5;
+const float fuegoTiempoEnfriamientoTanque			 = 0.5;
 const int tamanoTanque = 3;
 
 enum ColorTanque

@@ -254,3 +254,13 @@ bool GameManager::moverActorA(Actor* actor, float _x, float _y)
 	return puedeMoverACelda;
 }
 
+int GameManager::getConteoActores(TipoActor _tipoActor)
+{
+	return 0;
+}
+
+int GameManager::incrementarContadorEnemigosMuertos()
+{
+	return 0;
+}
+

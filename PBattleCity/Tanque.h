@@ -2,25 +2,31 @@
 #include <iostream>
 #include <string>
 #include "Actor.h"
+#include "Nivel.h"
 
 using namespace std;
 
 
 class Tanque : public Actor
 {
-private:
-	int numeroVidas;
-	int energia;
-public:
-	//Tanque();
-	//Tanque(float _x, float _y, float _xVelocidad, float _yVelocidad, string _avatar, int _ancho, int _alto, int _dx, int _dy, int _energia):Actor(float _x, float _y, float _xVelocidad, float _yVelocidad, string _avatar, int _ancho, int _alto, int _dx, int _dy, int _energia){};
-	int getNumeroVidas() { return numeroVidas; }
-	void setNumeroVidas(int _numeroVidas) { numeroVidas = _numeroVidas; }
+	Tanque();
 
-	int getEnergia() { return energia; }
-	void setEnergia(int _energia) { energia = _energia; }
+	virtual void actualizar(float _dt);
+	virtual void renderizar(SistemaRenderizacion* _sistemaRenderizacion);
+
+	void setColor(ColorConsola _colorTanque1, ColorConsola _colorTanque2);
+
+	void mover(Direccion _direccion);
+	void disparar();
+
+
+protected:
+	void calcularPosicionCeldaFrontal(float* _x, float* _y);
+
+protected:
+	DatosSimboloConsola imagenTanque[Direccion_MAX][tamanoTanque][tamanoTanque];
 	
-	//void Mover();
-	//void Mostrar() override;
+	float fuegoTiempoEnfriamiento;
+	float velocidad;
 };
 

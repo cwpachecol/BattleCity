@@ -44,6 +44,29 @@ Actor::Actor(float _x, float _y, float _xVelocidad, float _yVelocidad, string _a
 	direccion = Direccion_Arriba;
 }
 
+Actor::Actor(GameManager* _gameManager, TipoActor _tipoActor, float _x, float _y, float _xVelocidad, float _yVelocidad, string _avatar, int _ancho, int _alto, int _dx, int _dy, int _energia, bool _destrirDespuesMuerte, bool _invulnerable, bool _fisico, Direccion _direccion)
+{
+	gameManager = _gameManager;
+	tipoActor = _tipoActor;
+
+	x = _x;
+	y = _y;
+	xVelocidad = _xVelocidad;
+	yVelocidad = _yVelocidad;
+	avatar = _avatar;
+	ancho = _ancho;
+	alto = _alto;
+	dx = _dx;
+	dy = _dy;
+	energia = _energia;
+	destruirDespuesMuerte = _destrirDespuesMuerte;
+	invulnerable = _invulnerable;
+	fisico = _fisico;
+
+	direccion = _direccion;
+
+}
+
 void Actor::renderizar(SistemaRenderizacion* _sistemaRenderizacion)
 {
 }

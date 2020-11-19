@@ -33,6 +33,8 @@ protected:
 public:
 	Actor();
 	Actor(float _x, float _y, float _xVelocidad, float _yVelocidad, string _avatar, int _ancho, int _alto, int _dx, int _dy, int _energia);
+	Actor(GameManager* _gameManager, TipoActor _tipoActor, float _x, float _y, float _xVelocidad, float _yVelocidad, string _avatar, int _ancho, int _alto,
+		int _dx, int _dy, int _energia, bool _destrirDespuesMuerte, bool _invulnerable, bool _fisico, Direccion _direccion);
 	float getX() { return x; }
 	float getY() { return y; }
 	float getXVelocidad() { return xVelocidad; }
@@ -56,6 +58,7 @@ public:
 	void setAlto(int _alto) { alto = _alto; }
 	void setDx(int _dx) { dx = _dx; }
 	void setDy(int _dy) { dy = _dy; }
+	void setDireccion(Direccion _direccion) { direccion = _direccion; }
 
 	//virtual void Mostrar() = 0;
 	virtual void renderizar(SistemaRenderizacion* _sistemaRenderizacion);

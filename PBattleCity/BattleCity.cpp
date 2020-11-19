@@ -1,5 +1,6 @@
 #include <iostream>
 #include "GameManager.h"
+#include "SistemaRenderizacion.h"
 
 //#include "Tanque.h"
 //#include "Bala.h"
@@ -70,10 +71,22 @@ using namespace std;
 
 int main()
 {
+	SistemaRenderizacion sistemaRenderizacion;
+	/*sistemaRenderizacion.inicializar();
+	sistemaRenderizacion.limpiar();
+	sistemaRenderizacion.dibujarCaracter(15, 15, '%', ColorConsola_Amarillo, ColorConsola_Blanco);
+	sistemaRenderizacion.dibujarTexto(2, 2, "Hola mundo", ColorConsola_Azul, ColorConsola_Cafe);*/
+
+	/*
 	GameManager gameManager;
 
 	gameManager.configurarSistema();
 	gameManager.inicializar();
+
+	while (gameManager.bucle());
+	gameManager.abandonarJuego();
+	*/
+
 	/*t01.Mostrar();
 	t02.Mostrar();
 
@@ -110,9 +123,14 @@ int main()
 	}
 */
 
-	cout << "---------------------" << endl;
+	/*cout << "---------------------" << endl;
 	cout << "USFX Battle City 2020" << endl;
-	cout << "---------------------" << endl;
+	cout << "---------------------" << endl;*/
+
+	//sistemaRenderizacion.limpiar();
+
+	cout << "Despues de limpiar" << endl;
+
 
 	cin.get();
 	return 0;
