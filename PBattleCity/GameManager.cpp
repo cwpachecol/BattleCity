@@ -1,4 +1,5 @@
 #include "GameManager.h"
+#include "TanqueJugador.h"
 #include <cstdlib>
 #include <cstdio>
 #include <cmath>
@@ -31,7 +32,7 @@ void GameManager::renderizar()
 
 	//Dibujar los demas elementos del juego
 
-	sistemaRenderizacion.dibujarTexto(5, 71, "Jugador 1", ColorConsola_Blanco, ColorConsola_AzulOscuro);
+	/*sistemaRenderizacion.dibujarTexto(5, 71, "Jugador 1", ColorConsola_Blanco, ColorConsola_AzulOscuro);
 	if (jugador1) {
 		int co = 71;
 		int fo = 6;
@@ -39,7 +40,7 @@ void GameManager::renderizar()
 		int f = 0;
 
 		sistemaRenderizacion.dibujarCaracter(fo + f, co + c, 3, ColorConsola_Amarillo, ColorConsola_Cafe);
-	}
+	}*/
 
 	sistemaRenderizacion.ejecutar();
 }
@@ -108,6 +109,10 @@ void GameManager::inicializar()
 			case celdaSimbolo_Jugador1:
 			{
 				//Aqui se crea un actor jugador 1.
+				TanqueJugador* jugador1 = (TanqueJugador*)crearActor(TipoActor_TanqueJugador, c + 0.5, f + 0.5);
+				jugador1->setColor(ColorConsola_Cafe, ColorConsola_Amarillo);
+				jugador1->setTeclas(VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN, VK_SPACE);
+				this->jugador1 = jugador1;
 				break;
 			}
 			case celdaSimbolo_Jugador2:
@@ -156,15 +161,15 @@ Actor* GameManager::crearActor(TipoActor _tipoActor, float _x, float _y)
 		{
 			Actor* actor = 0;
 
-			/*switch (_tipoActor)
+			switch (_tipoActor)
 			{
-			case TipoActor_Pared:				actor = new Pared();			break;
-			case TipoActor_Base:				actor = new Base();				break;
-			case TipoActor_Bala:				actor = new Bala();				break;
+			//case TipoActor_Pared:				actor = new Pared();			break;
+			//case TipoActor_Base:				actor = new Base();				break;
+			//case TipoActor_Bala:				actor = new Bala();				break;
 			case TipoActor_TanqueJugador:		actor = new TanqueJugador();	break;
-			case TipoActor_TanqueEnemigo:		actor = new TanqueEnemigo();	break;
-			case TipoActor_GeneradorEnemigo:	actor = new GeneradorEnemigo();	break;
-			}*/
+			//case TipoActor_TanqueEnemigo:		actor = new TanqueEnemigo();	break;
+			//case TipoActor_GeneradorEnemigo:	actor = new GeneradorEnemigo();	break;
+			}
 
 			if (actor == 0)
 				return 0;

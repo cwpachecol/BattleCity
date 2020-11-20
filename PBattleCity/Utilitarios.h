@@ -6,7 +6,9 @@
 
 using namespace std;
 
+
 //void gotoxy(x, y);
+bool IsKeyDown(int _virtualKeyCode);
 void gotoxy(int x, int y);
 void OcultarCursor();
 

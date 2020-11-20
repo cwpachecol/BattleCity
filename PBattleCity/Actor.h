@@ -50,12 +50,11 @@ public:
 	void setAncho(int _ancho) { ancho = _ancho; }
 	void setAlto(int _alto) { alto = _alto; }
 	void setDireccion(Direccion _direccion) { direccion = _direccion; }
+	void setGameManager(GameManager* _gameManager) { gameManager = _gameManager; }
 
-	//virtual void Mostrar() = 0;
 	virtual void renderizar(SistemaRenderizacion* _sistemaRenderizacion);
 	virtual void actualizar(float _dt);
-	virtual void intersectar(Actor* actor);
-	void setGameManager(GameManager* _gameManager){ gameManager = _gameManager; }
+	virtual void intersectar(Actor* _actor);
 	void hacerDano(int _dano);
 };
 

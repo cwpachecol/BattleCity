@@ -150,6 +150,7 @@
     <ClCompile Include="Municion.cpp" />
     <ClCompile Include="SistemaRenderizacion.cpp" />
     <ClCompile Include="Tanque.cpp" />
+    <ClCompile Include="TanqueJugador.cpp" />
     <ClCompile Include="Utilitarios.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +167,7 @@
     <ClInclude Include="Nivel.h" />
     <ClInclude Include="SistemaRenderizacion.h" />
     <ClInclude Include="Tanque.h" />
+    <ClInclude Include="TanqueJugador.h" />
     <ClInclude Include="TipoActor.h" />
     <ClInclude Include="Utilitarios.h" />
   </ItemGroup>

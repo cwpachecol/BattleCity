@@ -9,6 +9,7 @@ using namespace std;
 
 class Tanque : public Actor
 {
+public:
 	Tanque();
 
 	virtual void actualizar(float _dt);

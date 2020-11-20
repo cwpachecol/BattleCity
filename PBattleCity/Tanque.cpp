@@ -1,5 +1,4 @@
 #include "Tanque.h"
-#include "Utilitarios.h"
 
 Tanque::Tanque()
 {
@@ -42,7 +41,7 @@ void Tanque::setColor(ColorConsola _colorTanque1, ColorConsola _colorTanque2)
 			for (int c = 0; c < tamanoTanque; c++)
 			{
 				// Simbolo
-				imagenTanque[d][f][c].simbolo = imagenTanque[d][f][c].simbolo;
+				imagenTanque[d][f][c].simbolo = imagenTanqueNivel[d][f][c].simbolo;
 
 				// Color simbolo
 				switch (imagenTanque[d][f][c].colorSimbolo)

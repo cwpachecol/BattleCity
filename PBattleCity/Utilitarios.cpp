@@ -1,5 +1,11 @@
 #include "Utilitarios.h"
 
+bool IsKeyDown(int _virtualKeyCode) {
+	short keyState = GetAsyncKeyState(_virtualKeyCode);
+	return ((keyState & 0x8000) > 0);
+}
+
+
 void gotoxy(int x, int y)
 {
 	HANDLE hCon;

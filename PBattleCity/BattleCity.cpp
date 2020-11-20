@@ -71,13 +71,13 @@ using namespace std;
 
 int main()
 {
-	SistemaRenderizacion sistemaRenderizacion;
+	//SistemaRenderizacion sistemaRenderizacion;
 	/*sistemaRenderizacion.inicializar();
 	sistemaRenderizacion.limpiar();
 	sistemaRenderizacion.dibujarCaracter(15, 15, '%', ColorConsola_Amarillo, ColorConsola_Blanco);
 	sistemaRenderizacion.dibujarTexto(2, 2, "Hola mundo", ColorConsola_Azul, ColorConsola_Cafe);*/
 
-	/*
+	
 	GameManager gameManager;
 
 	gameManager.configurarSistema();
@@ -85,7 +85,7 @@ int main()
 
 	while (gameManager.bucle());
 	gameManager.abandonarJuego();
-	*/
+	
 
 	/*t01.Mostrar();
 	t02.Mostrar();

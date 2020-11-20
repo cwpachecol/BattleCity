@@ -87,7 +87,7 @@ void Actor::actualizar(float dt)
 }
 
 
-void Actor::intersectar(Actor* actor)
+void Actor::intersectar(Actor* _actor)
 {
 
 }
