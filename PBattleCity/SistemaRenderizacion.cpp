@@ -50,14 +50,30 @@ void SistemaRenderizacion::dibujarCaracter(int _fila, int _columna, char _simbol
 	bufferFondoPantalla[_fila][_columna].colorFondo = _colorFondo;
 }
 
-void SistemaRenderizacion::dibujarTexto(int _fila, int _columna, const string _texto, ColorConsola _colorSimbolo, ColorConsola _colorFondo)
+//void SistemaRenderizacion::dibujarTexto(int _fila, int _columna, const string _texto, ColorConsola _colorSimbolo, ColorConsola _colorFondo)
+//{
+//	int columnaActual = _columna;
+//	for (int i = 0; i < _texto.length(); i++) {
+//		dibujarCaracter(_fila, columnaActual, _texto[i], _colorSimbolo, _colorFondo);
+//		columnaActual++;
+//	}
+//}
+
+void SistemaRenderizacion::dibujarTexto(int _fila, int _columna, const char* _texto, ColorConsola _colorSimbolo, ColorConsola _colorFondo)
 {
-	int columnaActual = _columna;
-	for (int i = 0; i < _texto.length(); i++) {
-		dibujarCaracter(_fila, columnaActual, _texto[i], _colorSimbolo, _colorFondo);
-		columnaActual++;
+	int columna = _columna;
+	char simbolo = *_texto;
+
+	while (simbolo != 0)
+	{
+		dibujarCaracter(_fila, columna, simbolo, _colorSimbolo, _colorFondo);
+
+		_texto++;
+		columna++;
+		simbolo = *_texto;
 	}
 }
+
 
 void SistemaRenderizacion::ejecutar()
 {
@@ -76,7 +92,7 @@ void SistemaRenderizacion::ejecutar()
 				setCursorConsola(f, c);
 				setColorConsola(bufferPantalla[f][c].colorSimbolo, bufferPantalla[f][c].colorFondo);
 				//cout << bufferPantalla[f][c] << endl;
-				printf("%c", bufferPantalla[f][f]);
+				printf("%c", bufferPantalla[f][c].simbolo);
 
 				bufferPantallaModificado = true;
 			}
@@ -85,16 +101,18 @@ void SistemaRenderizacion::ejecutar()
 }
 
 void SistemaRenderizacion::setCursorConsola(int _fila, int _columna) {
-	COORD CoordenadasCursos;
-	CoordenadasCursos.X = _columna;
-	CoordenadasCursos.Y = _fila;
-	SetConsoleCursorPosition(handdleConsola, CoordenadasCursos);
+	COORD CoordenadasCursor;
+	CoordenadasCursor.X = _columna;
+	CoordenadasCursor.Y = _fila;
+	SetConsoleCursorPosition(handdleConsola, CoordenadasCursor);
 }
 
 void SistemaRenderizacion::setColorConsola(ColorConsola _colorSimbolo, ColorConsola _colorFondo)
 {
-	int colorConsola;
-	colorConsola = _colorFondo * 16 + _colorSimbolo;
+	/*int colorConsola;
+	colorConsola = _colorFondo * 16 + _colorSimbolo;*/
 
+	unsigned char colorConsola = _colorSimbolo | (_colorFondo << 4);
+	
 	SetConsoleTextAttribute(handdleConsola, colorConsola);
 }

@@ -25,7 +25,8 @@ public:
 	void inicializar();
 	void limpiar();
 	void dibujarCaracter(int _fila, int _columna, char _simbolo, ColorConsola _colorSimbolo, ColorConsola _colorFondo);
-	void dibujarTexto(int _fila, int _columna, const string _texto, ColorConsola _colorSimbolo, ColorConsola _colorFondo);
+	//void dibujarTexto(int _fila, int _columna, const string _texto, ColorConsola _colorSimbolo, ColorConsola _colorFondo);
+	void dibujarTexto(int _fila, int _columna, const char* _texto, ColorConsola _colorSimbolo, ColorConsola _colorFondo);
 	void ejecutar();
 
 	void setCursorConsola(int _fila, int _columna);

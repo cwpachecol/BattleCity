@@ -38,17 +38,22 @@ public:
 	float getYVelocidad() { return yVelocidad; }
 	int getAncho() { return ancho; }
 	int getAlto() { return alto; }
+	int getEnergia() { return energia; }
 	bool getDestruirDespuesMuerte() { return destruirDespuesMuerte; }
 	bool getInvulnerable() { return invulnerable; }
 	bool getFisico() { return fisico; }
-		
+	Direccion getDireccion() { return direccion; }
+
 	void setX(float _x) { x = _x; }
 	void setY(float _y) { y = _y; }
 	void setXVelocidad(float _xVelocidad) { xVelocidad = _xVelocidad; }
 	void setYVelocidad(float _yVelocidad) { yVelocidad = _yVelocidad; }
-	
 	void setAncho(int _ancho) { ancho = _ancho; }
 	void setAlto(int _alto) { alto = _alto; }
+	void setEnergia(int _energia) { energia = _energia; }
+	void setDestruirDespuesMuerte(bool _destruirDespuesMuerte) { destruirDespuesMuerte = _destruirDespuesMuerte; }
+	void setInvulnerable(bool _invulnerable) { invulnerable = _invulnerable; }
+	void setFisico(bool _fisico) { fisico = _fisico; }
 	void setDireccion(Direccion _direccion) { direccion = _direccion; }
 	void setGameManager(GameManager* _gameManager) { gameManager = _gameManager; }
 

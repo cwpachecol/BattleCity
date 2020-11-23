@@ -32,15 +32,89 @@ void GameManager::renderizar()
 
 	//Dibujar los demas elementos del juego
 
-	/*sistemaRenderizacion.dibujarTexto(5, 71, "Jugador 1", ColorConsola_Blanco, ColorConsola_AzulOscuro);
-	if (jugador1) {
-		int co = 71;
-		int fo = 6;
+	sistemaRenderizacion.dibujarTexto(2, 71, "Base", ColorConsola_Blanco, ColorConsola_GrisOscuro);
+	if (base)
+	{
+		int sc = 71;
+		int sf = 3;
 		int c = 0;
 		int f = 0;
+		int h = base->getEnergia();
+		while (h > 0)
+		{
+			sistemaRenderizacion.dibujarCaracter(sf + f, sc + c, 3, ColorConsola_Rojo, ColorConsola_RojoOscuro);
+			--h;
+			++c;
+			if (c > 7)
+			{
+				++f;
+				c = 0;
+			}
+		}
+	}
 
-		sistemaRenderizacion.dibujarCaracter(fo + f, co + c, 3, ColorConsola_Amarillo, ColorConsola_Cafe);
-	}*/
+	sistemaRenderizacion.dibujarTexto(5, 71, "Jugador 1", ColorConsola_Blanco, ColorConsola_GrisOscuro);
+	if (jugador1)
+	{
+		int sc = 71;
+		int sf = 6;
+		int c = 0;
+		int f = 0;
+		int h = jugador1->getEnergia();
+		while (h > 0)
+		{
+			sistemaRenderizacion.dibujarCaracter(sf + f, sc + c, 3, ColorConsola_Amarillo, ColorConsola_Cafe);
+			--h;
+			++c;
+			if (c > 7)
+			{
+				++f;
+				c = 0;
+			}
+		}
+	}
+
+	sistemaRenderizacion.dibujarTexto(9, 71, "Jugador 2 2", ColorConsola_Blanco, ColorConsola_GrisOscuro);
+	if (jugador2)
+	{
+		int sc = 71;
+		int sf = 10;
+		int c = 0;
+		int f = 0;
+		int h = jugador2->getEnergia();
+		while (h > 0)
+		{
+			sistemaRenderizacion.dibujarCaracter(sf + f, sc + c, 3, ColorConsola_Verde, ColorConsola_VerdeOscuro);
+			--h;
+			++c;
+			if (c > 7)
+			{
+				++f;
+				c = 0;
+			}
+		}
+	}
+
+	sistemaRenderizacion.dibujarTexto(13, 71, "Enemigos", ColorConsola_Blanco, ColorConsola_GrisOscuro);
+	int sc = 71;
+	int sf = 14;
+	int c = 0;
+	int f = 0;
+	int h = enemigosPorNivel - contadorEnemigosMuertos;
+	while (h > 0)
+	{
+		sistemaRenderizacion.dibujarCaracter(sf + f, sc + c, 127, ColorConsola_Celeste, ColorConsola_CelesteOscuro);
+		--h;
+		++c;
+		if (c > 7)
+		{
+			++f;
+			c = 0;
+		}
+	}
+
+
+	// Finalizar frame
 
 	sistemaRenderizacion.ejecutar();
 }
@@ -50,13 +124,33 @@ void GameManager::actualizar(float _dt)
 	for (int i = 0; i < numeroMaximoActores; i++) {
 		if (actores[i] != 0) {
 			actores[i]->actualizar(_dt);
+
+			if (actores[i]->getEnergia() <= 0 && actores[i]->getDestruirDespuesMuerte())
+				destruirActor(actores[i]);
 		}
 	}
 
-	// La base se ha destruido
-	// Se ha destruido jugador 1
-	// Se ha destruido jugador 2
-	// Se han destruido los enemigos
+	// Base destruida
+	if (base && base->getEnergia() <= 0)
+		inicializar();
+
+	// Jugador1 destruido
+	if (jugador1 && jugador1->getEnergia() <= 0)
+	{
+		destruirActor(jugador1);
+		jugador1 = NULL;
+	}
+
+	// Jugador2 destruido
+	if (jugador2 && jugador2->getEnergia() <= 0)
+	{
+		destruirActor(jugador2);
+		jugador2 = NULL;
+	}
+
+	// Todos los enemigos destruidos
+	if (contadorEnemigosMuertos == enemigosPorNivel)
+		inicializar();
 }
 
 GameManager::GameManager()
@@ -179,8 +273,8 @@ Actor* GameManager::crearActor(TipoActor _tipoActor, float _x, float _y)
 			if (moverActorA(actor, _x, _y) == false)
 			{
 				delete actor;
-				//return 0;
-				return nullptr;
+				return 0;
+				//return nullptr;
 			}
 
 			actores[i] = actor;
@@ -189,8 +283,8 @@ Actor* GameManager::crearActor(TipoActor _tipoActor, float _x, float _y)
 		}
 	}
 
-	//return 0;
-	return nullptr;
+	return 0;
+	//return nullptr;
 }
 
 void GameManager::destruirActor(Actor* _actor)
@@ -242,7 +336,7 @@ bool GameManager::moverActorA(Actor* actor, float _x, float _y)
 
 	bool puedeMoverACelda = false;
 
-	Actor* otroActor = detectarColisiones(_x, _y, actor->getAncho(), actor->getAncho(), actor);
+	Actor* otroActor = detectarColisiones(_x, _y, actor->getAncho(), actor->getAlto(), actor);
 
 	if (otroActor)
 		actor->intersectar(otroActor);

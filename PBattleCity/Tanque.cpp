@@ -44,7 +44,7 @@ void Tanque::setColor(ColorConsola _colorTanque1, ColorConsola _colorTanque2)
 				imagenTanque[d][f][c].simbolo = imagenTanqueNivel[d][f][c].simbolo;
 
 				// Color simbolo
-				switch (imagenTanque[d][f][c].colorSimbolo)
+				switch (imagenTanqueNivel[d][f][c].colorSimbolo)
 				{
 				case ColorTanque_0:
 					imagenTanque[d][f][c].colorSimbolo = ColorConsola_Negro;
@@ -60,7 +60,7 @@ void Tanque::setColor(ColorConsola _colorTanque1, ColorConsola _colorTanque2)
 				}
 
 				// Color fondo
-				switch (imagenTanque[d][f][c].colorFondo)
+				switch (imagenTanqueNivel[d][f][c].colorFondo)
 				{
 				case ColorTanque_0:
 					imagenTanque[d][f][c].colorFondo = ColorConsola_Negro;
@@ -84,7 +84,7 @@ void Tanque::mover(Direccion _direccion)
 	setXVelocidad(0);
 	setYVelocidad(0);
 
-	switch (_direccion)
+	switch (direccion)
 	{
 	case Direccion_Izquierda: setXVelocidad(-velocidad); break;
 	case Direccion_Derecha: setXVelocidad(velocidad); break;

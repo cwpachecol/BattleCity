@@ -1,7 +1,5 @@
 #pragma once
 
-#pragma once
-
 #include "SistemaRenderizacion.h"
 #include "Direccion.h"
 

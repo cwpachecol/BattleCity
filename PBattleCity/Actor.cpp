@@ -2,7 +2,8 @@
 
 Actor::Actor()
 {
-	gameManager = nullptr;
+	//gameManager = nullptr;
+	gameManager = 0;
 	tipoActor = TipoActor_None;
 
 	x = 0.0;
@@ -63,13 +64,13 @@ void Actor::renderizar(SistemaRenderizacion* _sistemaRenderizacion)
 {
 }
 
-void Actor::actualizar(float dt)
+void Actor::actualizar(float _dt)
 {
 	int filaAnterior = int(y);
 	int columnaAnterior = int(x);
 
-	float yNueva = y + yVelocidad * dt;
-	float xNueva = x + xVelocidad * dt;
+	float yNueva = y + yVelocidad * _dt;
+	float xNueva = x + xVelocidad * _dt;
 
 	int filaNueva = int(yNueva);
 	int columnaNueva = int(xNueva);
