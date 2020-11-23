@@ -12,6 +12,7 @@ const unsigned char	celdaSimbolo_Jugador2 = '2';
 const unsigned char	celdaSimbolo_Tanque = 'T';
 const unsigned char	celdaSimbolo_LadrilloPared = '#';
 const unsigned char	celdaSimbolo_MetalPared = '@';
+const unsigned char celdaSimbolo_Arbusto = '&';
 const unsigned char	celdaSimbolo_Base = 'B';
 const unsigned char	celdaSimbolo_GeneradorEnemigo = 'S';
 
@@ -23,9 +24,9 @@ const unsigned char datosNivel0[filasNivel][columnasNivel + 1] =
 	"@                                 @@                                 @",
 	"@   ##   ##   @@@###### S   @@@        @@@ S   ######@@@   ##   ##   @",
 	"@   #######   @@@######     @@@        @@@     ######@@@   #######   @",
-	"@   #######                 @@@        @@@                 #######   @",
-	"@   ##   ##                 @@@@@@@@@@@@@@                 ##   ##   @",
-	"@                                 @@                                 @",
+	"@   #######&&&&&&&&&&&&&&&&&@@@        @@@                 #######   @",
+	"@   ##   ##&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@                 ##   ##   @",
+	"@          &&&&&&&&&&&&&&&&&      @@                                 @",
 	"@                @@@              @@              @@@                @",
 	"@                @@@              @@              @@@                @",
 	"@@@   @@@#####   ############            ############   #####@@@   @@@",
@@ -51,6 +52,11 @@ const ColorConsola ladrilloParedColorFondo = ColorConsola_Rojo;
 const unsigned char	metalParedImagen = 254;
 const ColorConsola metalParedColorSimbolo = ColorConsola_Gris;
 const ColorConsola metalParedColorFondo = ColorConsola_GrisOscuro;
+
+const unsigned char	arbustoImagen = 176;
+const ColorConsola arbustoColorColorSimbolo = ColorConsola_Verde;
+const ColorConsola arbustoColorFondo = ColorConsola_VerdeOscuro;
+
 
 // Tanques
 const float fuegoTiempoEnfriamientoTanque = 0.5;
