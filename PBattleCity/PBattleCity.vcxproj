@@ -148,6 +148,7 @@
     <ClCompile Include="Granada.cpp" />
     <ClCompile Include="Misil.cpp" />
     <ClCompile Include="Municion.cpp" />
+    <ClCompile Include="Pared.cpp" />
     <ClCompile Include="SistemaRenderizacion.cpp" />
     <ClCompile Include="Tanque.cpp" />
     <ClCompile Include="TanqueJugador.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Misil.h" />
     <ClInclude Include="Municion.h" />
     <ClInclude Include="Nivel.h" />
+    <ClInclude Include="Pared.h" />
     <ClInclude Include="SistemaRenderizacion.h" />
     <ClInclude Include="Tanque.h" />
     <ClInclude Include="TanqueJugador.h" />

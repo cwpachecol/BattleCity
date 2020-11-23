@@ -4,6 +4,8 @@
 #include <cstdio>
 #include <cmath>
 
+#include "Pared.h"
+
 void GameManager::renderizar()
 {
 	// Frame inicial
@@ -188,10 +190,15 @@ void GameManager::inicializar()
 			case celdaSimbolo_LadrilloPared:
 			{
 				//Aqui se crea un actor ladrillo pared.
+				Pared* pared = (Pared*)crearActor(TipoActor_Pared, c, f);
 				break;
 			}
 			case celdaSimbolo_MetalPared:
 			{
+				Pared* pared = (Pared*)crearActor(TipoActor_Pared, c, f);
+				pared->setImagenPared(metalParedImagen, metalParedColorSimbolo, metalParedColorFondo);
+				pared->setInvulnerable(true);
+				break;
 				//Aqui se crea un actor bloque metal pared.
 				break;
 			}
@@ -257,7 +264,7 @@ Actor* GameManager::crearActor(TipoActor _tipoActor, float _x, float _y)
 
 			switch (_tipoActor)
 			{
-			//case TipoActor_Pared:				actor = new Pared();			break;
+			case TipoActor_Pared:				actor = new Pared();			break;
 			//case TipoActor_Base:				actor = new Base();				break;
 			//case TipoActor_Bala:				actor = new Bala();				break;
 			case TipoActor_TanqueJugador:		actor = new TanqueJugador();	break;
