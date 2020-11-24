@@ -144,6 +144,7 @@
     <ClCompile Include="Base.cpp" />
     <ClCompile Include="BattleCity.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="GeneradorEnemigo.cpp" />
     <ClCompile Include="Granada.cpp" />
     <ClCompile Include="Misil.cpp" />
     <ClCompile Include="Municion.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="ColorConsola.h" />
     <ClInclude Include="Direccion.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="GeneradorEnemigo.h" />
     <ClInclude Include="Granada.h" />
     <ClInclude Include="Misil.h" />
     <ClInclude Include="Municion.h" />

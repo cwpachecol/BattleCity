@@ -5,6 +5,13 @@ bool IsKeyDown(int _virtualKeyCode) {
 	return ((keyState & 0x8000) > 0);
 }
 
+int getRandomInt(int min, int max) {
+	return min + rand() % (max - min + 1);
+}
+
+float getRandomFloat(float min, float max) {
+	return (min + (max - min) * (rand() % 101 / 100.0));
+}
 
 void gotoxy(int x, int y)
 {

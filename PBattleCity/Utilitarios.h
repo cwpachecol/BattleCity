@@ -9,6 +9,10 @@ using namespace std;
 
 //void gotoxy(x, y);
 bool IsKeyDown(int _virtualKeyCode);
+
+int getRandomInt(int min, int max);
+float getRandomFloat(float min, float max);
+
 void gotoxy(int x, int y);
 void OcultarCursor();
 
