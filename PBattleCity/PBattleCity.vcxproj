@@ -151,6 +151,7 @@
     <ClCompile Include="Pared.cpp" />
     <ClCompile Include="SistemaRenderizacion.cpp" />
     <ClCompile Include="Tanque.cpp" />
+    <ClCompile Include="TanqueEnemigo.cpp" />
     <ClCompile Include="TanqueJugador.cpp" />
     <ClCompile Include="Utilitarios.cpp" />
   </ItemGroup>
@@ -169,6 +170,7 @@
     <ClInclude Include="Pared.h" />
     <ClInclude Include="SistemaRenderizacion.h" />
     <ClInclude Include="Tanque.h" />
+    <ClInclude Include="TanqueEnemigo.h" />
     <ClInclude Include="TanqueJugador.h" />
     <ClInclude Include="TipoActor.h" />
     <ClInclude Include="Utilitarios.h" />

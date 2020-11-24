@@ -32,6 +32,7 @@ public:
 	Actor();
 	Actor(float _x, float _y, float _xVelocidad, float _yVelocidad, int _ancho, int _alto, int _energia);
 	Actor(GameManager* _gameManager, TipoActor _tipoActor, float _x, float _y, float _xVelocidad, float _yVelocidad, int _ancho, int _alto, int _energia, bool _destrirDespuesMuerte, bool _invulnerable, bool _fisico, Direccion _direccion);
+	TipoActor getTipoActor() { return tipoActor; }
 	float getX() { return x; }
 	float getY() { return y; }
 	float getXVelocidad() { return xVelocidad; }
@@ -43,7 +44,8 @@ public:
 	bool getInvulnerable() { return invulnerable; }
 	bool getFisico() { return fisico; }
 	Direccion getDireccion() { return direccion; }
-
+	
+	void setTipoActor(TipoActor _tipoActor) { tipoActor = _tipoActor; }
 	void setX(float _x) { x = _x; }
 	void setY(float _y) { y = _y; }
 	void setXVelocidad(float _xVelocidad) { xVelocidad = _xVelocidad; }

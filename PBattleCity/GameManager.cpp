@@ -6,6 +6,8 @@
 
 #include "Pared.h"
 #include "Base.h"
+#include "GeneradorEnemigo.h"
+#include "TanqueEnemigo.h"
 
 void GameManager::renderizar()
 {
@@ -226,6 +228,7 @@ void GameManager::inicializar()
 			case celdaSimbolo_GeneradorEnemigo:
 			{
 				//Aqui se crea un actor generador de enemigos.
+				crearActor(TipoActor_GeneradorEnemigo, c, f);
 				break;
 			}
 			}
@@ -270,8 +273,8 @@ Actor* GameManager::crearActor(TipoActor _tipoActor, float _x, float _y)
 			case TipoActor_Base:				actor = new Base();				break;
 			//case TipoActor_Bala:				actor = new Bala();				break;
 			case TipoActor_TanqueJugador:		actor = new TanqueJugador();	break;
-			//case TipoActor_TanqueEnemigo:		actor = new TanqueEnemigo();	break;
-			//case TipoActor_GeneradorEnemigo:	actor = new GeneradorEnemigo();	break;
+			case TipoActor_TanqueEnemigo:		actor = new TanqueEnemigo();	break;
+			case TipoActor_GeneradorEnemigo:	actor = new GeneradorEnemigo();	break;
 			}
 
 			if (actor == 0)
