@@ -45,6 +45,7 @@ const unsigned char datosNivel0[filasNivel][columnasNivel + 1] =
 	"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
 };
 
+//Paredes y arbustos
 const unsigned char	ladrilloParedImagen = 177;
 const ColorConsola ladrilloParedColorSimbolo = ColorConsola_Cafe;
 const ColorConsola ladrilloParedColorFondo = ColorConsola_Rojo;
@@ -134,20 +135,20 @@ const ColorConsola bc3 = ColorConsola_RojoOscuro;
 
 const DatosSimboloConsola imagenBaseNormal[filasBase][columnasBase] =
 {
-	{ { 17, bc2, bc0}, {221, bc1, bc0}, {254, bc0, bc3}, {254, bc0, bc3}, {254, bc0, bc3}, {254, bc0, bc3}, {222, bc1, bc0}, { 16, bc2, bc0} },
-	{ {  0, bc0, bc0}, {221, bc1, bc0}, {254, bc0, bc3}, {176, bc0, bc1}, {176, bc0, bc1}, {254, bc0, bc3}, {222, bc1, bc0}, {  0, bc0, bc0} }
+	{ { 17, bc2, bc0}, {221, bc1, bc0}, {254, bc0, bc3}, {254, bc0, bc3}, {254, bc0, bc3}, {254, bc0, bc3}, {221, bc1, bc0}, { 16, bc2, bc0} },
+	{ {  0, bc0, bc0}, {221, bc1, bc0}, {254, bc0, bc3}, {176, bc0, bc1}, {176, bc0, bc1}, {254, bc0, bc3}, {221, bc1, bc0}, {  0, bc0, bc0} }
 };
 
 const DatosSimboloConsola imagenBaseDanada[filasBase][columnasBase] =
 {
-	{ {  0, bc0, bc0}, {  0, bc0, bc0}, {254, bc0, bc3}, {254, bc0, bc3}, {  0, bc0, bc0}, {254, bc0, bc3}, {222, bc1, bc0}, { 16, bc2, bc0} },
-	{ {  0, bc0, bc0}, {221, bc1, bc0}, {254, bc0, bc3}, {176, bc1, bc0}, {176, bc1, bc0}, {254, bc0, bc3}, {222, bc1, bc0}, {  0, bc0, bc0} }
+	{ {  0, bc0, bc0}, {  0, bc0, bc0}, {254, bc0, bc3}, {254, bc0, bc3}, {  0, bc0, bc0}, {254, bc0, bc3}, {221, bc1, bc0}, { 16, bc2, bc0} },
+	{ {  0, bc0, bc0}, {221, bc1, bc0}, {254, bc0, bc3}, {176, bc1, bc0}, {176, bc1, bc0}, {254, bc0, bc3}, {221, bc1, bc0}, {  0, bc0, bc0} }
 };
 
 const DatosSimboloConsola imagenBaseDestruida[filasBase][columnasBase] =
 {
 	{ {  0, bc0, bc0}, {  0, bc0, bc0}, {  0, bc0, bc0}, {254, bc0, bc3}, {'_', bc3, bc0}, {254, bc0, bc3}, {  0, bc0, bc0}, {  0, bc0, bc0} },
-	{ {  0, bc0, bc0}, {  0, bc0, bc0}, {254, bc0, bc3}, {  0, bc0, bc0}, {'/', bc1, bc0}, {254, bc0, bc3}, {222, bc1, bc0}, {  0, bc0, bc0} }
+	{ {  0, bc0, bc0}, {  0, bc0, bc0}, {254, bc0, bc3}, {  0, bc0, bc0}, {'/', bc1, bc0}, {254, bc0, bc3}, {221, bc1, bc0}, {  0, bc0, bc0} }
 };
 
 

@@ -5,6 +5,7 @@
 #include <cmath>
 
 #include "Pared.h"
+#include "Base.h"
 
 void GameManager::renderizar()
 {
@@ -205,6 +206,7 @@ void GameManager::inicializar()
 			case celdaSimbolo_Base:
 			{
 				//Aqui se crea un actor base.
+				base = crearActor(TipoActor_Base, c, f);
 				break;
 			}
 			case celdaSimbolo_Jugador1:
@@ -265,7 +267,7 @@ Actor* GameManager::crearActor(TipoActor _tipoActor, float _x, float _y)
 			switch (_tipoActor)
 			{
 			case TipoActor_Pared:				actor = new Pared();			break;
-			//case TipoActor_Base:				actor = new Base();				break;
+			case TipoActor_Base:				actor = new Base();				break;
 			//case TipoActor_Bala:				actor = new Bala();				break;
 			case TipoActor_TanqueJugador:		actor = new TanqueJugador();	break;
 			//case TipoActor_TanqueEnemigo:		actor = new TanqueEnemigo();	break;

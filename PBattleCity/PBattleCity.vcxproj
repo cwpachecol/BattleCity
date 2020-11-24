@@ -141,9 +141,8 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Bala.cpp" />
+    <ClCompile Include="Base.cpp" />
     <ClCompile Include="BattleCity.cpp" />
-    <ClCompile Include="Escenario\MuroLadrillo.cpp" />
-    <ClCompile Include="Escenario\MuroMetal.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Granada.cpp" />
     <ClCompile Include="Misil.cpp" />
@@ -157,10 +156,9 @@
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Bala.h" />
+    <ClInclude Include="Base.h" />
     <ClInclude Include="ColorConsola.h" />
     <ClInclude Include="Direccion.h" />
-    <ClInclude Include="Escenario\MuroLadrillo.h" />
-    <ClInclude Include="Escenario\MuroMetal.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Granada.h" />
     <ClInclude Include="Misil.h" />
