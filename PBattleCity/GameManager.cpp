@@ -8,6 +8,7 @@
 #include "Base.h"
 #include "GeneradorEnemigo.h"
 #include "TanqueEnemigo.h"
+#include "Municion.h"
 
 void GameManager::renderizar()
 {
@@ -277,10 +278,12 @@ Actor* GameManager::crearActor(TipoActor _tipoActor, float _x, float _y)
 			{
 			case TipoActor_Pared:				actor = new Pared();			break;
 			case TipoActor_Base:				actor = new Base();				break;
+			case TipoActor_Municion:			actor = new Municion();			break;
 			//case TipoActor_Bala:				actor = new Bala();				break;
 			case TipoActor_TanqueJugador:		actor = new TanqueJugador();	break;
 			case TipoActor_TanqueEnemigo:		actor = new TanqueEnemigo();	break;
 			case TipoActor_GeneradorEnemigo:	actor = new GeneradorEnemigo();	break;
+
 			}
 
 			if (actor == 0)

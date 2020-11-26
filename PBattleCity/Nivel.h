@@ -94,7 +94,7 @@ const CeldaImagenTanque imagenTanqueNivel[Direccion_MAX][tamanoTanque][tamanoTan
 	// Derecha
 	{
 		{ {220, ColorTanque_1, ColorTanque_0}, {220, ColorTanque_1, ColorTanque_0}, {220, ColorTanque_1, ColorTanque_0} },
-		{ {222, ColorTanque_1, ColorTanque_0}, {  4, ColorTanque_2, ColorTanque_1}, {196, ColorTanque_2, ColorTanque_0} },
+		{ {221, ColorTanque_1, ColorTanque_0}, {  4, ColorTanque_2, ColorTanque_1}, {196, ColorTanque_2, ColorTanque_0} },
 		{ {223, ColorTanque_1, ColorTanque_0}, {223, ColorTanque_1, ColorTanque_0}, {223, ColorTanque_1, ColorTanque_0} }
 	},
 	// Abajo
@@ -151,8 +151,10 @@ const DatosSimboloConsola imagenBaseDestruida[filasBase][columnasBase] =
 	{ {  0, bc0, bc0}, {  0, bc0, bc0}, {254, bc0, bc3}, {  0, bc0, bc0}, {'/', bc1, bc0}, {254, bc0, bc3}, {221, bc1, bc0}, {  0, bc0, bc0} }
 };
 
+//Datos municion
+const float velocidadMunicion = 10.0;
+const char imagenMunicion = 250;
 
-/////////////////////////////////////
 // Datos bala
 const float velocidadBala = 30.0;
 const char imagenBala = '*';

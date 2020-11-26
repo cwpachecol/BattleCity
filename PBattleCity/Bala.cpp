@@ -1,35 +1,23 @@
 #include "Bala.h"
 
-//void Bala::Mostrar()
-//{
-//	gotoxy(getX(), getY());
-//	cout << getAvatar() << endl;
-//}
-//
-//void Bala::Mover()
-//{
-//	if (recorrido < alcance && estado == EstadoMunicion::EnCurso){
-//		gotoxy(getX(), getY());
-//		cout << " " << endl;
-//		setX(getX() + getDx());
-//		setY(getY() + getDy());
-//		Mostrar();
-//		recorrido++;
-//	}
-//	else {
-//		//Impactar();
-//		estado = EstadoMunicion::Impactado;
-//	}
-//}
-//
-//void Bala::Impactar()
-//{
-//	gotoxy(getX(), getY());
-//	cout << getAvatarExplosion() << endl;
-//}
-//
-//void Bala::Disparar()
-//{
-//	recorrido = 0;
-//	estado = EstadoMunicion::EnCurso;
-//}
+Bala::Bala() {
+	tipoActor = TipoActor_Bala;
+	energia = energiaEnemigo;
+	velocidad = velocidadBala;
+
+	setImagen(imagenBala, ColorConsola_Amarillo, ColorConsola_Negro);
+}
+
+void Bala::actualizar(float _dt) {
+	//Municion::actualizar(_dt);
+	Actor::actualizar(_dt);
+}
+
+void Bala::renderizar(SistemaRenderizacion* _sistemaRenderizacion) {
+	Municion::renderizar(_sistemaRenderizacion);
+}
+
+void Bala::intersectar(Actor* _actor) {
+	Municion::intersectar(_actor);
+}
+

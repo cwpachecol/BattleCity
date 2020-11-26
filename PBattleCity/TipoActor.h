@@ -8,6 +8,7 @@ enum TipoActor
 	TipoActor_TanqueEnemigo,
 	TipoActor_Pared,
 	TipoActor_Base,
+	TipoActor_Municion,
 	TipoActor_Bala,
 	TipoActor_GeneradorEnemigo,
 };

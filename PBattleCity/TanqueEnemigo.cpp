@@ -1,6 +1,7 @@
 #include "TanqueEnemigo.h"
 #include "Utilitarios.h"
 #include "Pared.h"
+#include "Bala.h"
 
 TanqueEnemigo::TanqueEnemigo()
 {
@@ -50,7 +51,18 @@ void TanqueEnemigo::analizar()
 	} while (actor == 0);
 
 	//Codigo para defenderse disparando
+	if (actor->getTipoActor() == TipoActor_Bala) {
+		if (((Bala*)actor)->getTipoActorPropietario() == TipoActor_TanqueJugador) {
+			disparar();
+		}
+		return;
+	}
+	
 	//Atacar disparando
+	if (actor->getTipoActor() == TipoActor_TanqueJugador || actor->getTipoActor() == TipoActor_Base) {
+		disparar();
+		return;
+	}
 
 	//Cambio de direccion aleatorio
 	if (0 == rand() % 5) {

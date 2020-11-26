@@ -58,10 +58,9 @@ inline T* GameManager::crearActor(float _x, float _y)
 	{
 		if (actores[i] == 0)
 		{
-			T* actor = 0;
-			actor = new T();
+			T* actor = new T();
 			
-			if (actor == 0)
+			if (actor == NULL)
 				return NULL;
 
 			actor->setGameManager(this);

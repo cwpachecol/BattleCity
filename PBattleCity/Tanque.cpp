@@ -1,4 +1,5 @@
 #include "Tanque.h"
+#include "Bala.h"
 
 Tanque::Tanque()
 {
@@ -115,13 +116,13 @@ void Tanque::disparar()
 	case Direccion_Abajo: yVelocidad = velocidadBala; break;
 	}
 
-	/*Bullet* bullet = (Bullet*)m_game->createObject(GameObjectType_Bullet, x, y);
-	if (bullet)
+	Bala* bala = gameManager->crearActor<Bala>(x, y);
+	if (bala)
 	{
-		bullet->setOwnerType(m_type);
-		bullet->setXSpeed(xSpeed);
-		bullet->setYSpeed(ySpeed);
-	}*/
+		bala->setTipoActorPropietario(tipoActor);
+		bala->setXVelocidad(xVelocidad);
+		bala->setYVelocidad(yVelocidad);
+	}
 }
 
 void Tanque::calcularPosicionCeldaFrontal(float* _x, float* _y)
