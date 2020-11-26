@@ -193,28 +193,33 @@ void GameManager::inicializar()
 			case celdaSimbolo_LadrilloPared:
 			{
 				//Aqui se crea un actor ladrillo pared.
-				Pared* pared = (Pared*)crearActor(TipoActor_Pared, c, f);
+				//Pared* pared = (Pared*)crearActor(TipoActor_Pared, c, f);
+				Pared* pared = crearActor<Pared>(c, f);
 				break;
 			}
 			case celdaSimbolo_MetalPared:
 			{
-				Pared* pared = (Pared*)crearActor(TipoActor_Pared, c, f);
+				//Aqui se crea un actor bloque metal pared.
+				//Pared* pared = (Pared*)crearActor(TipoActor_Pared, c, f);
+				Pared* pared = crearActor<Pared>(c, f);
 				pared->setImagenPared(metalParedImagen, metalParedColorSimbolo, metalParedColorFondo);
 				pared->setInvulnerable(true);
 				break;
-				//Aqui se crea un actor bloque metal pared.
+				
 				break;
 			}
 			case celdaSimbolo_Base:
 			{
 				//Aqui se crea un actor base.
-				base = crearActor(TipoActor_Base, c, f);
+				//base = crearActor(TipoActor_Base, c, f);
+				base = crearActor<Base>(c, f);
 				break;
 			}
 			case celdaSimbolo_Jugador1:
 			{
 				//Aqui se crea un actor jugador 1.
-				TanqueJugador* jugador1 = (TanqueJugador*)crearActor(TipoActor_TanqueJugador, c + 0.5, f + 0.5);
+				//TanqueJugador* jugador1 = (TanqueJugador*)crearActor(TipoActor_TanqueJugador, c + 0.5, f + 0.5);
+				TanqueJugador* jugador1 = crearActor<TanqueJugador>(c + 0.5, f + 0.5);
 				jugador1->setColor(ColorConsola_Cafe, ColorConsola_Amarillo);
 				jugador1->setTeclas(VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN, VK_SPACE);
 				this->jugador1 = jugador1;
@@ -228,7 +233,8 @@ void GameManager::inicializar()
 			case celdaSimbolo_GeneradorEnemigo:
 			{
 				//Aqui se crea un actor generador de enemigos.
-				crearActor(TipoActor_GeneradorEnemigo, c, f);
+				//crearActor(TipoActor_GeneradorEnemigo, c, f);
+				crearActor<GeneradorEnemigo>(c, f);
 				break;
 			}
 			}
