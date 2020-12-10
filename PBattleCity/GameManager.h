@@ -26,8 +26,8 @@ private:
 	clock_t relojUltimoFrame;
 	SistemaRenderizacion sistemaRenderizacion;
 
-	Actor* actores[numeroMaximoActores];
-	//vector<Actor*> actores;
+	//Actor* actores[numeroMaximoActores];
+	vector<Actor*> actores;
 
 	Actor* base;
 	Actor* jugador1;

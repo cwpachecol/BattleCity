@@ -10,6 +10,24 @@
 #include "TanqueEnemigo.h"
 #include "Municion.h"
 
+GameManager::GameManager()
+{
+	juegoActivo = true;
+	relojUltimoFrame = 0;
+
+	actores = vector<Actor*>(numeroMaximoActores, 0);
+
+	/*for (int i = 0; i < numeroMaximoActores; i++) {
+		actores[i] = 0;
+	}*/
+
+	base = 0;
+	jugador1 = 0;
+	jugador2 = 0;
+
+	contadorEnemigosMuertos = 0;
+}
+
 void GameManager::renderizar()
 {
 	// Frame inicial
@@ -198,21 +216,6 @@ void GameManager::actualizar(float _dt)
 		inicializar();
 }
 
-GameManager::GameManager()
-{
-	juegoActivo = true;
-	relojUltimoFrame = 0;
-
-	for (int i = 0; i < numeroMaximoActores; i++) {
-		actores[i] = 0;
-	}
-
-	base = 0;
-	jugador1 = 0;
-	jugador2 = 0;
-
-	contadorEnemigosMuertos = 0;
-}
 
 void GameManager::configurarSistema()
 {
