@@ -10,6 +10,7 @@ SistemaRenderizacion::SistemaRenderizacion()
 	//mBufferFondoPantalla = vector<vector<DatosSimboloConsola>>(filasPantalla, vector<DatosSimboloConsola>(columnasPantalla, DatosSimboloConsola{0, ColorConsola_Gris, ColorConsola_Negro}));
 	mBufferFondoPantalla = mBufferPantalla;
 
+	/*
 	for (int f = 0; f < filasPantalla; f++) {
 		for (int c = 0; c < columnasPantalla; c++) {
 			bufferFondoPantalla[f][c].simbolo = 0;
@@ -20,7 +21,7 @@ SistemaRenderizacion::SistemaRenderizacion()
 
 		}
 	}
-		
+	*/	
 }
 
 void SistemaRenderizacion::inicializar()
@@ -37,13 +38,18 @@ void SistemaRenderizacion::limpiar()
 {
 	for (int f = 0; f < filasPantalla; f++) {
 		for (int c = 0; c < columnasPantalla; c++) {
+			/*
 			bufferFondoPantalla[f][c].simbolo = 0;
 			bufferFondoPantalla[f][c].colorSimbolo = ColorConsola_Gris;
 			bufferFondoPantalla[f][c].colorFondo = ColorConsola_Negro;
+			*/
 
+			mBufferFondoPantalla[f][c] = DatosSimboloConsola{ 0, ColorConsola_Gris, ColorConsola_Negro };
+			/*
 			mBufferFondoPantalla[f][c].simbolo = 0;
 			mBufferFondoPantalla[f][c].colorSimbolo = ColorConsola_Gris;
 			mBufferFondoPantalla[f][c].colorFondo = ColorConsola_Negro;
+			*/
 		}
 	}
 }
@@ -53,9 +59,11 @@ void SistemaRenderizacion::dibujarCaracter(int _fila, int _columna, char _simbol
 	if (_fila < 0 || _columna < 0 || _fila >= filasPantalla || _columna >= columnasPantalla)
 		return;
 
+	/*
 	bufferFondoPantalla[_fila][_columna].simbolo = _simbolo;
 	bufferFondoPantalla[_fila][_columna].colorSimbolo = _colorSimbolo;
 	bufferFondoPantalla[_fila][_columna].colorFondo = _colorFondo;
+	*/
 
 	mBufferFondoPantalla[_fila][_columna].simbolo = _simbolo;
 	mBufferFondoPantalla[_fila][_columna].colorSimbolo = _colorSimbolo;
@@ -122,8 +130,8 @@ void SistemaRenderizacion::ejecutar()
 				//Dibujar simbolo en la posicion f, c
 				setCursorConsola(f, c);
 				setColorConsola(mBufferPantalla[f][c].colorSimbolo, mBufferPantalla[f][c].colorFondo);
-				//cout << bufferPantalla[f][c] << endl;
-				printf("%c", mBufferPantalla[f][c].simbolo);
+				cout << mBufferPantalla[f][c].simbolo << endl;
+				//printf("%c", mBufferPantalla[f][c].simbolo);
 
 				bufferPantallaModificado = true;
 			}

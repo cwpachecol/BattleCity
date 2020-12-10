@@ -19,11 +19,11 @@ class SistemaRenderizacion
 {
 private:
 	HANDLE handdleConsola;
-	DatosSimboloConsola bufferPantalla[filasPantalla][columnasPantalla];
-	DatosSimboloConsola bufferFondoPantalla[filasPantalla][columnasPantalla];
+	//DatosSimboloConsola bufferPantalla[filasPantalla][columnasPantalla];
+	//DatosSimboloConsola bufferFondoPantalla[filasPantalla][columnasPantalla];
 	vector<vector<DatosSimboloConsola>>  mBufferPantalla;
 	vector<vector<DatosSimboloConsola>> mBufferFondoPantalla;
-		
+
 public:
 	SistemaRenderizacion();
 

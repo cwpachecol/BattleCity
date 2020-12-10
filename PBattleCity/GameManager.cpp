@@ -163,8 +163,10 @@ void GameManager::actualizar(float _dt)
 					//demtemp.y = actores[i]->getY();
 					//agregarEnemigoMuerto(demtemp);
 					//datosEnemigosMuertos.push_back(demtemp);
+
 					//agregarEnemigoMuerto(DatosEnemigosMuertos{ actores[i]->getNumeroActor(), actores[i]->getTipoActor(), actores[i]->getX(), actores[i]->getY() });
-					datosEnemigosMuertos.push_back(DatosEnemigosMuertos{ actores[i]->getNumeroActor(), actores[i]->getTipoActor(), actores[i]->getX(), actores[i]->getY() });
+					
+					datosEnemigosMuertos.push_back(DatosEnemigoMuerto{ actores[i]->getNumeroActor(), actores[i]->getTipoActor(), actores[i]->getX(), actores[i]->getY() });
 
 				}
 				destruirActor(actores[i]);

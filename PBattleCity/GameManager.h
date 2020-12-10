@@ -11,7 +11,7 @@ const int numeroMaximoActores = 1024;
 
 class Actor;
 
-struct DatosEnemigosMuertos {
+struct DatosEnemigoMuerto {
 	int numeroEnemigo;
 	TipoActor tipoEnemigo;
 	float x;
@@ -36,7 +36,7 @@ private:
 	int contadorEnemigosMuertos;
 	
 	//Vector que almacena los enemigos destruidos, almacenando su numeroActor, TipoActor, x e y
-	vector<DatosEnemigosMuertos> datosEnemigosMuertos;
+	vector<DatosEnemigoMuerto> datosEnemigosMuertos;
 
 	void renderizar();
 	void actualizar(float _dt);
