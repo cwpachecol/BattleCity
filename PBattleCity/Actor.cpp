@@ -1,9 +1,17 @@
 #include "Actor.h"
 
+int Actor::numeroActores = 0;
+
+//int Actor::getNumeroActores() {
+//	return numeroActores;
+//}
+
 Actor::Actor()
 {
-	//gameManager = nullptr;
-	gameManager = 0;
+	gameManager = nullptr;
+	//gameManager = 0;
+	numeroActores++;
+	numeroActor = numeroActores;
 	tipoActor = TipoActor_None;
 
 	x = 0.0;
@@ -24,6 +32,8 @@ Actor::Actor()
 Actor::Actor(float _x , float _y, float _xVelocidad, float _yVelocidad, int _ancho, int _alto, int _energia)
 {
 	gameManager = nullptr;
+	numeroActores++;
+	numeroActor = numeroActores;
 	tipoActor = TipoActor_None;
 
 	x = _x;
@@ -44,6 +54,8 @@ Actor::Actor(GameManager* _gameManager, TipoActor _tipoActor, float _x, float _y
 	int _energia, bool _destrirDespuesMuerte, bool _invulnerable, bool _fisico, Direccion _direccion)
 {
 	gameManager = _gameManager;
+	numeroActores++;
+	numeroActor = numeroActores;
 	tipoActor = _tipoActor;
 
 	x = _x;
@@ -59,6 +71,7 @@ Actor::Actor(GameManager* _gameManager, TipoActor _tipoActor, float _x, float _y
 
 	direccion = _direccion;
 }
+
 
 void Actor::renderizar(SistemaRenderizacion* _sistemaRenderizacion)
 {

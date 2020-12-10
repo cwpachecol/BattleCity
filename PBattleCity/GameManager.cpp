@@ -119,6 +119,28 @@ void GameManager::renderizar()
 		}
 	}
 
+	//Mostrar el numero de enemigos eliminados y las posicion dende fueron destruidos
+	sistemaRenderizacion.dibujarTexto(17, 71, "Posicion", ColorConsola_Azul, ColorConsola_Amarillo);
+	h = datosEnemigosMuertos.size();
+	sistemaRenderizacion.dibujarTexto(18, 71, to_string(h), ColorConsola_GrisOscuro, ColorConsola_Amarillo);
+	sc = 71;
+	sf = 19;
+	c = 0;
+	f = 0;
+
+	string texto = "";
+	while (h > 0)
+	{
+		texto = to_string(datosEnemigosMuertos[f].numeroEnemigo) + ":[" +
+			to_string(datosEnemigosMuertos[f].x) + to_string(datosEnemigosMuertos[f].y) + "]/n";
+		sistemaRenderizacion.dibujarTexto(sf + f, sc + c, texto, ColorConsola_Celeste, ColorConsola_CelesteOscuro);
+		--h;
+		++f;
+		if (f > 7)
+		{
+			f = 0;
+		}
+	}
 
 	// Finalizar frame
 
@@ -131,8 +153,23 @@ void GameManager::actualizar(float _dt)
 		if (actores[i] != 0) {
 			actores[i]->actualizar(_dt);
 
-			if (actores[i]->getEnergia() <= 0 && actores[i]->getDestruirDespuesMuerte())
+			if (actores[i]->getEnergia() <= 0 && actores[i]->getDestruirDespuesMuerte()) {
+				if (actores[i]->getTipoActor() == TipoActor_TanqueEnemigo) {
+					incrementarContadorEnemigosMuertos();
+					//DatosEnemigosMuertos demtemp;
+					//demtemp.numeroEnemigo = actores[i]->getNumeroActor();
+					//demtemp.tipoEnemigo = TipoActor_TanqueEnemigo;
+					//demtemp.x = actores[i]->getX();
+					//demtemp.y = actores[i]->getY();
+					//agregarEnemigoMuerto(demtemp);
+					//datosEnemigosMuertos.push_back(demtemp);
+					//agregarEnemigoMuerto(DatosEnemigosMuertos{ actores[i]->getNumeroActor(), actores[i]->getTipoActor(), actores[i]->getX(), actores[i]->getY() });
+					datosEnemigosMuertos.push_back(DatosEnemigosMuertos{ actores[i]->getNumeroActor(), actores[i]->getTipoActor(), actores[i]->getX(), actores[i]->getY() });
+
+				}
 				destruirActor(actores[i]);
+			}
+				
 		}
 	}
 
@@ -384,3 +421,9 @@ int GameManager::incrementarContadorEnemigosMuertos()
 	return 0;
 }
 
+//int GameManager::agregarEnemigoMuerto(DatosEnemigosMuertos _datosEnemigoMuerto)
+//{
+//	datosEnemigosMuertos.push_back(_datosEnemigoMuerto);
+//	
+//	return _datosEnemigoMuerto.numeroEnemigo;
+//}

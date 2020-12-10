@@ -1,5 +1,6 @@
 #pragma once
 #include <ctime>
+#include <vector>
 
 #include "Actor.h"
 #include "TipoActor.h"
@@ -10,6 +11,14 @@ const int numeroMaximoActores = 1024;
 
 class Actor;
 
+struct DatosEnemigosMuertos {
+	int numeroEnemigo;
+	TipoActor tipoEnemigo;
+	float x;
+	float y;
+};
+
+
 class GameManager
 {
 private:
@@ -18,12 +27,16 @@ private:
 	SistemaRenderizacion sistemaRenderizacion;
 
 	Actor* actores[numeroMaximoActores];
+	//vector<Actor*> actores;
 
 	Actor* base;
 	Actor* jugador1;
 	Actor* jugador2;
 
 	int contadorEnemigosMuertos;
+	
+	//Vector que almacena los enemigos destruidos, almacenando su numeroActor, TipoActor, x e y
+	vector<DatosEnemigosMuertos> datosEnemigosMuertos;
 
 	void renderizar();
 	void actualizar(float _dt);
@@ -48,6 +61,7 @@ public:
 	int getConteoActores(TipoActor _tipoActor);
 	int getConteoEnemigosMuertos() { return contadorEnemigosMuertos; }
 	int incrementarContadorEnemigosMuertos();
+	//int agregarEnemigoMuerto(DatosEnemigosMuertos _datosEnemigoMuerto);
 };
 
 template<class T>

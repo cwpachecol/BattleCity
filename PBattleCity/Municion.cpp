@@ -26,4 +26,8 @@ void Municion::intersectar(Actor* _actor) {
 
 	//Dañar el objetivo
 	_actor->hacerDano(1);
+	//if (_actor->getTipoActor() == TipoActor_TanqueEnemigo && _actor->getEnergia() <= 0) {
+	//	gameManager->incrementarContadorEnemigosMuertos();
+	//	gameManager->agregarEnemigoMuerto(DatosEnemigosMuertos{ _actor->getNumeroActor(), _actor->getTipoActor(), _actor->getX(), _actor->getY() });
+	//}
 }

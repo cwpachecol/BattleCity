@@ -11,8 +11,11 @@ class GameManager;
 
 class Actor
 {
+private:
+	static int numeroActores;
 protected:
 	GameManager* gameManager;
+	int numeroActor;
 	TipoActor tipoActor;
 	float x;
 	float y;
@@ -32,6 +35,10 @@ public:
 	Actor();
 	Actor(float _x, float _y, float _xVelocidad, float _yVelocidad, int _ancho, int _alto, int _energia);
 	Actor(GameManager* _gameManager, TipoActor _tipoActor, float _x, float _y, float _xVelocidad, float _yVelocidad, int _ancho, int _alto, int _energia, bool _destrirDespuesMuerte, bool _invulnerable, bool _fisico, Direccion _direccion);
+	
+	//static int getNumeroActores();
+
+	int getNumeroActor() { return numeroActor; }
 	TipoActor getTipoActor() { return tipoActor; }
 	float getX() { return x; }
 	float getY() { return y; }

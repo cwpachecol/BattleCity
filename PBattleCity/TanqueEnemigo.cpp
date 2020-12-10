@@ -19,7 +19,7 @@ TanqueEnemigo::TanqueEnemigo()
 
 TanqueEnemigo::~TanqueEnemigo()
 {
-	gameManager->incrementarContadorEnemigosMuertos();
+	
 }
 
 void TanqueEnemigo::analizar()
