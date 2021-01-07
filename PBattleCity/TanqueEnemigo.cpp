@@ -14,7 +14,7 @@ TanqueEnemigo::TanqueEnemigo()
 	energia = energiaEnemigo;
 	velocidad = velocidadEnemigo;
 
-	setColor(ColorConsola_CelesteOscuro, ColorConsola_Celeste);
+	setImagen(ColorConsola_CelesteOscuro, ColorConsola_Negro);
 }
 
 TanqueEnemigo::~TanqueEnemigo()

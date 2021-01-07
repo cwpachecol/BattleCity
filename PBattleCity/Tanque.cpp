@@ -1,5 +1,7 @@
 #include "Tanque.h"
 #include "Bala.h"
+#include <map>
+#include <vector>
 
 Tanque::Tanque()
 {
@@ -9,7 +11,8 @@ Tanque::Tanque()
 	velocidad = 0;
 	fuegoTiempoEnfriamiento = 0.0;
 
-	setColor(ColorConsola_GrisOscuro, ColorConsola_Gris);
+	//setColor(ColorConsola_GrisOscuro, ColorConsola_Gris);
+	//setImagen(ColorConsola_Verde, ColorConsola_Gris);
 }
 
 void Tanque::actualizar(float _dt)
@@ -24,7 +27,7 @@ void Tanque::renderizar(SistemaRenderizacion* _sistemaRenderizacion)
 {
 	Actor::renderizar(_sistemaRenderizacion);
 
-	int fila = int(y);
+	/*int fila = int(y);
 	int columna = int(x);
 
 	for (int f = 0; f < tamanoTanque; f++) {
@@ -32,50 +35,104 @@ void Tanque::renderizar(SistemaRenderizacion* _sistemaRenderizacion)
 			DatosSimboloConsola sd = imagenTanque[direccion][f][c];
 			_sistemaRenderizacion->dibujarCaracter(fila + f, columna + c, sd.simbolo, sd.colorSimbolo, sd.colorFondo);
 		}
-	}
+	}*/
 }
 
-void Tanque::setColor(ColorConsola _colorTanque1, ColorConsola _colorTanque2)
+void Tanque::setImagen(ColorConsola _colorSimbolo, ColorConsola _colorFondo)
 {
-	for (int d = Direccion_Izquierda; d < Direccion_MAX; d++)
-		for (int f = 0; f < tamanoTanque; f++)
-			for (int c = 0; c < tamanoTanque; c++)
-			{
-				// Simbolo
-				imagenTanque[d][f][c].simbolo = imagenTanqueNivel[d][f][c].simbolo;
+	vector<DatosSimboloConsola> vAvatarIzquierda{
+		DatosSimboloConsola{(char)220, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)220, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)220, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)13, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)196, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)4, ColorConsola_Violeta, _colorFondo },
+		DatosSimboloConsola{(char)221, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)13, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)223, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)223, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)223, _colorSimbolo, _colorFondo }
+	};
 
-				// Color simbolo
-				switch (imagenTanqueNivel[d][f][c].colorSimbolo)
-				{
-				case ColorTanque_0:
-					imagenTanque[d][f][c].colorSimbolo = ColorConsola_Negro;
-					break;
+	vector<DatosSimboloConsola> vAvatarDerecha{
+		DatosSimboloConsola{(char)220, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)220, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)220, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)13, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)221, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)4, ColorConsola_Violeta, _colorFondo },
+		DatosSimboloConsola{(char)196, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)13, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)223, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)223, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)223, _colorSimbolo, _colorFondo }
+	};
 
-				case ColorTanque_1:
-					imagenTanque[d][f][c].colorSimbolo = _colorTanque1;
-					break;
+	vector<DatosSimboloConsola> vAvatarArriba{
+		DatosSimboloConsola{(char)220, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)179, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)220, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)13, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)219, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)4, ColorConsola_Violeta, _colorFondo },
+		DatosSimboloConsola{(char)219, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)13, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)223, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)0, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)223, _colorSimbolo, _colorFondo }
+	};
 
-				case ColorTanque_2:
-					imagenTanque[d][f][c].colorSimbolo = _colorTanque2;
-					break;
-				}
+	vector<DatosSimboloConsola> vAvatarAbajo{
+		DatosSimboloConsola{(char)220, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)0, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)220, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)13, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)219, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)4, ColorConsola_Violeta, _colorFondo },
+		DatosSimboloConsola{(char)219, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)13, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)223, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)179, _colorSimbolo, _colorFondo },
+		DatosSimboloConsola{(char)223, _colorSimbolo, _colorFondo }
+	};
 
-				// Color fondo
-				switch (imagenTanqueNivel[d][f][c].colorFondo)
-				{
-				case ColorTanque_0:
-					imagenTanque[d][f][c].colorFondo = ColorConsola_Negro;
-					break;
+	map<int, DatosSimboloConsola> mAvatarIzquierda;
+	map<int, DatosSimboloConsola> mAvatarDerecha;
+	map<int, DatosSimboloConsola> mAvatarArriba;
+	map<int, DatosSimboloConsola> mAvatarAbajo;
+	
+	pair<int, DatosSimboloConsola> pAvatarDireccion;
+	
+	for (int i = 0; i < vAvatarIzquierda.size(); i++) {
+		pAvatarDireccion.first = i;
+		
+		pAvatarDireccion.second = vAvatarIzquierda[i];
+		mAvatarIzquierda.insert(pAvatarDireccion);
 
-				case ColorTanque_1:
-					imagenTanque[d][f][c].colorFondo = _colorTanque1;
-					break;
+		pAvatarDireccion.second = vAvatarDerecha[i];
+		mAvatarDerecha.insert(pAvatarDireccion);
 
-				case ColorTanque_2:
-					imagenTanque[d][f][c].colorFondo = _colorTanque2;
-					break;
-				}
-			}
+		pAvatarDireccion.second = vAvatarArriba[i];
+		mAvatarArriba.insert(pAvatarDireccion);
+
+		pAvatarDireccion.second = vAvatarAbajo[i];
+		mAvatarAbajo.insert(pAvatarDireccion);
+	}
+
+
+	pair<Direccion, map<int, DatosSimboloConsola>> pAvatar;
+	pAvatar.first = Direccion_Izquierda;
+	pAvatar.second = mAvatarIzquierda;
+	avatar.insert(pAvatar);
+	pAvatar.first = Direccion_Derecha;
+	pAvatar.second = mAvatarDerecha;
+	avatar.insert(pAvatar);
+	pAvatar.first = Direccion_Arriba;
+	pAvatar.second = mAvatarArriba;
+	avatar.insert(pAvatar);
+	pAvatar.first = Direccion_Abajo;
+	pAvatar.second = mAvatarAbajo;
+	avatar.insert(pAvatar);
 }
 
 void Tanque::mover(Direccion _direccion)

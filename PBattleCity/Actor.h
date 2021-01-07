@@ -5,6 +5,8 @@
 #include "GameManager.h"
 #include "TipoActor.h"
 #include "Direccion.h"
+#include <map>
+
 using namespace std;
 
 class GameManager;
@@ -21,15 +23,21 @@ protected:
 	float y;
 	float xVelocidad;
 	float yVelocidad;
-	string avatar;
+	map<Direccion, map<int, DatosSimboloConsola>> avatar;
 	int ancho;
 	int alto;
 	int energia;
+	int limiteInferiorEnergia;
+	int limiteSuperiorEnergia;
+	
 
 	bool destruirDespuesMuerte;
 	bool invulnerable;
 	bool fisico;
 	Direccion direccion;
+
+
+
 
 public:
 	Actor();
@@ -44,9 +52,12 @@ public:
 	float getY() { return y; }
 	float getXVelocidad() { return xVelocidad; }
 	float getYVelocidad() { return yVelocidad; }
+	map<Direccion, map<int, DatosSimboloConsola>> getAvatar() { return avatar; }
 	int getAncho() { return ancho; }
 	int getAlto() { return alto; }
 	int getEnergia() { return energia; }
+	int getLimiteInferiorEnergia() { return limiteInferiorEnergia; }
+	int getLimiteSuperiorEnergia() { return limiteSuperiorEnergia; }
 	bool getDestruirDespuesMuerte() { return destruirDespuesMuerte; }
 	bool getInvulnerable() { return invulnerable; }
 	bool getFisico() { return fisico; }
@@ -58,8 +69,12 @@ public:
 	void setXVelocidad(float _xVelocidad) { xVelocidad = _xVelocidad; }
 	void setYVelocidad(float _yVelocidad) { yVelocidad = _yVelocidad; }
 	void setAncho(int _ancho) { ancho = _ancho; }
+	void setAvatar(map<Direccion, map<int, DatosSimboloConsola>> _avatar) { avatar = _avatar; }
 	void setAlto(int _alto) { alto = _alto; }
 	void setEnergia(int _energia) { energia = _energia; }
+	void setLimiteInferiorEnergia(int _limiteInferiorEnergia) { limiteInferiorEnergia = _limiteInferiorEnergia; }
+	void setLimiteSuperiorEnergia(int _limiteSuperiorEnergia) { limiteSuperiorEnergia = _limiteSuperiorEnergia; }
+	
 	void setDestruirDespuesMuerte(bool _destruirDespuesMuerte) { destruirDespuesMuerte = _destruirDespuesMuerte; }
 	void setInvulnerable(bool _invulnerable) { invulnerable = _invulnerable; }
 	void setFisico(bool _fisico) { fisico = _fisico; }
@@ -70,5 +85,6 @@ public:
 	virtual void actualizar(float _dt);
 	virtual void intersectar(Actor* _actor);
 	void hacerDano(int _dano);
+	void cargarEnergia(int _energia);
 };
 

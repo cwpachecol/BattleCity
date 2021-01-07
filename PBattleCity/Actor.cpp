@@ -21,6 +21,8 @@ Actor::Actor()
 	ancho = 1;
 	alto = 1;
 	energia = 1;
+	limiteSuperiorEnergia = 10;
+	limiteInferiorEnergia = 1;
 	destruirDespuesMuerte = true;
 	invulnerable = false;
 	fisico = true;
@@ -75,6 +77,26 @@ Actor::Actor(GameManager* _gameManager, TipoActor _tipoActor, float _x, float _y
 
 void Actor::renderizar(SistemaRenderizacion* _sistemaRenderizacion)
 {
+	if (avatar.size() > 0) {
+		map<Direccion, map<int, DatosSimboloConsola>>::iterator ida;
+		ida = avatar.find(direccion);
+		map<int, DatosSimboloConsola>::iterator iia;
+
+		int fila = int(y);
+		int columna = int(x);
+
+		for(iia = (*ida).second.begin(); iia != (*ida).second.end(); ++iia){
+			_sistemaRenderizacion->dibujarCaracter(fila, columna, (*iia).second.simbolo, (*iia).second.colorSimbolo, (*iia).second.colorFondo);
+
+			if ((*iia).second.simbolo == 13){
+				fila++;
+				columna = int(x);
+			}
+			else {
+				columna++;
+			}
+		}
+	}
 }
 
 void Actor::actualizar(float _dt)
@@ -115,4 +137,16 @@ void Actor::hacerDano(int _dano)
 		energia -= _dano;
 	else
 		energia = 0;
+}
+
+void Actor::cargarEnergia(int _energia)
+{
+	if (getInvulnerable())
+		return;
+
+	if (energia < limiteSuperiorEnergia)
+		energia += _energia;
+
+	if (energia > limiteSuperiorEnergia)
+		energia = limiteSuperiorEnergia;
 }
