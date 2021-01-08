@@ -85,7 +85,7 @@ void Actor::renderizar(SistemaRenderizacion* _sistemaRenderizacion)
 		int fila = int(y);
 		int columna = int(x);
 
-		for(iia = (*ida).second.begin(); iia != (*ida).second.end(); ++iia){
+		for(iia = (*ida).second.begin(); iia != (*ida).second.end(); iia++){
 			_sistemaRenderizacion->dibujarCaracter(fila, columna, (*iia).second.simbolo, (*iia).second.colorSimbolo, (*iia).second.colorFondo);
 
 			if ((*iia).second.simbolo == 13){

@@ -5,7 +5,7 @@ Bala::Bala() {
 	energia = energiaEnemigo;
 	velocidad = velocidadBala;
 
-	setImagen(imagenBala, ColorConsola_Amarillo, ColorConsola_Negro);
+	setImagenMunicion(imagenBala, ColorConsola_Amarillo, ColorConsola_Negro);
 }
 
 void Bala::actualizar(float _dt) {

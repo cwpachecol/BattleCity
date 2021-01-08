@@ -3,8 +3,6 @@
 class Pared :
     public Actor
 {
-//private:
-//    DatosSimboloConsola imagenPared;
 public:
     Pared();
     virtual void renderizar(SistemaRenderizacion* _sistemaRenderizacion);

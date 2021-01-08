@@ -265,7 +265,7 @@ void GameManager::inicializar()
 				//TanqueJugador* jugador1 = (TanqueJugador*)crearActor(TipoActor_TanqueJugador, c + 0.5, f + 0.5);
 				TanqueJugador* jugador1 = crearActor<TanqueJugador>(c + 0.5, f + 0.5);
 				jugador1->setImagen(ColorConsola_Cafe, ColorConsola_Negro);
-				jugador1->setTeclas(VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN, VK_SPACE);
+				jugador1->setTeclas(VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN, VK_SPACE, VK_TAB);
 				this->jugador1 = jugador1;
 				break;
 			}
@@ -324,7 +324,7 @@ Actor* GameManager::crearActor(TipoActor _tipoActor, float _x, float _y)
 			case TipoActor_Municion:			actor = new Municion();			break;
 			//case TipoActor_Bala:				actor = new Bala();				break;
 			case TipoActor_TanqueJugador:		actor = new TanqueJugador();	break;
-			case TipoActor_TanqueEnemigo:		actor = new TanqueEnemigo(); 	break;
+			case TipoActor_TanqueEnemigo:		actor = new TanqueEnemigo(jugador1); 	break;
 			case TipoActor_GeneradorEnemigo:	actor = new GeneradorEnemigo();	break;
 
 			}

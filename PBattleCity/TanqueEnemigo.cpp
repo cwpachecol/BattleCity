@@ -1,9 +1,11 @@
 #include "TanqueEnemigo.h"
+#include "TanqueJugador.h"
 #include "Utilitarios.h"
 #include "Pared.h"
 #include "Bala.h"
+#include "TanqueJugador.h"
 
-TanqueEnemigo::TanqueEnemigo()
+TanqueEnemigo::TanqueEnemigo(Actor* _tanqueJugador)
 {
 	tipoActor = TipoActor_TanqueEnemigo;
 	analizarTiempo = tiempoAnalisisIAEnemiga;
@@ -14,6 +16,8 @@ TanqueEnemigo::TanqueEnemigo()
 	energia = energiaEnemigo;
 	velocidad = velocidadEnemigo;
 
+	tanqueJugador = _tanqueJugador;
+	
 	setImagen(ColorConsola_CelesteOscuro, ColorConsola_Negro);
 }
 
@@ -75,7 +79,7 @@ void TanqueEnemigo::analizar()
 	case TipoActor_Pared:
 		if (((Pared*)actor)->getInvulnerable() == false)
 		{
-			//disparar();
+			disparar();
 			return;
 		}
 		break;
@@ -84,7 +88,8 @@ void TanqueEnemigo::analizar()
 	//Cambio de direccion
 	if (distancia == 1 || ((int)ultimoAnalisisX == (int)getX() && (int)ultimoAnalisisY == (int)getY())) {
 		//Se mueve en una direccion aleatoria
-		moverDireccionRandom();
+		//moverDireccionRandom();
+		moverDireccionIA();
 		return;
 	}
 
@@ -102,6 +107,35 @@ void TanqueEnemigo::moverDireccionRandom()
 	do {
 		direccionNueva = (Direccion)(rand() % ((int)Direccion_MAX));
 
+	} while (direccionAnterior == direccionNueva);
+
+	mover(direccionNueva);
+}
+
+
+void TanqueEnemigo::moverDireccionIA(){
+	Direccion direccionAnterior = getDireccion();
+	Direccion direccionNueva;
+
+	do {
+		if (rand() % 2 == 0) {
+
+			if (getX() - tanqueJugador->getX() < 0) {
+				direccionNueva = Direccion_Derecha;
+			}
+			else {
+				direccionNueva = Direccion_Izquierda;
+			}
+		}
+		else {
+
+			if (getY() - tanqueJugador->getY() < 0) {
+				direccionNueva = Direccion_Abajo;
+			}
+			else {
+				direccionNueva = Direccion_Arriba;
+			}
+		}
 	} while (direccionAnterior == direccionNueva);
 
 	mover(direccionNueva);

@@ -6,12 +6,13 @@ class TanqueJugador :
 public:
     TanqueJugador();
     void actualizar(float _dt);
-    void setTeclas(int _teclaIzquierda, int _teclaDerecha, int _teclaArriba, int _teclaAbajo, int _teclaDisparo);
+    void setTeclas(int _teclaIzquierda, int _teclaDerecha, int _teclaArriba, int _teclaAbajo, int _teclaDisparoMetralla, int _teclaDisparoCanon);
 protected:
     int teclaIzquierda;
     int teclaDerecha;
     int teclaArriba;
     int teclaAbajo;
-    int teclaDisparo;
+    int teclaDisparoMetralla;
+    int teclaDisparoCanon;
 };
 

@@ -4,16 +4,35 @@
 Municion::Municion() {
 	tipoActor = TipoActor_Municion;
 	tipoActorPropietario = TipoActor_None;
-
+	direccion = Direccion_MAX;
 	velocidad = velocidadMunicion;
-	setImagen(imagenMunicion, ColorConsola_Gris, ColorConsola_Negro);
+	//setImagenMunicion(imagenMunicion, ColorConsola_Gris, ColorConsola_Negro);
+}
+
+void Municion::setImagenMunicion(unsigned char _simbolo, ColorConsola _colorImagen, ColorConsola _colorFondo) {
+	DatosSimboloConsola imagenMunicion;
+	imagenMunicion.simbolo = _simbolo;
+	imagenMunicion.colorSimbolo = _colorImagen;
+	imagenMunicion.colorFondo = _colorFondo;
+
+	map<int, DatosSimboloConsola> mid;
+	pair<int, DatosSimboloConsola> pid;
+
+	pid.first = 1;
+	pid.second = imagenMunicion;
+
+	mid.insert(pid);
+
+	pair<Direccion, map<int, DatosSimboloConsola>> pAvatar;
+	pAvatar.first = Direccion_MAX;
+	pAvatar.second = mid;
+
+	avatar.insert(pAvatar);
 }
 
 void Municion::renderizar(SistemaRenderizacion* _sistemaRenderizacion)
 {
-	int fila = int(y);
-	int columna = int(x);
-	_sistemaRenderizacion->dibujarCaracter(fila, columna, imagen.simbolo, imagen.colorSimbolo, imagen.colorFondo);
+	Actor::renderizar(_sistemaRenderizacion);
 }
 
 void Municion::actualizar(float _dt) {

@@ -9,13 +9,13 @@ TanqueJugador::TanqueJugador()
 	teclaDerecha = 0;
 	teclaArriba = 0;
 	teclaAbajo = 0;
-	teclaDisparo = 0;
+	teclaDisparoMetralla = 0;
+	teclaDisparoCanon = 0;
 
 	energia = energiaJugador;
 	velocidad = velocidadJugador;
 
 	destruirDespuesMuerte = false;
-
 }
 
 void TanqueJugador::actualizar(float _dt)
@@ -35,15 +35,18 @@ void TanqueJugador::actualizar(float _dt)
 		setYVelocidad(0);
 	}
 
-	if (IsKeyDown(teclaDisparo))
+	if (IsKeyDown(teclaDisparoMetralla))
+		disparar();
+	if (IsKeyDown(teclaDisparoCanon))
 		disparar();
 }
 
-void TanqueJugador::setTeclas(int _teclaIzquierda, int _teclaDerecha, int _teclaArriba, int _teclaAbajo, int _teclaDisparo)
+void TanqueJugador::setTeclas(int _teclaIzquierda, int _teclaDerecha, int _teclaArriba, int _teclaAbajo, int _teclaDisparoMetralla, int _teclaDisparoCanon)
 {
 	teclaIzquierda = _teclaIzquierda;
 	teclaDerecha = _teclaDerecha;
 	teclaArriba = _teclaArriba;
 	teclaAbajo = _teclaAbajo;
-	teclaDisparo = _teclaDisparo;
+	teclaDisparoMetralla = _teclaDisparoMetralla;
+	teclaDisparoCanon = _teclaDisparoCanon;
 }

@@ -30,14 +30,10 @@ protected:
 	int limiteInferiorEnergia;
 	int limiteSuperiorEnergia;
 	
-
 	bool destruirDespuesMuerte;
 	bool invulnerable;
 	bool fisico;
 	Direccion direccion;
-
-
-
 
 public:
 	Actor();

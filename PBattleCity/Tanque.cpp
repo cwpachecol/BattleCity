@@ -26,16 +26,6 @@ void Tanque::actualizar(float _dt)
 void Tanque::renderizar(SistemaRenderizacion* _sistemaRenderizacion)
 {
 	Actor::renderizar(_sistemaRenderizacion);
-
-	/*int fila = int(y);
-	int columna = int(x);
-
-	for (int f = 0; f < tamanoTanque; f++) {
-		for (int c = 0; c < tamanoTanque; c++){
-			DatosSimboloConsola sd = imagenTanque[direccion][f][c];
-			_sistemaRenderizacion->dibujarCaracter(fila + f, columna + c, sd.simbolo, sd.colorSimbolo, sd.colorFondo);
-		}
-	}*/
 }
 
 void Tanque::setImagen(ColorConsola _colorSimbolo, ColorConsola _colorFondo)
@@ -121,7 +111,7 @@ void Tanque::setImagen(ColorConsola _colorSimbolo, ColorConsola _colorFondo)
 
 
 	pair<Direccion, map<int, DatosSimboloConsola>> pAvatar;
-	pAvatar.first = Direccion_Izquierda;
+ 	pAvatar.first = Direccion_Izquierda;
 	pAvatar.second = mAvatarIzquierda;
 	avatar.insert(pAvatar);
 	pAvatar.first = Direccion_Derecha;
@@ -133,6 +123,7 @@ void Tanque::setImagen(ColorConsola _colorSimbolo, ColorConsola _colorFondo)
 	pAvatar.first = Direccion_Abajo;
 	pAvatar.second = mAvatarAbajo;
 	avatar.insert(pAvatar);
+	
 }
 
 void Tanque::mover(Direccion _direccion)
@@ -158,27 +149,27 @@ void Tanque::disparar()
 
 	fuegoTiempoEnfriamiento = fuegoTiempoEnfriamientoTanque;
 
-	float x = 0.0;
-	float y = 0.0;
-	float xVelocidad = 0.0;
-	float yVelocidad = 0.0;
+	float xBala = 0.0;
+	float yBala = 0.0;
+	float xVelocidadBala = 0.0;
+	float yVelocidadBala = 0.0;
 
-	calcularPosicionCeldaFrontal(&x, &y);
+	calcularPosicionCeldaFrontal(&xBala, &yBala);
 
 	switch (direccion)
 	{
-	case Direccion_Izquierda: xVelocidad = -velocidadBala; break;
-	case Direccion_Derecha: xVelocidad = velocidadBala; break;
-	case Direccion_Arriba: yVelocidad = -velocidadBala; break;
-	case Direccion_Abajo: yVelocidad = velocidadBala; break;
+	case Direccion_Izquierda: xVelocidadBala = -velocidadBala; break;
+	case Direccion_Derecha: xVelocidadBala = velocidadBala; break;
+	case Direccion_Arriba: yVelocidadBala = -velocidadBala; break;
+	case Direccion_Abajo: yVelocidadBala = velocidadBala; break;
 	}
 
-	Bala* bala = gameManager->crearActor<Bala>(x, y);
+	Bala* bala = gameManager->crearActor<Bala>(xBala, yBala);
 	if (bala)
 	{
 		bala->setTipoActorPropietario(tipoActor);
-		bala->setXVelocidad(xVelocidad);
-		bala->setYVelocidad(yVelocidad);
+		bala->setXVelocidad(xVelocidadBala);
+		bala->setYVelocidad(yVelocidadBala);
 	}
 }
 

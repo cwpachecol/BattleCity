@@ -85,18 +85,19 @@ const CeldaImagenTanque imagenTanqueNivel[Direccion_MAX][tamanoTanque][tamanoTan
 		{ {196, ColorTanque_2, ColorTanque_0}, {  4, ColorTanque_2, ColorTanque_1}, {221, ColorTanque_1, ColorTanque_0} },
 		{ {223, ColorTanque_1, ColorTanque_0}, {223, ColorTanque_1, ColorTanque_0}, {223, ColorTanque_1, ColorTanque_0} }
 	},
-	// Arriba
-	{
-		{ {220, ColorTanque_1, ColorTanque_0}, {179, ColorTanque_2, ColorTanque_0}, {220, ColorTanque_1, ColorTanque_0} },
-		{ {219, ColorTanque_1, ColorTanque_1}, {  4, ColorTanque_2, ColorTanque_1}, {219, ColorTanque_1, ColorTanque_1} },
-		{ {223, ColorTanque_1, ColorTanque_0}, {  0, ColorTanque_0, ColorTanque_0}, {223, ColorTanque_1, ColorTanque_0} }
-	},
 	// Derecha
 	{
 		{ {220, ColorTanque_1, ColorTanque_0}, {220, ColorTanque_1, ColorTanque_0}, {220, ColorTanque_1, ColorTanque_0} },
 		{ {221, ColorTanque_1, ColorTanque_0}, {  4, ColorTanque_2, ColorTanque_1}, {196, ColorTanque_2, ColorTanque_0} },
 		{ {223, ColorTanque_1, ColorTanque_0}, {223, ColorTanque_1, ColorTanque_0}, {223, ColorTanque_1, ColorTanque_0} }
 	},
+	// Arriba
+	{
+		{ {220, ColorTanque_1, ColorTanque_0}, {179, ColorTanque_2, ColorTanque_0}, {220, ColorTanque_1, ColorTanque_0} },
+		{ {219, ColorTanque_1, ColorTanque_1}, {  4, ColorTanque_2, ColorTanque_1}, {219, ColorTanque_1, ColorTanque_1} },
+		{ {223, ColorTanque_1, ColorTanque_0}, {  0, ColorTanque_0, ColorTanque_0}, {223, ColorTanque_1, ColorTanque_0} }
+	},
+
 	// Abajo
 	{
 		{ {220, ColorTanque_1, ColorTanque_0}, {  0, ColorTanque_0, ColorTanque_0}, {220, ColorTanque_1, ColorTanque_0} },

@@ -3,9 +3,8 @@
 enum Direccion
 {
 	Direccion_Izquierda,
-	Direccion_Arriba,
 	Direccion_Derecha,
+	Direccion_Arriba,
 	Direccion_Abajo,
-
 	Direccion_MAX
 };
