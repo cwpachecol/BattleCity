@@ -85,7 +85,7 @@ void Actor::renderizar(SistemaRenderizacion* _sistemaRenderizacion)
 		int fila = int(y);
 		int columna = int(x);
 
-		for(iia = (*ida).second.begin(); iia != (*ida).second.end(); iia++){
+		for(iia = (*ida).second.begin(); iia != (*ida).second.end(); ++iia){
 			_sistemaRenderizacion->dibujarCaracter(fila, columna, (*iia).second.simbolo, (*iia).second.colorSimbolo, (*iia).second.colorFondo);
 
 			if ((*iia).second.simbolo == 13){
@@ -109,7 +109,6 @@ void Actor::actualizar(float _dt)
 
 	int filaNueva = int(yNueva);
 	int columnaNueva = int(xNueva);
-
 
 	if (columnaAnterior != columnaNueva)
 		gameManager->moverActorA(this, xNueva, y);
@@ -149,4 +148,13 @@ void Actor::cargarEnergia(int _energia)
 
 	if (energia > limiteSuperiorEnergia)
 		energia = limiteSuperiorEnergia;
+}
+
+
+bool Actor::operator==(const Actor& derecho) const
+{
+	if (numeroActor != derecho.numeroActor)
+		return false; // arreglos con distinto número de elementos
+	else
+		return true;
 }

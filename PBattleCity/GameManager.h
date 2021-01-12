@@ -1,7 +1,7 @@
 #pragma once
 #include <ctime>
 #include <vector>
-
+#include <list>
 #include "Actor.h"
 #include "TipoActor.h"
 #include "SistemaRenderizacion.h"
@@ -27,7 +27,8 @@ private:
 	SistemaRenderizacion sistemaRenderizacion;
 
 	//Actor* actores[numeroMaximoActores];
-	vector<Actor*> actores;
+	vector<Actor*> vActores;
+	list<Actor*> lActores;
 
 	Actor* base;
 	Actor* jugador1;
@@ -68,28 +69,23 @@ template<class T>
 inline T* GameManager::crearActor(float _x, float _y)
 {
 	// Encuentra puntero libre y crea objeto
-	for (int i = 0; i < numeroMaximoActores; i++)
+	T* actor = new T();
+
+	if (actor == NULL)
+		return NULL;
+
+	actor->setGameManager(this);
+
+	if (moverActorA(actor, _x, _y) == false)
 	{
-		if (actores[i] == 0)
-		{
-			T* actor = new T();
-			
-			if (actor == NULL)
-				return NULL;
-
-			actor->setGameManager(this);
-
-			if (moverActorA(actor, _x, _y) == false)
-			{
-				delete actor;
-				return NULL;
-			}
-
-			actores[i] = actor;
-
-			return actor;
-		}
+		delete actor;
+		return NULL;
 	}
 
-	return NULL;
+	lActores.push_back(actor);
+
+	return actor;
 }
+
+
+// sobrecarga de operadores para la clase actor

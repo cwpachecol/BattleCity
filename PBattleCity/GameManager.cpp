@@ -3,23 +3,20 @@
 #include <cstdlib>
 #include <cstdio>
 #include <cmath>
+#include <list>
+#include <algorithm>
 
 #include "Pared.h"
 #include "Base.h"
 #include "GeneradorEnemigo.h"
 #include "TanqueEnemigo.h"
 #include "Municion.h"
+using namespace std;
 
 GameManager::GameManager()
 {
 	juegoActivo = true;
 	relojUltimoFrame = 0;
-
-	actores = vector<Actor*>(numeroMaximoActores, 0);
-
-	/*for (int i = 0; i < numeroMaximoActores; i++) {
-		actores[i] = 0;
-	}*/
 
 	base = 0;
 	jugador1 = 0;
@@ -33,14 +30,20 @@ void GameManager::renderizar()
 	// Frame inicial
 	sistemaRenderizacion.limpiar();
 
-	//Dibujar todos los actores del juego
+	////Dibujar todos los actores del juego
+	//int contadorActores = 0;
+	//for (int i = 0; i < numeroMaximoActores; i++) {
+	//	if (actores[i] != 0)
+	//	{
+	//		actores[i]->renderizar(&sistemaRenderizacion);
+	//		contadorActores++;
+	//	}
+	//}
+
 	int contadorActores = 0;
-	for (int i = 0; i < numeroMaximoActores; i++) {
-		if (actores[i] != 0)
-		{
-			actores[i]->renderizar(&sistemaRenderizacion);
-			contadorActores++;
-		}
+	for (list<Actor*>::iterator iLActores = lActores.begin(); iLActores != lActores.end(); ++iLActores) {
+		(*iLActores)->renderizar(&sistemaRenderizacion);
+		contadorActores++;
 	}
 
 	//Dibuja actores contados
@@ -167,29 +170,23 @@ void GameManager::renderizar()
 
 void GameManager::actualizar(float _dt)
 {
-	for (int i = 0; i < numeroMaximoActores; i++) {
-		if (actores[i] != 0) {
-			actores[i]->actualizar(_dt);
-
-			if (actores[i]->getEnergia() <= 0 && actores[i]->getDestruirDespuesMuerte()) {
-				if (actores[i]->getTipoActor() == TipoActor_TanqueEnemigo) {
-					incrementarContadorEnemigosMuertos();
-					//DatosEnemigosMuertos demtemp;
-					//demtemp.numeroEnemigo = actores[i]->getNumeroActor();
-					//demtemp.tipoEnemigo = TipoActor_TanqueEnemigo;
-					//demtemp.x = actores[i]->getX();
-					//demtemp.y = actores[i]->getY();
-					//agregarEnemigoMuerto(demtemp);
-					//datosEnemigosMuertos.push_back(demtemp);
-
-					//agregarEnemigoMuerto(DatosEnemigosMuertos{ actores[i]->getNumeroActor(), actores[i]->getTipoActor(), actores[i]->getX(), actores[i]->getY() });
-					
-					datosEnemigosMuertos.push_back(DatosEnemigoMuerto{ actores[i]->getNumeroActor(), actores[i]->getTipoActor(), actores[i]->getX(), actores[i]->getY() });
-
-				}
-				destruirActor(actores[i]);
+	list<Actor*>::iterator iLActores = lActores.begin();
+	list<Actor*>::iterator iLActoresAux;
+	while (iLActores != lActores.end()) {
+		(*iLActores)->actualizar(_dt);
+		if ((*iLActores)->getEnergia() <= 0 && (*iLActores)->getDestruirDespuesMuerte()) {
+			if ((*iLActores)->getTipoActor() == TipoActor_TanqueEnemigo) {
+				datosEnemigosMuertos.push_back(DatosEnemigoMuerto{ (*iLActores)->getNumeroActor(), (*iLActores)->getTipoActor(), (*iLActores)->getX(), (*iLActores)->getY() });
 			}
-				
+			iLActoresAux = iLActores;
+			iLActoresAux++;
+			destruirActor((*iLActores));
+			iLActores = iLActoresAux;
+
+			//iLActores = lActores.erase(iLActores);
+		}
+		else {
+			++iLActores;
 		}
 	}
 
@@ -215,7 +212,6 @@ void GameManager::actualizar(float _dt)
 	if (contadorEnemigosMuertos == enemigosPorNivel)
 		inicializar();
 }
-
 
 void GameManager::configurarSistema()
 {
@@ -249,16 +245,14 @@ void GameManager::inicializar()
 				pared->setImagenPared(metalParedImagen, metalParedColorSimbolo, metalParedColorFondo);
 				pared->setInvulnerable(true);
 				break;
-				
-				break;
 			}
-			case celdaSimbolo_Base:
-			{
-				//Aqui se crea un actor base.
-				//base = crearActor(TipoActor_Base, c, f);
-				base = crearActor<Base>(c, f);
-				break;
-			}
+			//case celdaSimbolo_Base:
+			//{
+			//	//Aqui se crea un actor base.
+			//	//base = crearActor(TipoActor_Base, c, f);
+			//	base = crearActor<Base>(c, f);
+			//	break;
+			//}
 			case celdaSimbolo_Jugador1:
 			{
 				//Aqui se crea un actor jugador 1.
@@ -285,6 +279,7 @@ void GameManager::inicializar()
 		}
 	}
 }
+
 bool GameManager::bucle()
 {
 	//Calculo del tiempo delta
@@ -300,68 +295,46 @@ bool GameManager::bucle()
 
 void GameManager::abandonarJuego()
 {
-	for(int i = 0; i < numeroMaximoActores; i++){
-		if (actores[i] != 0) {
-			delete actores[i];
-			actores[i] = 0;
-		}
-	}
+	lActores.clear();
 }
 
 Actor* GameManager::crearActor(TipoActor _tipoActor, float _x, float _y)
 {
-	// Encuentra puntero libre y crea objeto
-	for (int i = 0; i <  numeroMaximoActores; i++)
-	{
-		if (actores[i] == 0)
-		{
-			Actor* actor = 0;
+	Actor* actor = NULL;
 
-			switch (_tipoActor)
-			{
-			case TipoActor_Pared:				actor = new Pared();			break;
-			case TipoActor_Base:				actor = new Base();				break;
-			case TipoActor_Municion:			actor = new Municion();			break;
-			//case TipoActor_Bala:				actor = new Bala();				break;
-			case TipoActor_TanqueJugador:		actor = new TanqueJugador();	break;
-			case TipoActor_TanqueEnemigo:		actor = new TanqueEnemigo(jugador1); 	break;
-			case TipoActor_GeneradorEnemigo:	actor = new GeneradorEnemigo();	break;
-
-			}
-
-			if (actor == 0)
-				return 0;
-
-			actor->setGameManager(this);
-
-			if (moverActorA(actor, _x, _y) == false)
-			{
-				delete actor;
-				return 0;
-				//return nullptr;
-			}
-
-			actores[i] = actor;
-
-			return actor;
-		}
+	switch (_tipoActor){
+		case TipoActor_Pared:				actor = new Pared();					break;
+		case TipoActor_Base:				actor = new Base();						break;
+		case TipoActor_Municion:			actor = new Municion();					break;
+		//case TipoActor_Bala:				actor = new Bala();						break;
+		case TipoActor_TanqueJugador:		actor = new TanqueJugador();			break;
+		case TipoActor_TanqueEnemigo:		actor = new TanqueEnemigo(jugador1); 	break;
+		case TipoActor_GeneradorEnemigo:	actor = new GeneradorEnemigo();			break;
 	}
 
-	return 0;
-	//return nullptr;
+	if (actor == NULL)
+		return NULL;
+
+	actor->setGameManager(this);
+
+	if (moverActorA(actor, _x, _y) == false)
+	{
+		delete actor;
+		return NULL;
+	}
+
+	lActores.push_back(actor);
+
+	return actor;
 }
+
+
 
 void GameManager::destruirActor(Actor* _actor)
 {
-	for (int i = 0; i < numeroMaximoActores; i++)
-	{
-		if (actores[i] == _actor)
-		{
-			delete actores[i];
-			actores[i] = 0;
-
-			return;
-		}
+	list<Actor*>::iterator iLActores = find(lActores.begin(), lActores.end(), _actor);
+	if (iLActores != lActores.end()) {
+		lActores.remove(*iLActores);
 	}
 }
 
@@ -372,19 +345,24 @@ Actor* GameManager::detectarColisiones(float _x, float _y, float _ancho, float _
 	int f01 = f00 + _alto - 1;
 	int c01 = c00 + _ancho - 1;
 
-	for (int i = 0; i < numeroMaximoActores; i++)
-		if (actores[i] != 0 && actores[i]->getFisico() && actores[i] != _actorExcluido)
-		{
-			int f10 = int(actores[i]->getY());
-			int c10 = int(actores[i]->getX());
-			int f11 = f10 + actores[i]->getAlto() - 1;
-			int c11 = c10 + actores[i]->getAncho() - 1;
+	int aux = 0;
 
-			if (f00 <= f11 && f01 >= f10 && c00 <= c11 && c01 >= c10)
-				return actores[i];
+
+	for (list<Actor*>::iterator iLActores = lActores.begin(); iLActores != lActores.end(); ++iLActores) {
+		
+		if ((*iLActores) != NULL && (*iLActores)->getFisico() && (*iLActores) != _actorExcluido) {
+			int f10 = int((*iLActores)->getY());
+			int c10 = int((*iLActores)->getX());
+			int f11 = f10 + (*iLActores)->getAlto() - 1;
+			int c11 = c10 + (*iLActores)->getAncho() - 1;
+
+			if (f00 <= f11 && f01 >= f10 && c00 <= c11 && c01 >= c10) {
+				return *iLActores;
+			}
 		}
-
-	return nullptr;
+	}
+		
+	return NULL;
 }
 
 bool GameManager::moverActorA(Actor* actor, float _x, float _y)
@@ -400,10 +378,11 @@ bool GameManager::moverActorA(Actor* actor, float _x, float _y)
 
 	bool puedeMoverACelda = false;
 
-	Actor* otroActor = detectarColisiones(_x, _y, actor->getAncho(), actor->getAlto(), actor);
+	Actor* otroActor = detectarColisiones(_x, _y, actor->getAncho(), actor->getAlto(), actor);	
 
-	if (otroActor)
+	if (otroActor != NULL) {
 		actor->intersectar(otroActor);
+	}
 	else
 		puedeMoverACelda = true;
 

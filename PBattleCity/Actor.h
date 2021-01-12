@@ -82,5 +82,6 @@ public:
 	virtual void intersectar(Actor* _actor);
 	void hacerDano(int _dano);
 	void cargarEnergia(int _energia);
+	bool operator==(const Actor&) const; // operador de igualdad
 };
 

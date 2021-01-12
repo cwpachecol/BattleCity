@@ -17,10 +17,11 @@ Tanque::Tanque()
 
 void Tanque::actualizar(float _dt)
 {
-	Actor::actualizar(_dt);
-
+	
 	if (fuegoTiempoEnfriamiento > 0)
 		fuegoTiempoEnfriamiento -= _dt;
+	Actor::actualizar(_dt);
+
 }
 
 void Tanque::renderizar(SistemaRenderizacion* _sistemaRenderizacion)

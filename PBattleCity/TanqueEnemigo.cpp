@@ -47,7 +47,7 @@ void TanqueEnemigo::analizar()
 	int distancia = 0;
 
 	do {
-		actor = gameManager->detectarColisiones(x, y, 1, 1, 0);
+		actor = gameManager->detectarColisiones(x, y, 1, 1, NULL);
 
 		x += xDelta;
 		y += yDelta;

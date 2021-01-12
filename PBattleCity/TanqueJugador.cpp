@@ -4,7 +4,7 @@
 TanqueJugador::TanqueJugador()
 {
 	tipoActor = TipoActor_TanqueJugador;
-
+	direccion = Direccion_Arriba;
 	teclaIzquierda = 0;
 	teclaDerecha = 0;
 	teclaArriba = 0;
@@ -20,7 +20,6 @@ TanqueJugador::TanqueJugador()
 
 void TanqueJugador::actualizar(float _dt)
 {
-	Tanque::actualizar(_dt);
 
 	if (IsKeyDown(teclaIzquierda))
 		mover(Direccion_Izquierda);
@@ -39,6 +38,9 @@ void TanqueJugador::actualizar(float _dt)
 		disparar();
 	if (IsKeyDown(teclaDisparoCanon))
 		disparar();
+
+	Tanque::actualizar(_dt);
+
 }
 
 void TanqueJugador::setTeclas(int _teclaIzquierda, int _teclaDerecha, int _teclaArriba, int _teclaAbajo, int _teclaDisparoMetralla, int _teclaDisparoCanon)
