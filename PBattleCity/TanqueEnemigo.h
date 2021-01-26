@@ -16,12 +16,13 @@ protected:
     float ultimoAnalisisX;
     float ultimoAnalisisY;
 
-    void analizar();
+    void analizar(Actor* _tanqueJugador);
     void moverDireccionRandom();
-    void moverDireccionIA();
+    void moverDireccionIA(Actor* _tanqueJugador);
 
 public:
-    TanqueEnemigo(Actor* _tanqueJugador);
+    TanqueEnemigo();
+    //TanqueEnemigo(Actor* _tanqueJugador);
     ~TanqueEnemigo();
     void actualizar(float _dt);
 };

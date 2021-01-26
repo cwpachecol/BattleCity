@@ -5,59 +5,56 @@
 
 // Datos del nivel 
 const int filasNivel = filasPantalla;
-const int columnasNivel = 70;
+const int columnasNivel = 110;
 
 const unsigned char	celdaSimbolo_Jugador1 = '1';
 const unsigned char	celdaSimbolo_Jugador2 = '2';
 const unsigned char	celdaSimbolo_Tanque = 'T';
-const unsigned char	celdaSimbolo_LadrilloPared = '#';
-const unsigned char	celdaSimbolo_MetalPared = '@';
+const unsigned char	celdaSimbolo_ParedLadrillo = '#';
+const unsigned char	celdaSimbolo_ParedMetal = '@';
 const unsigned char celdaSimbolo_Arbusto = '&';
 const unsigned char	celdaSimbolo_Base = 'B';
 const unsigned char	celdaSimbolo_GeneradorEnemigo = 'S';
 
+
+
 const unsigned char datosNivel0[filasNivel][columnasNivel + 1] =
 {
-	"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
-	"@S                                @@                              S  @",
-	"@                                 @@                                 @",
-	"@                                 @@                                 @",
-	"@   ##   ##   @@@###### S   @@@        @@@ S   ######@@@   ##   ##   @",
-	"@   #######   @@@######     @@@        @@@     ######@@@   #######   @",
-	"@   #######&&&&&&&&&&&&&&&&&@@@        @@@                 #######   @",
-	"@   ##   ##&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@                 ##   ##   @",
-	"@          &&&&&&&&&&&&&&&&&      @@                                 @",
-	"@                @@@              @@              @@@                @",
-	"@                @@@              @@              @@@                @",
-	"@@@   @@@#####   ############            ############   #####@@@   @@@",
-	"@@@   @@@#####   ######@@######        ######@@######   #####@@@   @@@",
-	"@@@   @@@#####   ######@@@#####        #####@@@######   #####@@@   @@@",
-	"@                   ###@@@@@###@@    @@###@@@@@###                   @",
-	"@                     #########@@@@@@@@#########                     @",
-	"@                           ##############                           @",
-	"@   ##   ##                    ########                    ##   ##   @",
-	"@   #######                                                #######   @",
-	"@   #######   @@@######                        ######@@@   #######   @",
-	"@   ##   ##   @@@######                        ######@@@   ##   ##   @",
-	"@                        2   ############ 1                          @",
-	"@                            ##B       ##                            @",
-	"@                            ##        ##                            @",
-	"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
-};
+	"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
+	"@S                                @@                              S                                @         @",
+	"@                                 @@                                                               @         @",
+	"@                                 @@                                                               @         @",
+	"@   ##   ##   @@@###### S   @@@        @@@ S   ######@@@   ##   ##                                 @         @",
+	"@   #######   @@@######     @@@        @@@     ######@@@   #######                                 @         @",
+	"@   #######&&&&&&&&&&&&&&&&&@@@        @@@                 #######                                 @         @",
+	"@   ##   ##&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@                 ##   ##                                 @         @",
+	"@          &&&&&&&&&&&&&&&&&      @@                                                               @         @",
+	"@                @@@              @@              @@@                                              @         @",
+	"@                @@@              @@              @@@                                              @         @",
+	"@@@   @@@#####   ############            ############   #####@@@   @@                              @         @",
+	"@@@   @@@#####   ######@@######        ######@@######   #####@@@   @@                              @         @",
+	"@@@   @@@#####   ######@@@#####        #####@@@######   #####@@@   @@                              @         @",
+	"@                   ###@@@@@###@@    @@###@@@@@###                                                 @         @",
+	"@                     #########@@@@@@@@#########                                                   @         @",
+	"@                           ##############                                                         @         @",
+	"@   ##   ##                    ########                    ##   ##                                 @         @",
+	"@   #######                                                #######                                 @         @",
+	"@   #######   @@@######                        ######@@@   #######                                 @         @",
+	"@   ##   ##   @@@######                        ######@@@   ##   ##                                 @         @",
+	"@                        2   ############ 1                                                        @         @",
+	"@                            ##B       ##                                                          @         @",
+	"@                            ##        ##                                                          @         @",
+	"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
+};																						              
 
 //Paredes y arbustos
-const unsigned char	ladrilloParedImagen = 177;
-const ColorConsola ladrilloParedColorSimbolo = ColorConsola_Cafe;
-const ColorConsola ladrilloParedColorFondo = ColorConsola_Rojo;
+const unsigned char	paredLadrilloSimbolo = 177;
+const ColorConsola paredLadrilloColorSimbolo = ColorConsola_Cafe;
+const ColorConsola paredLadrilloColorFondo = ColorConsola_Rojo;
 
-const unsigned char	metalParedImagen = 254;
-const ColorConsola metalParedColorSimbolo = ColorConsola_Gris;
-const ColorConsola metalParedColorFondo = ColorConsola_GrisOscuro;
-
-const unsigned char	arbustoImagen = 176;
-const ColorConsola arbustoColorColorSimbolo = ColorConsola_Verde;
-const ColorConsola arbustoColorFondo = ColorConsola_VerdeOscuro;
-
+const unsigned char	paredMetalSimbolo = 254;
+const ColorConsola paredMetalColorSimbolo = ColorConsola_Gris;
+const ColorConsola paredMetalColorFondo = ColorConsola_GrisOscuro;
 
 // Tanques
 const float fuegoTiempoEnfriamientoTanque = 0.5;

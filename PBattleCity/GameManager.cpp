@@ -6,12 +6,28 @@
 #include <list>
 #include <algorithm>
 
-#include "Pared.h"
+#include "ParedLadrillo.h"
+#include "ParedMetal.h"
+
 #include "Base.h"
 #include "GeneradorEnemigo.h"
 #include "TanqueEnemigo.h"
 #include "Municion.h"
+#include "Obstaculo.h"
+
 using namespace std;
+
+GameManager* GameManager::instancia = 0;
+
+GameManager* GameManager::getInstancia()
+{
+	if (instancia == 0)
+	{
+		instancia = new GameManager();
+	}
+
+	return instancia;
+}
 
 GameManager::GameManager()
 {
@@ -29,16 +45,6 @@ void GameManager::renderizar()
 {
 	// Frame inicial
 	sistemaRenderizacion.limpiar();
-
-	////Dibujar todos los actores del juego
-	//int contadorActores = 0;
-	//for (int i = 0; i < numeroMaximoActores; i++) {
-	//	if (actores[i] != 0)
-	//	{
-	//		actores[i]->renderizar(&sistemaRenderizacion);
-	//		contadorActores++;
-	//	}
-	//}
 
 	int contadorActores = 0;
 	for (list<Actor*>::iterator iLActores = lActores.begin(); iLActores != lActores.end(); ++iLActores) {
@@ -59,10 +65,10 @@ void GameManager::renderizar()
 
 	//Dibujar los demas elementos del juego
 
-	sistemaRenderizacion.dibujarTexto(2, 71, "Base", ColorConsola_Blanco, ColorConsola_GrisOscuro);
+	sistemaRenderizacion.dibujarTexto(2, 100, "Base", ColorConsola_Blanco, ColorConsola_GrisOscuro);
 	if (base)
 	{
-		int sc = 71;
+		int sc = 100;
 		int sf = 3;
 		int c = 0;
 		int f = 0;
@@ -80,10 +86,10 @@ void GameManager::renderizar()
 		}
 	}
 
-	sistemaRenderizacion.dibujarTexto(5, 71, "Jugador 1", ColorConsola_Blanco, ColorConsola_GrisOscuro);
+	sistemaRenderizacion.dibujarTexto(5, 100, "Jugador 1", ColorConsola_Blanco, ColorConsola_GrisOscuro);
 	if (jugador1)
 	{
-		int sc = 71;
+		int sc = 100;
 		int sf = 6;
 		int c = 0;
 		int f = 0;
@@ -101,10 +107,10 @@ void GameManager::renderizar()
 		}
 	}
 
-	sistemaRenderizacion.dibujarTexto(9, 71, "Jugador 2 2", ColorConsola_Blanco, ColorConsola_GrisOscuro);
+	sistemaRenderizacion.dibujarTexto(9, 100, "Jugador 2", ColorConsola_Blanco, ColorConsola_GrisOscuro);
 	if (jugador2)
 	{
-		int sc = 71;
+		int sc = 100;
 		int sf = 10;
 		int c = 0;
 		int f = 0;
@@ -122,8 +128,8 @@ void GameManager::renderizar()
 		}
 	}
 
-	sistemaRenderizacion.dibujarTexto(13, 71, "Enemigos", ColorConsola_Blanco, ColorConsola_GrisOscuro);
-	int sc = 71;
+	sistemaRenderizacion.dibujarTexto(13, 100, "Enemigos", ColorConsola_Blanco, ColorConsola_GrisOscuro);
+	int sc = 100;
 	int sf = 14;
 	int c = 0;
 	int f = 0;
@@ -141,10 +147,10 @@ void GameManager::renderizar()
 	}
 
 	//Mostrar el numero de enemigos eliminados y las posicion dende fueron destruidos
-	sistemaRenderizacion.dibujarTexto(17, 71, "Posicion", ColorConsola_Azul, ColorConsola_Amarillo);
+	sistemaRenderizacion.dibujarTexto(17, 100, "Posicion", ColorConsola_Azul, ColorConsola_Amarillo);
 	h = datosEnemigosMuertos.size();
-	sistemaRenderizacion.dibujarTexto(18, 71, to_string(h), ColorConsola_GrisOscuro, ColorConsola_Amarillo);
-	sc = 71;
+	sistemaRenderizacion.dibujarTexto(18, 100, to_string(h), ColorConsola_GrisOscuro, ColorConsola_Amarillo);
+	sc = 100;
 	sf = 19;
 	c = 0;
 	f = 0;
@@ -213,6 +219,7 @@ void GameManager::actualizar(float _dt)
 		inicializar();
 }
 
+
 void GameManager::configurarSistema()
 {
 	srand(time(0));
@@ -229,30 +236,29 @@ void GameManager::inicializar()
 			unsigned char celdaSimbolo = datosNivel0[f][c];
 			switch (celdaSimbolo)
 			{
-			case celdaSimbolo_LadrilloPared:
+			case celdaSimbolo_ParedLadrillo:
 			{
 				//Aqui se crea un actor ladrillo pared.
-				//Pared* pared = (Pared*)crearActor(TipoActor_Pared, c, f);
-				Pared* pared = crearActor<Pared>(c, f);
-				pared->setImagenPared(ladrilloParedImagen, ladrilloParedColorSimbolo, ladrilloParedColorFondo);
+				ParedLadrillo* paredLadrillo = crearActor<ParedLadrillo>(c, f);
+				paredLadrillo->setImagen(paredLadrilloSimbolo, paredLadrilloColorSimbolo, paredLadrilloColorFondo);
 				break;
 			}
-			case celdaSimbolo_MetalPared:
+			case celdaSimbolo_ParedMetal:
 			{
 				//Aqui se crea un actor bloque metal pared.
 				//Pared* pared = (Pared*)crearActor(TipoActor_Pared, c, f);
-				Pared* pared = crearActor<Pared>(c, f);
-				pared->setImagenPared(metalParedImagen, metalParedColorSimbolo, metalParedColorFondo);
-				pared->setInvulnerable(true);
+				ParedMetal* paredMetal = crearActor<ParedMetal>(c, f);
+				paredMetal->setImagen(paredMetalSimbolo, paredMetalColorSimbolo, paredMetalColorFondo);
+				paredMetal->setInvulnerable(true);
 				break;
 			}
-			//case celdaSimbolo_Base:
-			//{
-			//	//Aqui se crea un actor base.
-			//	//base = crearActor(TipoActor_Base, c, f);
-			//	base = crearActor<Base>(c, f);
-			//	break;
-			//}
+			case celdaSimbolo_Base:
+			{
+				//Aqui se crea un actor base.
+				//base = crearActor(TipoActor_Base, c, f);
+				base = crearActor<Base>(c, f);
+				break;
+			}
 			case celdaSimbolo_Jugador1:
 			{
 				//Aqui se crea un actor jugador 1.
@@ -271,7 +277,6 @@ void GameManager::inicializar()
 			case celdaSimbolo_GeneradorEnemigo:
 			{
 				//Aqui se crea un actor generador de enemigos.
-				//crearActor(TipoActor_GeneradorEnemigo, c, f);
 				crearActor<GeneradorEnemigo>(c, f);
 				break;
 			}
@@ -298,36 +303,37 @@ void GameManager::abandonarJuego()
 	lActores.clear();
 }
 
-Actor* GameManager::crearActor(TipoActor _tipoActor, float _x, float _y)
-{
-	Actor* actor = NULL;
-
-	switch (_tipoActor){
-		case TipoActor_Pared:				actor = new Pared();					break;
-		case TipoActor_Base:				actor = new Base();						break;
-		case TipoActor_Municion:			actor = new Municion();					break;
-		//case TipoActor_Bala:				actor = new Bala();						break;
-		case TipoActor_TanqueJugador:		actor = new TanqueJugador();			break;
-		case TipoActor_TanqueEnemigo:		actor = new TanqueEnemigo(jugador1); 	break;
-		case TipoActor_GeneradorEnemigo:	actor = new GeneradorEnemigo();			break;
-	}
-
-	if (actor == NULL)
-		return NULL;
-
-	actor->setGameManager(this);
-
-	if (moverActorA(actor, _x, _y) == false)
-	{
-		delete actor;
-		return NULL;
-	}
-
-	lActores.push_back(actor);
-
-	return actor;
-}
-
+//Actor* GameManager::crearActor(TipoActor _tipoActor, TipoObstaculo _tipoObstaculo, float _x, float _y)
+//{
+//	Actor* actor = NULL;
+//
+//	switch (_tipoActor){
+//		case TipoActor_Obstaculo:
+//			actor = Obstaculo::getObstaculo(_tipoObstaculo);
+//			break;
+//		case TipoActor_Base:				actor = new Base();						break;
+//		case TipoActor_Municion:			actor = new Municion();					break;
+//		//case TipoActor_Bala:				actor = new Bala();						break;
+//		case TipoActor_TanqueJugador:		actor = new TanqueJugador();			break;
+//		case TipoActor_TanqueEnemigo:		actor = new TanqueEnemigo(jugador1); 	break;
+//		case TipoActor_GeneradorEnemigo:	actor = new GeneradorEnemigo();			break;
+//	}
+//
+//	if (actor == NULL)
+//		return NULL;
+//
+//	actor->setGameManager(this);
+//
+//	if (moverActorA(actor, _x, _y) == false)
+//	{
+//		delete actor;
+//		return NULL;
+//	}
+//
+//	lActores.push_back(actor);
+//
+//	return actor;
+//}
 
 
 void GameManager::destruirActor(Actor* _actor)

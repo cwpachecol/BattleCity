@@ -7,7 +7,7 @@
 using namespace std;
 
 const int filasPantalla = 25;
-const int columnasPantalla = 80;
+const int columnasPantalla = 110;
 
 struct DatosSimboloConsola {
 	char simbolo;

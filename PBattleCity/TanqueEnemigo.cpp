@@ -5,7 +5,8 @@
 #include "Bala.h"
 #include "TanqueJugador.h"
 
-TanqueEnemigo::TanqueEnemigo(Actor* _tanqueJugador)
+
+TanqueEnemigo::TanqueEnemigo()
 {
 	tipoActor = TipoActor_TanqueEnemigo;
 	analizarTiempo = tiempoAnalisisIAEnemiga;
@@ -16,17 +17,34 @@ TanqueEnemigo::TanqueEnemigo(Actor* _tanqueJugador)
 	energia = energiaEnemigo;
 	velocidad = velocidadEnemigo;
 
-	tanqueJugador = _tanqueJugador;
-	
+	//tanqueJugador = _tanqueJugador;
+
 	setImagen(ColorConsola_CelesteOscuro, ColorConsola_Negro);
 }
+
+
+//TanqueEnemigo::TanqueEnemigo(Actor* _tanqueJugador)
+//{
+//	tipoActor = TipoActor_TanqueEnemigo;
+//	analizarTiempo = tiempoAnalisisIAEnemiga;
+//	analizarTemporizador = getRandomFloat(0.0, analizarTiempo);
+//	ultimoAnalisisX = 0.0;
+//	ultimoAnalisisY = 0.0;
+//
+//	energia = energiaEnemigo;
+//	velocidad = velocidadEnemigo;
+//
+//	tanqueJugador = _tanqueJugador;
+//	
+//	setImagen(ColorConsola_CelesteOscuro, ColorConsola_Negro);
+//}
 
 TanqueEnemigo::~TanqueEnemigo()
 {
 	
 }
 
-void TanqueEnemigo::analizar()
+void TanqueEnemigo::analizar(Actor* _tanqueJugador)
 {
 	float x = 0.0;
 	float y = 0.0;
@@ -76,7 +94,7 @@ void TanqueEnemigo::analizar()
 	}
 
 	switch (actor->getTipoActor()) {
-	case TipoActor_Pared:
+	case TipoActor_Obstaculo:
 		if (((Pared*)actor)->getInvulnerable() == false)
 		{
 			disparar();
@@ -89,7 +107,7 @@ void TanqueEnemigo::analizar()
 	if (distancia == 1 || ((int)ultimoAnalisisX == (int)getX() && (int)ultimoAnalisisY == (int)getY())) {
 		//Se mueve en una direccion aleatoria
 		//moverDireccionRandom();
-		moverDireccionIA();
+		moverDireccionIA(_tanqueJugador);
 		return;
 	}
 
@@ -113,14 +131,14 @@ void TanqueEnemigo::moverDireccionRandom()
 }
 
 
-void TanqueEnemigo::moverDireccionIA(){
+void TanqueEnemigo::moverDireccionIA(Actor* _tanqueJugador){
 	Direccion direccionAnterior = getDireccion();
 	Direccion direccionNueva;
 
 	do {
 		if (rand() % 2 == 0) {
 
-			if (getX() - tanqueJugador->getX() < 0) {
+			if (getX() - _tanqueJugador->getX() < 0) {
 				direccionNueva = Direccion_Derecha;
 			}
 			else {
@@ -129,7 +147,7 @@ void TanqueEnemigo::moverDireccionIA(){
 		}
 		else {
 
-			if (getY() - tanqueJugador->getY() < 0) {
+			if (getY() - _tanqueJugador->getY() < 0) {
 				direccionNueva = Direccion_Abajo;
 			}
 			else {
@@ -148,6 +166,6 @@ void TanqueEnemigo::actualizar(float _dt)
 	analizarTemporizador += _dt;
 	if (analizarTemporizador >= analizarTiempo) {
 		analizarTemporizador = 0;
-		analizar();
+		analizar(gameManager->getJugador1());
 	}
 }

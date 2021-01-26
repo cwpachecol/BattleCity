@@ -20,13 +20,16 @@ using namespace std;
 
 int main()
 {
-	GameManager gameManager;
+	//El antes de GameManager sin Singleton
+	//GameManager gameManager;
 
-	gameManager.configurarSistema();
-	gameManager.inicializar();
+	GameManager* gameManager = GameManager::getInstancia();
 
-	while (gameManager.bucle());
-	gameManager.abandonarJuego();
+	gameManager->configurarSistema();
+	gameManager->inicializar();
+
+	while (gameManager->bucle());
+	gameManager->abandonarJuego();
 	
 	cin.get();
 	return 0;

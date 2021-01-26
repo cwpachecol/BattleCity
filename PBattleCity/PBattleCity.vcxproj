@@ -140,39 +140,63 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="Arbusto.cpp" />
     <ClCompile Include="Bala.cpp" />
     <ClCompile Include="Base.cpp" />
     <ClCompile Include="BattleCity.cpp" />
+    <ClCompile Include="Charco.cpp" />
+    <ClCompile Include="FactoryObstaculos.cpp" />
+    <ClCompile Include="FactoryObstaculosCompuestos.cpp" />
+    <ClCompile Include="FactoryObstaculosSimples.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GeneradorEnemigo.cpp" />
     <ClCompile Include="Granada.cpp" />
     <ClCompile Include="Misil.cpp" />
     <ClCompile Include="Municion.cpp" />
-    <ClCompile Include="Pared.cpp" />
+    <ClCompile Include="Obstaculo.cpp" />
+    <ClCompile Include="Pantano.cpp" />
+    <ClCompile Include="ParedLadrillo.cpp" />
+    <ClCompile Include="ParedMetal.cpp" />
+    <ClCompile Include="Roca.cpp" />
     <ClCompile Include="SistemaRenderizacion.cpp" />
     <ClCompile Include="Tanque.cpp" />
     <ClCompile Include="TanqueEnemigo.cpp" />
     <ClCompile Include="TanqueJugador.cpp" />
+    <ClCompile Include="Tractor.cpp" />
+    <ClCompile Include="Tronco.cpp" />
     <ClCompile Include="Utilitarios.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="Arbusto.h" />
     <ClInclude Include="Bala.h" />
     <ClInclude Include="Base.h" />
+    <ClInclude Include="Charco.h" />
     <ClInclude Include="ColorConsola.h" />
     <ClInclude Include="Direccion.h" />
+    <ClInclude Include="FactoryObstaculos.h" />
+    <ClInclude Include="FactoryObstaculosCompuestos.h" />
+    <ClInclude Include="FactoryObstaculosSimples.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GeneradorEnemigo.h" />
     <ClInclude Include="Granada.h" />
     <ClInclude Include="Misil.h" />
     <ClInclude Include="Municion.h" />
     <ClInclude Include="Nivel.h" />
-    <ClInclude Include="Pared.h" />
+    <ClInclude Include="Nivel01.h" />
+    <ClInclude Include="Obstaculo.h" />
+    <ClInclude Include="Pantano.h" />
+    <ClInclude Include="ParedLadrillo.h" />
+    <ClInclude Include="ParedMetal.h" />
+    <ClInclude Include="Roca.h" />
     <ClInclude Include="SistemaRenderizacion.h" />
     <ClInclude Include="Tanque.h" />
     <ClInclude Include="TanqueEnemigo.h" />
     <ClInclude Include="TanqueJugador.h" />
     <ClInclude Include="TipoActor.h" />
+    <ClInclude Include="TipoObstaculo.h" />
+    <ClInclude Include="Tractor.h" />
+    <ClInclude Include="Tronco.h" />
     <ClInclude Include="Utilitarios.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,10 +1,10 @@
 #pragma once
 #include "Obstaculo.h"
-class Pared :
+class ParedMetal :
     public Obstaculo
 {
 public:
-    Pared();
+    ParedMetal();
     void renderizar(SistemaRenderizacion* _sistemaRenderizacion);
     void setImagen(unsigned char _simbolo, ColorConsola _colorSimbolo, ColorConsola _colorFondo);
 };

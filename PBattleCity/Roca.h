@@ -1,10 +1,11 @@
 #pragma once
 #include "Obstaculo.h"
-class Pared :
+class Roca :
     public Obstaculo
-{
-public:
-    Pared();
+{public:
+
+    //void cargarDatosNivel();
+    Roca();
     void renderizar(SistemaRenderizacion* _sistemaRenderizacion);
     void setImagen(unsigned char _simbolo, ColorConsola _colorSimbolo, ColorConsola _colorFondo);
 };

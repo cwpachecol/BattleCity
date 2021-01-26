@@ -4,6 +4,7 @@
 #include <list>
 #include "Actor.h"
 #include "TipoActor.h"
+#include "TipoObstaculo.h"
 #include "SistemaRenderizacion.h"
 #include "Nivel.h"
 
@@ -21,6 +22,10 @@ struct DatosEnemigoMuerto {
 
 class GameManager
 {
+public:
+	list<Actor*> lActores;
+
+
 private:
 	bool juegoActivo;
 	clock_t relojUltimoFrame;
@@ -28,7 +33,7 @@ private:
 
 	//Actor* actores[numeroMaximoActores];
 	vector<Actor*> vActores;
-	list<Actor*> lActores;
+	//list<Actor*> lActores;
 
 	Actor* base;
 	Actor* jugador1;
@@ -42,8 +47,11 @@ private:
 	void renderizar();
 	void actualizar(float _dt);
 
-public:
 	GameManager();
+	static GameManager* instancia;
+
+public:
+	static GameManager* getInstancia();
 
 	void configurarSistema();
 	void inicializar();
@@ -53,8 +61,9 @@ public:
 	template<class T>
 	T* crearActor(float _x, float _y);
 
-	Actor* crearActor(TipoActor _tipoActor, float _x, float _y);
+	//Actor* crearActor(TipoActor _tipoActor, TipoObstaculo = TipoObstaculo_None, float _x, float _y);
 
+	Actor* getJugador1() { return jugador1; }
 
 	void destruirActor(Actor* _actor);
 	Actor* detectarColisiones(float _x, float _y, float _ancho, float _alto, Actor* _actorExcluido);
