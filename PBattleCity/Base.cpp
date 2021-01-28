@@ -1,5 +1,18 @@
 #include "Base.h"
 
+Base* Base::instancia = 0;
+
+Base* Base::getInstancia()
+{
+	if (instancia == 0)
+	{
+		instancia = new Base();
+	}
+
+	return instancia;
+}
+
+
 Base::Base() {
 	tipoActor = TipoActor_Base;
 

@@ -3,8 +3,12 @@
 class Base :
     public Actor
 {
-public:
+private:
     Base();
+    static Base* instancia;
+
+public:
+    static Base* getInstancia();
 
     virtual void renderizar(SistemaRenderizacion* _sistemaRenderizacion);
 };

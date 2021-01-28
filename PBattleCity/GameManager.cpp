@@ -256,7 +256,16 @@ void GameManager::inicializar()
 			{
 				//Aqui se crea un actor base.
 				//base = crearActor(TipoActor_Base, c, f);
-				base = crearActor<Base>(c, f);
+				//base = crearActor<Base>(c, f);
+				base = Base::getInstancia();
+				base->setGameManager(this);
+
+				if (moverActorA(base, c, f) == false)
+				{
+					delete base;
+				}
+
+				lActores.push_back(base);
 				break;
 			}
 			case celdaSimbolo_Jugador1:
