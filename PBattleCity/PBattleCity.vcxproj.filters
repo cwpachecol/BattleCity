@@ -102,7 +102,13 @@
     <ClCompile Include="InterfaceConsola\ComponenteIC.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="InterfaceConsola\CompositeIC.cpp">
+    <ClCompile Include="BattleCity.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="InterfaceConsola\Menu.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="InterfaceConsola\MenuItem.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -212,7 +218,10 @@
     <ClInclude Include="InterfaceConsola\ComponenteIC.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="InterfaceConsola\CompositeIC.h">
+    <ClInclude Include="InterfaceConsola\Menu.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceConsola\MenuItem.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

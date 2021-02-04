@@ -143,8 +143,9 @@
     <ClCompile Include="Arbusto.cpp" />
     <ClCompile Include="Bala.cpp" />
     <ClCompile Include="Base.cpp" />
+    <ClCompile Include="BattleCity.cpp" />
     <ClCompile Include="Charco.cpp" />
-    <ClCompile Include="InterfaceConsola\CompositeIC.cpp" />
+    <ClCompile Include="InterfaceConsola\Menu.cpp" />
     <ClCompile Include="InterfaceConsola\ComponenteIC.cpp" />
     <ClCompile Include="FactoryObstaculos.cpp" />
     <ClCompile Include="FactoryObstaculosCompuestos.cpp" />
@@ -152,6 +153,7 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GeneradorEnemigo.cpp" />
     <ClCompile Include="Granada.cpp" />
+    <ClCompile Include="InterfaceConsola\MenuItem.cpp" />
     <ClCompile Include="Misil.cpp" />
     <ClCompile Include="Municion.cpp" />
     <ClCompile Include="InterfaceConsola\ObjetoIC.cpp" />
@@ -177,7 +179,7 @@
     <ClInclude Include="Base.h" />
     <ClInclude Include="Charco.h" />
     <ClInclude Include="ColorConsola.h" />
-    <ClInclude Include="InterfaceConsola\CompositeIC.h" />
+    <ClInclude Include="InterfaceConsola\Menu.h" />
     <ClInclude Include="InterfaceConsola\ComponenteIC.h" />
     <ClInclude Include="Direccion.h" />
     <ClInclude Include="FactoryObstaculos.h" />
@@ -186,6 +188,7 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GeneradorEnemigo.h" />
     <ClInclude Include="Granada.h" />
+    <ClInclude Include="InterfaceConsola\MenuItem.h" />
     <ClInclude Include="Misil.h" />
     <ClInclude Include="Municion.h" />
     <ClInclude Include="Nivel.h" />
