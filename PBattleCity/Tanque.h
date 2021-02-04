@@ -11,7 +11,6 @@ class Tanque : public Actor
 {
 public:
 	Tanque();
-
 	virtual void actualizar(float _dt);
 	virtual void renderizar(SistemaRenderizacion* _sistemaRenderizacion);
 
@@ -21,7 +20,7 @@ public:
 	void mover(Direccion _direccion);
 	void disparar();
 
-
+	virtual Tanque* clone(){ return NULL; };
 protected:
 	void calcularPosicionCeldaFrontal(float* _x, float* _y);
 

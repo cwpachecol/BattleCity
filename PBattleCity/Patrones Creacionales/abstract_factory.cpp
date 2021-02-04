@@ -1,4 +1,5 @@
-#include <iostream.h>
+#include <iostream>
+using namespace std;
 
 class Shape {
   public:
@@ -63,11 +64,22 @@ class RobustShapeFactory : public Factory {
 };
 
 int main() {
-#ifdef SIMPLE
-  Factory* factory = new SimpleShapeFactory;
-#elif ROBUST
-  Factory* factory = new RobustShapeFactory;
-#endif
+//#ifdef SIMPLE
+//  Factory* factory = new SimpleShapeFactory;
+//#elif ROBUST
+//  Factory* factory = new RobustShapeFactory;
+//#endif
+  Factory* factory;
+  int tipo = 1;
+
+  if (tipo == 0) {
+      factory = new SimpleShapeFactory;
+  }
+  else {
+      factory = new RobustShapeFactory;
+  }
+
+
   Shape* shapes[3];
 
   shapes[0] = factory->createCurvedInstance();   // shapes[0] = new Ellipse;

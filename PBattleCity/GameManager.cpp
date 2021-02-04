@@ -13,7 +13,7 @@
 #include "GeneradorEnemigo.h"
 #include "TanqueEnemigo.h"
 #include "Municion.h"
-#include "Obstaculo.h"
+#include "TanqueDestructor.h"
 
 using namespace std;
 
@@ -226,6 +226,22 @@ void GameManager::configurarSistema()
 	sistemaRenderizacion.inicializar();
 }
 
+
+Actor* GameManager::crearObstaculo(TipoObstaculo _tipoObstaculo, float _x, float _y) {
+	Obstaculo* obstaculo = Obstaculo::getObstaculo(_tipoObstaculo);
+	
+	obstaculo->setGameManager(this);
+
+	if (moverActorA(obstaculo, _x, _y) == false)
+	{
+		delete obstaculo;
+		return NULL;
+	}
+	
+	lActores.push_back(obstaculo);
+	return obstaculo;
+}
+
 void GameManager::inicializar()
 {
 	abandonarJuego();
@@ -239,8 +255,10 @@ void GameManager::inicializar()
 			case celdaSimbolo_ParedLadrillo:
 			{
 				//Aqui se crea un actor ladrillo pared.
-				ParedLadrillo* paredLadrillo = crearActor<ParedLadrillo>(c, f);
+				//ParedLadrillo* paredLadrillo = crearActor<ParedLadrillo>(c, f);
+				ParedLadrillo* paredLadrillo = (ParedLadrillo*)crearObstaculo(TipoObstaculo_ParedLadrillo, c, f);
 				paredLadrillo->setImagen(paredLadrilloSimbolo, paredLadrilloColorSimbolo, paredLadrilloColorFondo);
+
 				break;
 			}
 			case celdaSimbolo_ParedMetal:
@@ -256,16 +274,8 @@ void GameManager::inicializar()
 			{
 				//Aqui se crea un actor base.
 				//base = crearActor(TipoActor_Base, c, f);
-				//base = crearActor<Base>(c, f);
-				base = Base::getInstancia();
-				base->setGameManager(this);
-
-				if (moverActorA(base, c, f) == false)
-				{
-					delete base;
-				}
-
-				lActores.push_back(base);
+				base = crearActor<Base>(c, f);
+				
 				break;
 			}
 			case celdaSimbolo_Jugador1:
@@ -426,4 +436,15 @@ int GameManager::incrementarContadorEnemigosMuertos()
 //	datosEnemigosMuertos.push_back(_datosEnemigoMuerto);
 //	
 //	return _datosEnemigoMuerto.numeroEnemigo;
+//}
+
+
+//Tanque* GameManager::crearTanqueDestructor() {
+//
+//	/*float _x = 10;
+//	float _y = 10;
+//	TanqueDestructor* tanqueDestructor = crearActor<TanqueDestructor>(_x, _y);
+//	return tanqueDestructor;*/
+//	return NULL;
+//
 //}

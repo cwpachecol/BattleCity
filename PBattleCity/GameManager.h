@@ -72,6 +72,9 @@ public:
 	int getConteoEnemigosMuertos() { return contadorEnemigosMuertos; }
 	int incrementarContadorEnemigosMuertos();
 	//int agregarEnemigoMuerto(DatosEnemigosMuertos _datosEnemigoMuerto);
+	
+	Actor* crearObstaculo(TipoObstaculo _tipoObstaculo, float _x, float _y);
+	//Tanque* crearTanqueDestructor();
 };
 
 template<class T>

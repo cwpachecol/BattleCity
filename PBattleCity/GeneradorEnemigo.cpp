@@ -26,6 +26,8 @@ void GeneradorEnemigo::actualizar(float _dt) {
 			//gameManager->crearActor(TipoActor_TanqueEnemigo, getX(), getY());
 			
 			TanqueEnemigo* tanqueEnemigo = gameManager->crearActor<TanqueEnemigo>(getX(), getY());
+
+
 		}
 	}
 }

@@ -1,10 +1,6 @@
 #pragma once
 #include "Tanque.h"
-#include "GameManager.h"
-#include "TanqueJugador.h"
-#include "Actor.h"
-
-class TanqueEnemigo :
+class TanqueDestructor :
     public Tanque
 {
 private:
@@ -21,19 +17,13 @@ protected:
     void moverDireccionIA(Actor* _tanqueJugador);
 
 public:
-    /*TanqueEnemigo(TipoActor _tipoActor) {
-        tipoActor = _tipoActor;
-    }*/
-
-    TanqueEnemigo();
-    //TanqueEnemigo(Actor* _tanqueJugador);
-    ~TanqueEnemigo();
+    TanqueDestructor();
+    virtual Tanque* clone()
+    {
+        return new TanqueDestructor();
+    }
+    ~TanqueDestructor();
     void actualizar(float _dt);
 
-    virtual Tanque* clone() { return NULL; }
-   /* Tanque* clone()
-    {
-        return new TanqueEnemigo();
-    }*/
 };
 

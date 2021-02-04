@@ -15,19 +15,19 @@
 
 #include <iostream>
 #include <string>
+using namespace std;
 
  /* Prototype base class. */
 class Prototype
 {
 protected:
-	std::string type;
+	string type;
 	int value;
 
 public:
 	virtual Prototype* clone() = 0;
 
-	std::string getType(){ return type; }
-
+ 	string getType(){ return type; }
 	int getValue(){	return value;}
 };
 

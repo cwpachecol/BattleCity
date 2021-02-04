@@ -7,7 +7,7 @@ class Number
 {
   public:
     // 2. Define a public static accessor func
-    static Number *instance(); 
+    static Number* instance(); 
     static void setType(string t)
     {
       type = t;
@@ -46,8 +46,8 @@ class Octal: public Number
     void setValue(int in)
     {
       char buf[10];
-      sprintf(buf, "%o", in);
-      sscanf(buf, "%d", &value);
+      //sprintf(buf, "%o", in);
+      //sscanf(buf, "%d", &value);
     }
   protected:
     Octal(){}
@@ -66,11 +66,12 @@ Number *Number::instance()
 
 int main()
 {
-  // Number  myInstance; - error: cannot access protected constructor
-  // 5. Clients may only use the accessor function to manipulate the Singleton
-  Number::instance()->setValue(42);
-  cout << "value is " << Number::instance()->getValue() << endl;
-  Number::setType("octal");
-  Number::instance()->setValue(64);
-  cout << "value is " << Number::instance()->getValue() << endl;
+    // Number  myInstance; - error: cannot access protected constructor
+    // 5. Clients may only use the accessor function to manipulate the Singleton
+    
+    Number::instance()->setValue(42);
+    cout << "value is " << Number::instance()->getValue() << endl;
+    Number::setType("octal");
+    Number::instance()->setValue(64);
+    cout << "value is " << Number::instance()->getValue() << endl;
 }

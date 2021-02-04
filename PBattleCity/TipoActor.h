@@ -6,6 +6,7 @@ enum TipoActor
 	TipoActor_Tanque,
 	TipoActor_TanqueJugador,
 	TipoActor_TanqueEnemigo,
+	TipoActor_TanqueDestructor,
 	TipoActor_Obstaculo,
 	TipoActor_Base,
 	TipoActor_Municion,

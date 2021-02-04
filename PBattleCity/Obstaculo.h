@@ -15,6 +15,6 @@ public:
     virtual void renderizar(SistemaRenderizacion* _sistemaRenderizacion);
     virtual void setImagen(unsigned char _simbolo, ColorConsola _colorSimbolo, ColorConsola _colorFondo);
     
-    Obstaculo* getObstaculo(TipoObstaculo _tipoObstaculo);
+    static Obstaculo* getObstaculo(TipoObstaculo _tipoObstaculo);
 };
 

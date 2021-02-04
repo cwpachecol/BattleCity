@@ -16,6 +16,8 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 class Copa{
 public:
 	//Copa() : color("") {}
@@ -24,11 +26,12 @@ public:
 		color = "";
 	}
 
-	std::string color;
+	string color;
 	virtual void Mostrar() {};
+	//virtual void Colorear() {};
 
 	/* This is the factory method. */
-	static Copa* getCopa(std::string color);
+	static Copa* getCopa(string color);
 };
 
 class CopaRoja : public Copa
@@ -72,9 +75,11 @@ int main()
 	Copa* cA = Copa::getCopa("azul");
 
 	std::cout << cR->color << std::endl;
+	
 	cR->Mostrar();
 
 	std::cout << cA->color << std::endl;
+	((CopaAzul*)cA)->Colorear();
 	cA->Mostrar();
 	
 	system("pause");
