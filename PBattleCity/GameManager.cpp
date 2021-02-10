@@ -14,6 +14,7 @@
 #include "TanqueEnemigo.h"
 #include "Municion.h"
 #include "TanqueDestructor.h"
+#include "Nivel.h"
 
 using namespace std;
 
@@ -47,8 +48,13 @@ void GameManager::renderizar()
 	sistemaRenderizacion.limpiar();
 
 	int contadorActores = 0;
-	for (list<Actor*>::iterator iLActores = lActores.begin(); iLActores != lActores.end(); ++iLActores) {
+	/*for (list<Actor*>::iterator iLActores = lActores.begin(); iLActores != lActores.end(); ++iLActores) {
 		(*iLActores)->renderizar(&sistemaRenderizacion);
+		contadorActores++;
+	}*/
+
+	for (auto itActores = lActores.begin(); itActores != lActores.end(); ++itActores) {
+		(*itActores)->renderizar(&sistemaRenderizacion);
 		contadorActores++;
 	}
 
@@ -147,15 +153,15 @@ void GameManager::renderizar()
 	}
 
 	//Mostrar el numero de enemigos eliminados y las posicion dende fueron destruidos
-	sistemaRenderizacion.dibujarTexto(17, 100, "Posicion", ColorConsola_Azul, ColorConsola_Amarillo);
+	/*sistemaRenderizacion.dibujarTexto(17, 100, "Posicion", ColorConsola_Azul, ColorConsola_Amarillo);
 	h = datosEnemigosMuertos.size();
 	sistemaRenderizacion.dibujarTexto(18, 100, to_string(h), ColorConsola_GrisOscuro, ColorConsola_Amarillo);
 	sc = 100;
 	sf = 19;
 	c = 0;
-	f = 0;
+	f = 0;*/
 
-	string texto = "";
+	/*string texto = "";
 	while (h > 0)
 	{
 		texto = to_string(datosEnemigosMuertos[f].numeroEnemigo) + ":[" +
@@ -167,7 +173,7 @@ void GameManager::renderizar()
 		{
 			f = 0;
 		}
-	}
+	}*/
 
 	// Finalizar frame
 
@@ -176,23 +182,21 @@ void GameManager::renderizar()
 
 void GameManager::actualizar(float _dt)
 {
-	list<Actor*>::iterator iLActores = lActores.begin();
-	list<Actor*>::iterator iLActoresAux;
-	while (iLActores != lActores.end()) {
-		(*iLActores)->actualizar(_dt);
-		if ((*iLActores)->getEnergia() <= 0 && (*iLActores)->getDestruirDespuesMuerte()) {
-			if ((*iLActores)->getTipoActor() == TipoActor_TanqueEnemigo) {
-				datosEnemigosMuertos.push_back(DatosEnemigoMuerto{ (*iLActores)->getNumeroActor(), (*iLActores)->getTipoActor(), (*iLActores)->getX(), (*iLActores)->getY() });
-			}
-			iLActoresAux = iLActores;
-			iLActoresAux++;
-			destruirActor((*iLActores));
-			iLActores = iLActoresAux;
+	list<Actor*>::iterator itActores = lActores.begin();
+	
+	while (itActores != lActores.end()) {
 
-			//iLActores = lActores.erase(iLActores);
+		(*itActores)->actualizar(_dt);
+		
+		if ((*itActores)->getEnergia() <= 0 && (*itActores)->getDestruirDespuesMuerte()) {
+			/*if ((*itActores)->getTipoActor() == TipoActor_TanqueEnemigo) {
+				datosEnemigosMuertos.push_back(DatosEnemigoMuerto{ (*itActores)->getNumeroActor(), (*itActores)->getTipoActor(), (*itActores)->getX(), (*itActores)->getY() });
+			}*/
+			
+			lActores.remove((*itActores++));
 		}
 		else {
-			++iLActores;
+			++itActores;
 		}
 	}
 
@@ -257,8 +261,6 @@ void GameManager::inicializar()
 				//Aqui se crea un actor ladrillo pared.
 				//ParedLadrillo* paredLadrillo = crearActor<ParedLadrillo>(c, f);
 				ParedLadrillo* paredLadrillo = (ParedLadrillo*)crearObstaculo(TipoObstaculo_ParedLadrillo, c, f);
-				paredLadrillo->setImagen(paredLadrilloSimbolo, paredLadrilloColorSimbolo, paredLadrilloColorFondo);
-
 				break;
 			}
 			case celdaSimbolo_ParedMetal:
@@ -266,7 +268,6 @@ void GameManager::inicializar()
 				//Aqui se crea un actor bloque metal pared.
 				//Pared* pared = (Pared*)crearActor(TipoActor_Pared, c, f);
 				ParedMetal* paredMetal = crearActor<ParedMetal>(c, f);
-				paredMetal->setImagen(paredMetalSimbolo, paredMetalColorSimbolo, paredMetalColorFondo);
 				paredMetal->setInvulnerable(true);
 				break;
 			}
@@ -283,7 +284,7 @@ void GameManager::inicializar()
 				//Aqui se crea un actor jugador 1.
 				//TanqueJugador* jugador1 = (TanqueJugador*)crearActor(TipoActor_TanqueJugador, c + 0.5, f + 0.5);
 				TanqueJugador* jugador1 = crearActor<TanqueJugador>(c + 0.5, f + 0.5);
-				jugador1->setImagen(ColorConsola_Cafe, ColorConsola_Negro);
+				//jugador1->setImagen(ColorConsola_Cafe, ColorConsola_Negro);
 				jugador1->setTeclas(VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN, VK_SPACE, VK_TAB);
 				this->jugador1 = jugador1;
 				break;
@@ -357,32 +358,35 @@ void GameManager::abandonarJuego()
 
 void GameManager::destruirActor(Actor* _actor)
 {
-	list<Actor*>::iterator iLActores = find(lActores.begin(), lActores.end(), _actor);
-	if (iLActores != lActores.end()) {
-		lActores.remove(*iLActores);
+	auto itActor = find(lActores.begin(), lActores.end(), _actor);
+
+	if (itActor != lActores.end())
+	{
+		//lActores.remove(*itActor++);
 	}
+
 }
 
 Actor* GameManager::detectarColisiones(float _x, float _y, float _ancho, float _alto, Actor* _actorExcluido)
 {
 	int f00 = int(_y);
 	int c00 = int(_x);
-	int f01 = f00 + _alto - 1;
-	int c01 = c00 + _ancho - 1;
+	int f01 = f00 + int(_alto) - 1;
+	int c01 = c00 + int(_ancho) - 1;
 
 	int aux = 0;
 
 
-	for (list<Actor*>::iterator iLActores = lActores.begin(); iLActores != lActores.end(); ++iLActores) {
+	for (itActores = lActores.begin(); itActores != lActores.end(); ++itActores) {
 		
-		if ((*iLActores) != NULL && (*iLActores)->getFisico() && (*iLActores) != _actorExcluido) {
-			int f10 = int((*iLActores)->getY());
-			int c10 = int((*iLActores)->getX());
-			int f11 = f10 + (*iLActores)->getAlto() - 1;
-			int c11 = c10 + (*iLActores)->getAncho() - 1;
+		if ((*itActores) != NULL && (*itActores)->getFisico() && (*itActores) != _actorExcluido) {
+			int f10 = int((*itActores)->getY());
+			int c10 = int((*itActores)->getX());
+			int f11 = f10 + int((*itActores)->getAlto()) - 1;
+			int c11 = c10 + int((*itActores)->getAncho()) - 1;
 
 			if (f00 <= f11 && f01 >= f10 && c00 <= c11 && c01 >= c10) {
-				return *iLActores;
+				return (*itActores);
 			}
 		}
 	}
@@ -394,12 +398,11 @@ bool GameManager::moverActorA(Actor* actor, float _x, float _y)
 {
 	int f0 = int(_y);
 	int c0 = int(_x);
-	int f1 = f0 + actor->getAlto() - 1;
-	int c1 = c0 + actor->getAncho() - 1;
+	int f1 = f0 + int(actor->getAlto()) - 1;
+	int c1 = c0 + int(actor->getAncho()) - 1;
 
 	if (f0 < 0 || c0 < 0 || f1 >= filasNivel || c1 >= columnasNivel)
 		return false;
-
 
 	bool puedeMoverACelda = false;
 

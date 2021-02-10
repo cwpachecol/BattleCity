@@ -3,8 +3,9 @@
 
 TanqueJugador::TanqueJugador()
 {
-	tipoActor = TipoActor_TanqueJugador;
-	direccion = Direccion_Arriba;
+	setTipoActor(TipoActor_TanqueJugador);
+	setDireccion(Direccion_Arriba);
+	setAvatar(avatarTanqueJugador1);
 	teclaIzquierda = 0;
 	teclaDerecha = 0;
 	teclaArriba = 0;
@@ -12,10 +13,10 @@ TanqueJugador::TanqueJugador()
 	teclaDisparoMetralla = 0;
 	teclaDisparoCanon = 0;
 
-	energia = energiaJugador;
+	setEnergia(energiaJugador);
 	velocidad = velocidadJugador;
 
-	destruirDespuesMuerte = false;
+	setDestruirDespuesMuerte(false);
 }
 
 void TanqueJugador::actualizar(float _dt)

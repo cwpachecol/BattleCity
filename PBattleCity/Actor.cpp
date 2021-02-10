@@ -6,20 +6,17 @@ int Actor::numeroActores = 0;
 //	return numeroActores;
 //}
 
-Actor::Actor()
+Actor::Actor():Objeto()
 {
 	gameManager = nullptr;
 	//gameManager = 0;
 	numeroActores++;
 	numeroActor = numeroActores;
 	tipoActor = TipoActor_None;
-
-	x = 0.0;
-	y = 0.0;
 	xVelocidad = 0.0;
 	yVelocidad = 0.0;
-	ancho = 1;
-	alto = 1;
+	setAncho(1.0f);
+	setAlto(1.0f);
 	energia = 1;
 	limiteSuperiorEnergia = 10;
 	limiteInferiorEnergia = 1;
@@ -27,23 +24,21 @@ Actor::Actor()
 	invulnerable = false;
 	fisico = true;
 
-	direccion = Direccion_Arriba;
+	direccion = Direccion_Ninguna;
 }
 
 //Actor::Actor(float _x = 0.0, float _y = 0.0, float _xVelocidad = 0.0, float _yVelocidad = 0.0, int _ancho = 1, int _alto = 1, int _energia = 1)
-Actor::Actor(float _x , float _y, float _xVelocidad, float _yVelocidad, int _ancho, int _alto, int _energia)
+Actor::Actor(float _x , float _y, float _xVelocidad, float _yVelocidad, int _ancho, int _alto, int _energia):Objeto(_x, _y)
 {
 	gameManager = nullptr;
 	numeroActores++;
 	numeroActor = numeroActores;
 	tipoActor = TipoActor_None;
 
-	x = _x;
-	y = _y;
 	xVelocidad = _xVelocidad;
 	yVelocidad = _yVelocidad;
-	ancho = _ancho;
-	alto = _alto;
+	setAncho(_ancho);
+	setAlto(_alto);
 	energia = _energia;
 	destruirDespuesMuerte = true;
 	invulnerable = false;
@@ -53,19 +48,17 @@ Actor::Actor(float _x , float _y, float _xVelocidad, float _yVelocidad, int _anc
 }
 
 Actor::Actor(GameManager* _gameManager, TipoActor _tipoActor, float _x, float _y, float _xVelocidad, float _yVelocidad, int _ancho, int _alto, 
-	int _energia, bool _destrirDespuesMuerte, bool _invulnerable, bool _fisico, Direccion _direccion)
+	int _energia, bool _destrirDespuesMuerte, bool _invulnerable, bool _fisico, Direccion _direccion):Objeto(_x,_y)
 {
 	gameManager = _gameManager;
 	numeroActores++;
 	numeroActor = numeroActores;
 	tipoActor = _tipoActor;
 
-	x = _x;
-	y = _y;
 	xVelocidad = _xVelocidad;
 	yVelocidad = _yVelocidad;
-	ancho = _ancho;
-	alto = _alto;
+	setAncho(_ancho);
+	setAlto(_alto);
 	energia = _energia;
 	destruirDespuesMuerte = _destrirDespuesMuerte;
 	invulnerable = _invulnerable;
@@ -78,19 +71,18 @@ Actor::Actor(GameManager* _gameManager, TipoActor _tipoActor, float _x, float _y
 void Actor::renderizar(SistemaRenderizacion* _sistemaRenderizacion)
 {
 	if (avatar.size() > 0) {
-		map<Direccion, map<int, DatosSimboloConsola>>::iterator ida;
-		ida = avatar.find(direccion);
-		map<int, DatosSimboloConsola>::iterator iia;
+		itavatar = avatar.find(direccion);
+		vector<DatosSimboloConsola>::iterator iia;
 
-		int fila = int(y);
-		int columna = int(x);
+		int fila = int(getY());
+		int columna = int(getX());
 
-		for(iia = (*ida).second.begin(); iia != (*ida).second.end(); ++iia){
-			_sistemaRenderizacion->dibujarCaracter(fila, columna, (*iia).second.simbolo, (*iia).second.colorSimbolo, (*iia).second.colorFondo);
+		for(iia = (*itavatar).second.begin(); iia != (*itavatar).second.end(); ++iia){
+			_sistemaRenderizacion->dibujarCaracter(fila, columna, (*iia).simbolo, (*iia).colorSimbolo, (*iia).colorFondo);
 
-			if ((*iia).second.simbolo == 13){
+			if ((*iia).simbolo == 13){
 				fila++;
-				columna = int(x);
+				columna = int(getX());
 			}
 			else {
 				columna++;
@@ -101,24 +93,24 @@ void Actor::renderizar(SistemaRenderizacion* _sistemaRenderizacion)
 
 void Actor::actualizar(float _dt)
 {
-	int filaAnterior = int(y);
-	int columnaAnterior = int(x);
+	int filaAnterior = int(getY());
+	int columnaAnterior = int(getX());
 
-	float yNueva = y + yVelocidad * _dt;
-	float xNueva = x + xVelocidad * _dt;
+	float yNueva = getY() + yVelocidad * _dt;
+	float xNueva = getX() + xVelocidad * _dt;
 
 	int filaNueva = int(yNueva);
 	int columnaNueva = int(xNueva);
 
 	if (columnaAnterior != columnaNueva)
-		gameManager->moverActorA(this, xNueva, y);
+		gameManager->moverActorA(this, xNueva, getY());
 	else
-		x = xNueva;
+		setX(xNueva);
 
 	if (filaAnterior != filaNueva)
-		gameManager->moverActorA(this, x, yNueva);
+		gameManager->moverActorA(this, getX(), yNueva);
 	else
-		y = yNueva;
+		setY(yNueva);
 }
 
 
@@ -148,13 +140,4 @@ void Actor::cargarEnergia(int _energia)
 
 	if (energia > limiteSuperiorEnergia)
 		energia = limiteSuperiorEnergia;
-}
-
-
-bool Actor::operator==(const Actor& derecho) const
-{
-	if (numeroActor != derecho.numeroActor)
-		return false; // arreglos con distinto número de elementos
-	else
-		return true;
 }

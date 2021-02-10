@@ -24,7 +24,8 @@ class GameManager
 {
 public:
 	list<Actor*> lActores;
-
+	list<Actor*>::iterator itActores;
+	//vector<Actor*> vActores;
 
 private:
 	bool juegoActivo;
@@ -32,7 +33,7 @@ private:
 	SistemaRenderizacion sistemaRenderizacion;
 
 	//Actor* actores[numeroMaximoActores];
-	vector<Actor*> vActores;
+	//vector<Actor*> vActores;
 	//list<Actor*> lActores;
 
 	Actor* base;
@@ -42,7 +43,7 @@ private:
 	int contadorEnemigosMuertos;
 	
 	//Vector que almacena los enemigos destruidos, almacenando su numeroActor, TipoActor, x e y
-	vector<DatosEnemigoMuerto> datosEnemigosMuertos;
+	//vector<DatosEnemigoMuerto> datosEnemigosMuertos;
 
 	void renderizar();
 	void actualizar(float _dt);

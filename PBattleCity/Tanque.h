@@ -14,9 +14,6 @@ public:
 	virtual void actualizar(float _dt);
 	virtual void renderizar(SistemaRenderizacion* _sistemaRenderizacion);
 
-	//void setColor(ColorConsola _colorTanque1, ColorConsola _colorTanque2);
-	void setImagen(ColorConsola _colorSimbolo, ColorConsola _colorFondo);
-
 	void mover(Direccion _direccion);
 	void disparar();
 

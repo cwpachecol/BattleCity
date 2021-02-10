@@ -13,7 +13,7 @@ public:
     Obstaculo();
     //virtual void cargarDatosNivel() = 0;
     virtual void renderizar(SistemaRenderizacion* _sistemaRenderizacion);
-    virtual void setImagen(unsigned char _simbolo, ColorConsola _colorSimbolo, ColorConsola _colorFondo);
+    //virtual void setImagen(unsigned char _simbolo, ColorConsola _colorSimbolo, ColorConsola _colorFondo);
     
     static Obstaculo* getObstaculo(TipoObstaculo _tipoObstaculo);
 };

@@ -4,11 +4,11 @@
 
 GeneradorEnemigo::GeneradorEnemigo()
 {
-	tipoActor = TipoActor_GeneradorEnemigo;
+	setTipoActor(TipoActor_GeneradorEnemigo);
 	generarTiempo = generadorEnemigosTiempoGeneracion;
 	generarTemporizador = getRandomFloat(0.0, generarTiempo);
 
-	fisico = false;
+	setFisico(false);
 }
 
 void GeneradorEnemigo::actualizar(float _dt) {
@@ -19,14 +19,14 @@ void GeneradorEnemigo::actualizar(float _dt) {
 	if (generarTemporizador > generarTiempo) {
 		generarTemporizador = 0.0f;
 
-		int enemigosEnElNivel = gameManager->getConteoActores(TipoActor_TanqueEnemigo);
-		int enemigosDeReserva = enemigosPorNivel - enemigosEnElNivel - gameManager->getConteoEnemigosMuertos();
+		int enemigosEnElNivel = getGameManager()->getConteoActores(TipoActor_TanqueEnemigo);
+		int enemigosDeReserva = enemigosPorNivel - enemigosEnElNivel - getGameManager()->getConteoEnemigosMuertos();
 
 		if (enemigosDeReserva > 0 && enemigosEnElNivel < enemigosPorNivelEnUnMomento) {
 			//gameManager->crearActor(TipoActor_TanqueEnemigo, getX(), getY());
 			
-			TanqueEnemigo* tanqueEnemigo = gameManager->crearActor<TanqueEnemigo>(getX(), getY());
-
+			TanqueEnemigo* tanqueEnemigo = getGameManager()->crearActor<TanqueEnemigo>(getX(), getY());
+			//tanqueEnemigo->setAvatar(avatarTanqueEnemigo1);
 
 		}
 	}

@@ -1,24 +1,22 @@
 #include "TanqueDestructor.h"
 #include "TanqueJugador.h"
 #include "Utilitarios.h"
-#include "Pared.h"
 #include "Bala.h"
 #include "TanqueJugador.h"
 
 TanqueDestructor::TanqueDestructor()
 {
-	tipoActor = TipoActor_TanqueDestructor;
+	setTipoActor(TipoActor_TanqueDestructor);
 	analizarTiempo = tiempoAnalisisIAEnemiga;
 	analizarTemporizador = getRandomFloat(0.0, analizarTiempo);
 	ultimoAnalisisX = 0.0;
 	ultimoAnalisisY = 0.0;
 
-	energia = energiaEnemigo;
+	setEnergia(energiaEnemigo);
 	velocidad = velocidadEnemigo;
 
 	//tanqueJugador = _tanqueJugador;
 
-	setImagen(ColorConsola_CelesteOscuro, ColorConsola_Negro);
 }
 
 TanqueDestructor::~TanqueDestructor()
@@ -35,7 +33,7 @@ void TanqueDestructor::analizar(Actor* _tanqueJugador)
 	float xDelta = 0.0;
 	float yDelta = 0.0;
 
-	switch (direccion) {
+	switch (getDireccion()) {
 	case Direccion_Izquierda: xDelta = -1.0; break;
 	case Direccion_Derecha: xDelta = 1.0; break;
 	case Direccion_Arriba: yDelta = -1.0; break;
@@ -47,7 +45,7 @@ void TanqueDestructor::analizar(Actor* _tanqueJugador)
 	int distancia = 0;
 
 	do {
-		actor = gameManager->detectarColisiones(x, y, 1, 1, NULL);
+		actor = getGameManager()->detectarColisiones(x, y, 1, 1, NULL);
 
 		x += xDelta;
 		y += yDelta;
@@ -148,6 +146,6 @@ void TanqueDestructor::actualizar(float _dt)
 	analizarTemporizador += _dt;
 	if (analizarTemporizador >= analizarTiempo) {
 		analizarTemporizador = 0;
-		analizar(gameManager->getJugador1());
+		analizar(getGameManager()->getJugador1());
 	}
 }

@@ -24,16 +24,12 @@
 
 Pantano::Pantano()
 {
-	tipoActor = TipoActor_Obstaculo;
+	setTipoActor(TipoActor_Obstaculo);
 	tipoObstaculo = TipoObstaculo_Pantano;
-	direccion = Direccion_MAX;
+	setDireccion(Direccion_MAX);
 }
 
 
 void Pantano::renderizar(SistemaRenderizacion* _sistemaRenderizacion) {
 	Obstaculo::renderizar(_sistemaRenderizacion);
 }
-
-void Pantano::setImagen(unsigned char _simbolo, ColorConsola _colorSimbolo, ColorConsola _colorFondo) {
-	Obstaculo::setImagen(_simbolo, _colorSimbolo, _colorFondo);
-};

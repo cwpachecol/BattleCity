@@ -14,23 +14,23 @@
 
 
 Base::Base() {
-	tipoActor = TipoActor_Base;
+	setTipoActor(TipoActor_Base);
 
-	ancho = columnasBase;
-	alto = filasBase;
+	setAncho(columnasBase);
+	setAlto(filasBase);
 
-	energia = energiaBase;
-	destruirDespuesMuerte = false;
+	setEnergia(energiaBase);
+	setDestruirDespuesMuerte(false);
 }
 
 void Base::renderizar(SistemaRenderizacion* _sistemaRenderizacion) {
-	int fila = int(y);
-	int columna = int(x);
+	int fila = int(getY());
+	int columna = int(getX());
 
 	for(int f = 0; f < filasBase; f++) {
 		for (int c = 0; c < columnasBase; c++) {
 			DatosSimboloConsola dsc;
-			switch (energia) {
+			switch (getEnergia()) {
 				case 3: dsc = imagenBaseNormal[f][c]; break;
 				case 2: dsc = imagenBaseDanada[f][c]; break;
 				default: dsc = imagenBaseDestruida[f][c]; break;

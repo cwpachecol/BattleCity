@@ -9,7 +9,7 @@
 
 Obstaculo::Obstaculo()
 {
-	tipoActor = TipoActor_Obstaculo; 
+	setTipoActor(TipoActor_Obstaculo); 
 	tipoObstaculo = TipoObstaculo_None;
 }
 
@@ -18,26 +18,26 @@ void Obstaculo::renderizar(SistemaRenderizacion* _sistemaRenderizacion)
 	Actor::renderizar(_sistemaRenderizacion);
 }
 
-void Obstaculo::setImagen(unsigned char _simbolo, ColorConsola _colorSimbolo, ColorConsola _colorFondo) {
-	DatosSimboloConsola imagenPared;
-	imagenPared.simbolo = _simbolo;
-	imagenPared.colorSimbolo = _colorSimbolo;
-	imagenPared.colorFondo = _colorFondo;
-
-	map<int, DatosSimboloConsola> mid;
-	pair<int, DatosSimboloConsola> pid;
-
-	pid.first = 1;
-	pid.second = imagenPared;
-
-	mid.insert(pid);
-
-	pair<Direccion, map<int, DatosSimboloConsola>> pAvatar;
-	pAvatar.first = Direccion_MAX;
-	pAvatar.second = mid;
-
-	avatar.insert(pAvatar);
-}
+//void Obstaculo::setImagen(unsigned char _simbolo, ColorConsola _colorSimbolo, ColorConsola _colorFondo) {
+//	DatosSimboloConsola imagenPared;
+//	imagenPared.simbolo = _simbolo;
+//	imagenPared.colorSimbolo = _colorSimbolo;
+//	imagenPared.colorFondo = _colorFondo;
+//
+//	vector<DatosSimboloConsola> mid;
+//	/*pair<int, DatosSimboloConsola> pid;
+//
+//	pid.first = 1;
+//	pid.second = imagenPared;*/
+//
+//	//mid.insert(imagenPared);
+//
+//	pair<Direccion, vector<DatosSimboloConsola>> pAvatar;
+//	pAvatar.first = Direccion_MAX;
+//	pAvatar.second = mid;
+//
+//	//getAvatar().insert(pAvatar);
+//}
 
 Obstaculo* Obstaculo::getObstaculo(TipoObstaculo _tipoObstaculo)
 {

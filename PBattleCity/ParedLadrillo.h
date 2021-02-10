@@ -6,7 +6,6 @@ class ParedLadrillo :
 public:
     ParedLadrillo();
     void renderizar(SistemaRenderizacion* _sistemaRenderizacion);
-    void setImagen(unsigned char _simbolo, ColorConsola _colorSimbolo, ColorConsola _colorFondo);
-
+    
 };
 

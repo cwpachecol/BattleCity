@@ -25,15 +25,11 @@
 
 Charco::Charco()
 {
-	tipoActor = TipoActor_Obstaculo;
+	setTipoActor(TipoActor_Obstaculo);
 	tipoObstaculo = TipoObstaculo_Charco;
-	direccion = Direccion_MAX;
+	setDireccion(Direccion_MAX);
 }
 
 void Charco::renderizar(SistemaRenderizacion* _sistemaRenderizacion) {
 	Obstaculo::renderizar(_sistemaRenderizacion);
 }
-
-void Charco::setImagen(unsigned char _simbolo, ColorConsola _colorSimbolo, ColorConsola _colorFondo) {
-	Obstaculo::setImagen(_simbolo, _colorSimbolo, _colorFondo);
-};

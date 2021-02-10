@@ -1,11 +1,11 @@
 #include "Bala.h"
 
 Bala::Bala() {
-	tipoActor = TipoActor_Bala;
-	energia = energiaEnemigo;
+	setTipoActor(TipoActor_Bala);
+	setEnergia(energiaEnemigo);
 	velocidad = velocidadBala;
-
-	setImagenMunicion(imagenBala, ColorConsola_Amarillo, ColorConsola_Negro);
+	setDireccion(Direccion_Ninguna);
+	setAvatar(avatarBala);
 }
 
 void Bala::actualizar(float _dt) {
@@ -14,7 +14,8 @@ void Bala::actualizar(float _dt) {
 }
 
 void Bala::renderizar(SistemaRenderizacion* _sistemaRenderizacion) {
-	Municion::renderizar(_sistemaRenderizacion);
+	//Municion::renderizar(_sistemaRenderizacion);
+	Actor::renderizar(_sistemaRenderizacion);
 }
 
 void Bala::intersectar(Actor* _actor) {

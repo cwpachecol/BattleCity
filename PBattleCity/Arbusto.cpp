@@ -25,16 +25,12 @@
 
 Arbusto::Arbusto()
 {
-	tipoActor = TipoActor_Obstaculo;
+	setTipoActor(TipoActor_Obstaculo);
 	tipoObstaculo = TipoObstaculo_Arbusto;
-	direccion = Direccion_MAX;
+	setDireccion(Direccion_MAX);
 }
 
 
 void Arbusto::renderizar(SistemaRenderizacion* _sistemaRenderizacion) {
 	Obstaculo::renderizar(_sistemaRenderizacion);
 }
-
-void Arbusto::setImagen(unsigned char _simbolo, ColorConsola _colorSimbolo, ColorConsola _colorFondo) {
-	Obstaculo::setImagen(_simbolo, _colorSimbolo, _colorFondo);
-};

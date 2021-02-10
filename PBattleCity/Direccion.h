@@ -2,6 +2,7 @@
 
 enum Direccion
 {
+	Direccion_Ninguna,
 	Direccion_Izquierda,
 	Direccion_Derecha,
 	Direccion_Arriba,

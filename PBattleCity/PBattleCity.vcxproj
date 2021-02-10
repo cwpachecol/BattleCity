@@ -157,6 +157,7 @@
     <ClCompile Include="Misil.cpp" />
     <ClCompile Include="Municion.cpp" />
     <ClCompile Include="InterfaceConsola\ObjetoIC.cpp" />
+    <ClCompile Include="Objeto.cpp" />
     <ClCompile Include="Obstaculo.cpp" />
     <ClCompile Include="InterfaceConsola\Panel.cpp" />
     <ClCompile Include="Pantano.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="Nivel.h" />
     <ClInclude Include="Nivel01.h" />
     <ClInclude Include="InterfaceConsola\ObjetoIC.h" />
+    <ClInclude Include="Objeto.h" />
     <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="InterfaceConsola\Panel.h" />
     <ClInclude Include="Pantano.h" />

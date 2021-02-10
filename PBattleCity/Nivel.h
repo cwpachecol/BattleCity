@@ -2,6 +2,14 @@
 
 #include "SistemaRenderizacion.h"
 #include "Direccion.h"
+#include <map>
+#include <vector>
+#include <iostream>
+#include "Actor.h"
+using namespace std;
+
+typedef vector<DatosSimboloConsola> vAvatarDireccion;
+typedef map<Direccion, vAvatarDireccion> mAvatarDireccion;
 
 // Datos del nivel 
 const int filasNivel = filasPantalla;
@@ -48,15 +56,24 @@ const unsigned char datosNivel0[filasNivel][columnasNivel + 1] =
 };																						              
 
 //Paredes y arbustos
-const unsigned char	paredLadrilloSimbolo = 177;
-const ColorConsola paredLadrilloColorSimbolo = ColorConsola_Cafe;
-const ColorConsola paredLadrilloColorFondo = ColorConsola_Rojo;
+const vAvatarDireccion vAvatarNingunaParedLadrillo = {
+	DatosSimboloConsola{(char)177, ColorConsola_Cafe, ColorConsola_Rojo} };
+const mAvatarDireccion avatarParedLadrillo{ make_pair(Direccion{Direccion_Ninguna}, vAvatarNingunaParedLadrillo)};
 
-const unsigned char	paredMetalSimbolo = 254;
-const ColorConsola paredMetalColorSimbolo = ColorConsola_Gris;
-const ColorConsola paredMetalColorFondo = ColorConsola_GrisOscuro;
+const vAvatarDireccion vAvatarNingunaParedMetal = {
+	DatosSimboloConsola{(char)254, ColorConsola_Gris, ColorConsola_GrisOscuro} };
+const mAvatarDireccion avatarParedMetal{ make_pair(Direccion{Direccion_Ninguna}, vAvatarNingunaParedMetal) };
 
-// Tanques
+//
+//const unsigned char	paredLadrilloSimbolo = 177;
+//const ColorConsola paredLadrilloColorSimbolo = ColorConsola_Cafe;
+//const ColorConsola paredLadrilloColorFondo = ColorConsola_Rojo;
+//
+//const unsigned char	paredMetalSimbolo = 254;
+//const ColorConsola paredMetalColorSimbolo = ColorConsola_Gris;
+//const ColorConsola paredMetalColorFondo = ColorConsola_GrisOscuro;
+
+// Tanque Jugador 1
 const float fuegoTiempoEnfriamientoTanque = 0.5;
 const int tamanoTanque = 3;
 
@@ -74,35 +91,213 @@ struct CeldaImagenTanque
 	ColorTanque colorFondo;
 };
 
-const CeldaImagenTanque imagenTanqueNivel[Direccion_MAX][tamanoTanque][tamanoTanque] =
-{
-	// Izquierda
-	{
-		{ {220, ColorTanque_1, ColorTanque_0}, {220, ColorTanque_1, ColorTanque_0}, {220, ColorTanque_1, ColorTanque_0} },
-		{ {196, ColorTanque_2, ColorTanque_0}, {  4, ColorTanque_2, ColorTanque_1}, {221, ColorTanque_1, ColorTanque_0} },
-		{ {223, ColorTanque_1, ColorTanque_0}, {223, ColorTanque_1, ColorTanque_0}, {223, ColorTanque_1, ColorTanque_0} }
-	},
-	// Derecha
-	{
-		{ {220, ColorTanque_1, ColorTanque_0}, {220, ColorTanque_1, ColorTanque_0}, {220, ColorTanque_1, ColorTanque_0} },
-		{ {221, ColorTanque_1, ColorTanque_0}, {  4, ColorTanque_2, ColorTanque_1}, {196, ColorTanque_2, ColorTanque_0} },
-		{ {223, ColorTanque_1, ColorTanque_0}, {223, ColorTanque_1, ColorTanque_0}, {223, ColorTanque_1, ColorTanque_0} }
-	},
-	// Arriba
-	{
-		{ {220, ColorTanque_1, ColorTanque_0}, {179, ColorTanque_2, ColorTanque_0}, {220, ColorTanque_1, ColorTanque_0} },
-		{ {219, ColorTanque_1, ColorTanque_1}, {  4, ColorTanque_2, ColorTanque_1}, {219, ColorTanque_1, ColorTanque_1} },
-		{ {223, ColorTanque_1, ColorTanque_0}, {  0, ColorTanque_0, ColorTanque_0}, {223, ColorTanque_1, ColorTanque_0} }
-	},
+//JUGADOR 01
+const vAvatarDireccion vAvatarIzquierdaTanqueJugador1 = {
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)196, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)4, ColorConsola_Violeta, ColorConsola_Negro},
+	DatosSimboloConsola{(char)221, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro} };
 
-	// Abajo
-	{
-		{ {220, ColorTanque_1, ColorTanque_0}, {  0, ColorTanque_0, ColorTanque_0}, {220, ColorTanque_1, ColorTanque_0} },
-		{ {219, ColorTanque_1, ColorTanque_1}, {  4, ColorTanque_2, ColorTanque_1}, {219, ColorTanque_1, ColorTanque_1} },
-		{ {223, ColorTanque_1, ColorTanque_0}, {179, ColorTanque_2, ColorTanque_0}, {223, ColorTanque_1, ColorTanque_0} }
-	}
-};
+const vAvatarDireccion vAvatarDerechaTanqueJugador1 = {
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)221, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)4, ColorConsola_Violeta, ColorConsola_Negro},
+	DatosSimboloConsola{(char)196, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro} };
+	
+const vAvatarDireccion vAvatarArribaTanqueJugador1 = {
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)179, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)4, ColorConsola_Violeta, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)0, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro} };
 
+const vAvatarDireccion vAvatarAbajoTanqueJugador1 = {
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)0, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)4, ColorConsola_Violeta, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)179, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro} };
+
+
+const mAvatarDireccion avatarTanqueJugador1{ make_pair(Direccion{Direccion_Izquierda}, vAvatarIzquierdaTanqueJugador1), 
+make_pair(Direccion{Direccion_Derecha}, vAvatarDerechaTanqueJugador1), 
+make_pair(Direccion{Direccion_Arriba}, vAvatarArribaTanqueJugador1),
+make_pair(Direccion{Direccion_Abajo}, vAvatarAbajoTanqueJugador1) };
+
+//JUGADOR 02
+const vAvatarDireccion vAvatarIzquierdaTanqueJugador2 = {
+	DatosSimboloConsola{(char)220, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)196, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)4, ColorConsola_Violeta, ColorConsola_Negro},
+	DatosSimboloConsola{(char)221, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Verde, ColorConsola_Negro} };
+
+const vAvatarDireccion vAvatarDerechaTanqueJugador2 = {
+	DatosSimboloConsola{(char)220, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)221, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)4, ColorConsola_Violeta, ColorConsola_Negro},
+	DatosSimboloConsola{(char)196, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Verde, ColorConsola_Negro} };
+
+const vAvatarDireccion vAvatarArribaTanqueJugador2 = {
+	DatosSimboloConsola{(char)220, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)179, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)4, ColorConsola_Violeta, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)0, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Verde, ColorConsola_Negro} };
+
+const vAvatarDireccion vAvatarAbajoTanqueJugador2 = {
+	DatosSimboloConsola{(char)220, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)0, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)4, ColorConsola_Violeta, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)179, ColorConsola_Verde, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Verde, ColorConsola_Negro} };
+
+
+const mAvatarDireccion avatarTanqueJugador2{ make_pair(Direccion{Direccion_Izquierda}, vAvatarIzquierdaTanqueJugador2),
+make_pair(Direccion{Direccion_Derecha}, vAvatarDerechaTanqueJugador2),
+make_pair(Direccion{Direccion_Arriba}, vAvatarArribaTanqueJugador2),
+make_pair(Direccion{Direccion_Abajo}, vAvatarAbajoTanqueJugador2) };
+
+//TANQUE ENEMIGO 01
+const vAvatarDireccion vAvatarIzquierdaTanqueEnemigo1 = {
+	DatosSimboloConsola{(char)220, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)196, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)4, ColorConsola_Violeta, ColorConsola_Negro},
+	DatosSimboloConsola{(char)221, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Celeste, ColorConsola_Negro} };
+
+const vAvatarDireccion vAvatarDerechaTanqueEnemigo1 = {
+	DatosSimboloConsola{(char)220, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)221, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)4, ColorConsola_Violeta, ColorConsola_Negro},
+	DatosSimboloConsola{(char)196, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Celeste, ColorConsola_Negro} };
+
+const vAvatarDireccion vAvatarArribaTanqueEnemigo1 = {
+	DatosSimboloConsola{(char)220, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)179, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)4, ColorConsola_Violeta, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)0, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Celeste, ColorConsola_Negro} };
+
+const vAvatarDireccion vAvatarAbajoTanqueEnemigo1 = {
+	DatosSimboloConsola{(char)220, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)0, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)4, ColorConsola_Violeta, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)179, ColorConsola_Celeste, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Celeste, ColorConsola_Negro} };
+
+
+const mAvatarDireccion avatarTanqueEnemigo1{ make_pair(Direccion{Direccion_Izquierda}, vAvatarIzquierdaTanqueEnemigo1),
+make_pair(Direccion{Direccion_Derecha}, vAvatarDerechaTanqueEnemigo1),
+make_pair(Direccion{Direccion_Arriba}, vAvatarArribaTanqueEnemigo1),
+make_pair(Direccion{Direccion_Abajo}, vAvatarAbajoTanqueEnemigo1) };
+
+
+//const CeldaImagenTanque imagenTanqueNivel[Direccion_MAX][tamanoTanque][tamanoTanque] =
+//{
+//	// Izquierda
+//	{
+//		{ {220, ColorTanque_1, ColorTanque_0}, {220, ColorTanque_1, ColorTanque_0}, {220, ColorTanque_1, ColorTanque_0} },
+//		{ {196, ColorTanque_2, ColorTanque_0}, {  4, ColorTanque_2, ColorTanque_1}, {221, ColorTanque_1, ColorTanque_0} },
+//		{ {223, ColorTanque_1, ColorTanque_0}, {223, ColorTanque_1, ColorTanque_0}, {223, ColorTanque_1, ColorTanque_0} }
+//	},
+//	// Derecha
+//	{
+//		{ {220, ColorTanque_1, ColorTanque_0}, {220, ColorTanque_1, ColorTanque_0}, {220, ColorTanque_1, ColorTanque_0} },
+//		{ {221, ColorTanque_1, ColorTanque_0}, {  4, ColorTanque_2, ColorTanque_1}, {196, ColorTanque_2, ColorTanque_0} },
+//		{ {223, ColorTanque_1, ColorTanque_0}, {223, ColorTanque_1, ColorTanque_0}, {223, ColorTanque_1, ColorTanque_0} }
+//	},
+//	// Arriba
+//	{
+//		{ {220, ColorTanque_1, ColorTanque_0}, {179, ColorTanque_2, ColorTanque_0}, {220, ColorTanque_1, ColorTanque_0} },
+//		{ {219, ColorTanque_1, ColorTanque_1}, {  4, ColorTanque_2, ColorTanque_1}, {219, ColorTanque_1, ColorTanque_1} },
+//		{ {223, ColorTanque_1, ColorTanque_0}, {  0, ColorTanque_0, ColorTanque_0}, {223, ColorTanque_1, ColorTanque_0} }
+//	},
+//
+//	// Abajo
+//	{
+//		{ {220, ColorTanque_1, ColorTanque_0}, {  0, ColorTanque_0, ColorTanque_0}, {220, ColorTanque_1, ColorTanque_0} },
+//		{ {219, ColorTanque_1, ColorTanque_1}, {  4, ColorTanque_2, ColorTanque_1}, {219, ColorTanque_1, ColorTanque_1} },
+//		{ {223, ColorTanque_1, ColorTanque_0}, {179, ColorTanque_2, ColorTanque_0}, {223, ColorTanque_1, ColorTanque_0} }
+//	}
+//};
+//
 
 /////////////////////////////////////
 // Datos jugador
@@ -151,10 +346,14 @@ const DatosSimboloConsola imagenBaseDestruida[filasBase][columnasBase] =
 
 //Datos municion
 const float velocidadMunicion = 10.0;
-const char imagenMunicion = 250;
+const vAvatarDireccion vAvatarNingunaMunicion = {
+	DatosSimboloConsola{(char)250, ColorConsola_Cafe, ColorConsola_Rojo} };
+const mAvatarDireccion avatarMunicion{ make_pair(Direccion{Direccion_Ninguna}, vAvatarNingunaMunicion) };
+
 
 // Datos bala
 const float velocidadBala = 30.0;
-const char imagenBala = '*';
 
-
+const vAvatarDireccion vAvatarNingunaBala = {
+	DatosSimboloConsola{(char)42, ColorConsola_Blanco, ColorConsola_Negro} };
+const mAvatarDireccion avatarBala{ make_pair(Direccion{Direccion_Ninguna}, vAvatarNingunaBala) };

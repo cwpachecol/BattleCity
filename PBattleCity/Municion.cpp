@@ -2,9 +2,9 @@
 #include "Nivel.h"
 
 Municion::Municion() {
-	tipoActor = TipoActor_Municion;
+	setTipoActor(TipoActor_Municion);
 	tipoActorPropietario = TipoActor_None;
-	direccion = Direccion_MAX;
+	setDireccion(Direccion_MAX);
 	velocidad = velocidadMunicion;
 	//setImagenMunicion(imagenMunicion, ColorConsola_Gris, ColorConsola_Negro);
 }
@@ -15,19 +15,19 @@ void Municion::setImagenMunicion(unsigned char _simbolo, ColorConsola _colorImag
 	imagenMunicion.colorSimbolo = _colorImagen;
 	imagenMunicion.colorFondo = _colorFondo;
 
-	map<int, DatosSimboloConsola> mid;
-	pair<int, DatosSimboloConsola> pid;
+	vector<DatosSimboloConsola> mid;
+	//pair<int, DatosSimboloConsola> pid;
 
-	pid.first = 1;
-	pid.second = imagenMunicion;
+	//pid.first = 1;
+	//pid.second = imagenMunicion;
 
-	mid.insert(pid);
+	//mid.insert(imagenMunicion);
 
-	pair<Direccion, map<int, DatosSimboloConsola>> pAvatar;
+	pair<Direccion, vector<DatosSimboloConsola>> pAvatar;
 	pAvatar.first = Direccion_MAX;
 	pAvatar.second = mid;
 
-	avatar.insert(pAvatar);
+	//getAvatar().insert(pAvatar);
 }
 
 void Municion::renderizar(SistemaRenderizacion* _sistemaRenderizacion)
@@ -45,8 +45,8 @@ void Municion::intersectar(Actor* _actor) {
 
 	//Dañar el objetivo
 	_actor->hacerDano(1);
-	//if (_actor->getTipoActor() == TipoActor_TanqueEnemigo && _actor->getEnergia() <= 0) {
-	//	gameManager->incrementarContadorEnemigosMuertos();
+	if (_actor->getTipoActor() == TipoActor_TanqueEnemigo && _actor->getEnergia() <= 0) {
+		getGameManager()->incrementarContadorEnemigosMuertos();
 	//	gameManager->agregarEnemigoMuerto(DatosEnemigosMuertos{ _actor->getNumeroActor(), _actor->getTipoActor(), _actor->getX(), _actor->getY() });
-	//}
+	}
 }

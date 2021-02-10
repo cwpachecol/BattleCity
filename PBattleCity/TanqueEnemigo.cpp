@@ -1,25 +1,26 @@
 #include "TanqueEnemigo.h"
 #include "TanqueJugador.h"
 #include "Utilitarios.h"
-#include "Pared.h"
 #include "Bala.h"
 #include "TanqueJugador.h"
 
 
 TanqueEnemigo::TanqueEnemigo()
 {
-	tipoActor = TipoActor_TanqueEnemigo;
+	setTipoActor(TipoActor_TanqueEnemigo);
+	setDireccion(Direccion_Arriba);
+	setAvatar(avatarTanqueEnemigo1);
+
 	analizarTiempo = tiempoAnalisisIAEnemiga;
 	analizarTemporizador = getRandomFloat(0.0, analizarTiempo);
 	ultimoAnalisisX = 0.0;
 	ultimoAnalisisY = 0.0;
 
-	energia = energiaEnemigo;
+	setEnergia(energiaEnemigo);
 	velocidad = velocidadEnemigo;
+	setDestruirDespuesMuerte(true);
 
 	//tanqueJugador = _tanqueJugador;
-
-	setImagen(ColorConsola_CelesteOscuro, ColorConsola_Negro);
 }
 
 
@@ -53,7 +54,7 @@ void TanqueEnemigo::analizar(Actor* _tanqueJugador)
 	float xDelta = 0.0;
 	float yDelta = 0.0;
 
-	switch (direccion) {
+	switch (getDireccion()) {
 		case Direccion_Izquierda: xDelta = -1.0; break;
 		case Direccion_Derecha: xDelta = 1.0; break;
 		case Direccion_Arriba: yDelta = -1.0; break;
@@ -61,17 +62,17 @@ void TanqueEnemigo::analizar(Actor* _tanqueJugador)
 	}
 
 	//Encontrar actores cercanos y distancia
-	Actor* actor = 0;
+	Actor* actor = nullptr;
 	int distancia = 0;
 
 	do {
-		actor = gameManager->detectarColisiones(x, y, 1, 1, NULL);
+		actor = getGameManager()->detectarColisiones(x, y, 1.0f, 1.0f, NULL);
 
 		x += xDelta;
 		y += yDelta;
 		++distancia;
-	} while (actor == 0);
-
+	} while (actor == nullptr);
+	
 	//Codigo para defenderse disparando
 	if (actor->getTipoActor() == TipoActor_Bala) {
 		if (((Bala*)actor)->getTipoActorPropietario() == TipoActor_TanqueJugador) {
@@ -123,7 +124,7 @@ void TanqueEnemigo::moverDireccionRandom()
 	Direccion direccionNueva;
 
 	do {
-		direccionNueva = (Direccion)(rand() % ((int)Direccion_MAX));
+		direccionNueva = (Direccion)((rand() % ((int)(Direccion_MAX - 1))) + 1);
 
 	} while (direccionAnterior == direccionNueva);
 
@@ -166,6 +167,6 @@ void TanqueEnemigo::actualizar(float _dt)
 	analizarTemporizador += _dt;
 	if (analizarTemporizador >= analizarTiempo) {
 		analizarTemporizador = 0;
-		analizar(gameManager->getJugador1());
+		analizar(getGameManager()->getJugador1());
 	}
 }
