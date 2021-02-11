@@ -40,10 +40,9 @@ private:
 	Actor* base;
 	Actor* jugador1;
 	Actor* jugador2;
-
 	int contadorEnemigosMuertos;
 	int nivel;
-	
+	FabricaNiveles* fabricaNiveles;
 	//Vector que almacena los enemigos destruidos, almacenando su numeroActor, TipoActor, x e y
 	//vector<DatosEnemigoMuerto> datosEnemigosMuertos;
 
@@ -59,13 +58,15 @@ public:
 	int getContadorEnemigosMuertos() { return contadorEnemigosMuertos; }
 	int getNivel() { return nivel; }
 
+
+
 	void setContadorEnemigosMuertos(int _contadorEnemigosMuertos) { contadorEnemigosMuertos = _contadorEnemigosMuertos; }
 	void setNivel(int _nivel) { nivel = _nivel; }
 
 	/// REORDENAR
 
 	void configurarSistema();
-	void inicializar();
+	void inicializar(int _nivel, FabricaNiveles* _fabricaNiveles);
 	bool bucle();
 	void abandonarJuego();
 

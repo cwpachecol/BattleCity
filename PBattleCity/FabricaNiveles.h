@@ -1,18 +1,32 @@
 #pragma once
-#include "Actor.h"
-#include "GameManager.h"
+#include<vector>
+#include<iostream>
+#include<string>
+using namespace std;
+
+class Actor;
+class GameManager;
 
 class FabricaNiveles
 {
 private:
 		GameManager* gameManager;
+		vector<string> mapaNivel;
 public:
 	FabricaNiveles(GameManager* _gameManager);
 
 	GameManager* getGameManager() { return gameManager; }
-	void setGameManager(GameManager* _gameManager) { gameManager = _gameManager; }
+	vector<string> getMapaNivel() { return mapaNivel; }
 
-	virtual Actor* crearInstanciaTanqueEnemigo(float, float) = 0;
-	virtual Actor* crearInstanciaObstaculo(float, float) = 0;
+	void setGameManager(GameManager* _gameManager) { gameManager = _gameManager; }
+	void setMapaNivel(vector<string> _mapaNivel) { mapaNivel = _mapaNivel; }
+
+	virtual void crearInstanciaMapaNivel() = 0;
+	virtual Actor* crearInstanciaParedMetal(float _x, float _y) = 0;
+	virtual Actor* crearInstanciaParedLadrillo(float _x, float _y) = 0;
+	virtual Actor* crearInstanciaTanqueEnemigo(float _x, float _y) = 0;
+	virtual Actor* crearInstanciaTanqueJugador(float _x, float _y) = 0;
+	virtual Actor* crearInstanciaObstaculo(float _x, float _y) = 0;
+	
 };
 

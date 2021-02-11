@@ -68,7 +68,7 @@ int main()
 	gameManager->configurarSistema();
 
 	//FabricaNivel0* fn0 = new FabricaNivel0(gameManager);
-	gameManager->inicializar();
+	gameManager->inicializar(0, new FabricaNivel0(gameManager));
 
 	while (gameManager->bucle());
 	gameManager->abandonarJuego();

@@ -1,14 +1,17 @@
 #pragma once
 #include "FabricaNiveles.h"
-#include "GameManager.h"
 
+class GameManager;
 
 class FabricaNivel1 :
 	public FabricaNiveles
 {
 public:
 	FabricaNivel1(GameManager* _gameManager);
+	void crearInstanciaMapaNivel();
+	Actor* crearInstanciaParedMetal(float _x, float _y);
+	Actor* crearInstanciaParedLadrillo(float _x, float _y);
 	Actor* crearInstanciaTanqueEnemigo(float _x, float _y);
-	Actor* crearInstanciaObstaculo(float _x, float _y) {};
+	Actor* crearInstanciaObstaculo(float _x, float _y);
 };
 
