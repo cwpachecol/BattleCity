@@ -1,15 +1,15 @@
-#include "TanqueEnemigo.h"
+#include "TanqueEnemigo2.h"
 #include "TanqueJugador.h"
 #include "Utilitarios.h"
 #include "Bala.h"
 #include "TanqueJugador.h"
 
 
-TanqueEnemigo::TanqueEnemigo()
+TanqueEnemigo2::TanqueEnemigo2()
 {
 	setTipoActor(TipoActor_TanqueEnemigo);
 	setDireccion(Direccion_Arriba);
-	setAvatar(avatarTanqueEnemigo1);
+	setAvatar(avatarTanqueEnemigo2);
 
 	analizarTiempo = tiempoAnalisisIAEnemiga;
 	analizarTemporizador = getRandomFloat(0.0, analizarTiempo);
@@ -19,7 +19,7 @@ TanqueEnemigo::TanqueEnemigo()
 	setEnergia(energiaEnemigo);
 	velocidad = velocidadEnemigo;
 	setDestruirDespuesMuerte(true);
-	setFisico(true);
+
 	//tanqueJugador = _tanqueJugador;
 }
 
@@ -40,12 +40,12 @@ TanqueEnemigo::TanqueEnemigo()
 //	setImagen(ColorConsola_CelesteOscuro, ColorConsola_Negro);
 //}
 
-TanqueEnemigo::~TanqueEnemigo()
+TanqueEnemigo2::~TanqueEnemigo2()
 {
 	
 }
 
-void TanqueEnemigo::analizar(Actor* _tanqueJugador)
+void TanqueEnemigo2::analizar(Actor* _tanqueJugador)
 {
 	float x = 0.0;
 	float y = 0.0;
@@ -118,7 +118,7 @@ void TanqueEnemigo::analizar(Actor* _tanqueJugador)
 }
 
 
-void TanqueEnemigo::moverDireccionRandom()
+void TanqueEnemigo2::moverDireccionRandom()
 {
 	Direccion direccionAnterior = getDireccion();
 	Direccion direccionNueva;
@@ -132,7 +132,7 @@ void TanqueEnemigo::moverDireccionRandom()
 }
 
 
-void TanqueEnemigo::moverDireccionIA(Actor* _tanqueJugador){
+void TanqueEnemigo2::moverDireccionIA(Actor* _tanqueJugador){
 	Direccion direccionAnterior = getDireccion();
 	Direccion direccionNueva;
 
@@ -160,7 +160,7 @@ void TanqueEnemigo::moverDireccionIA(Actor* _tanqueJugador){
 	mover(direccionNueva);
 }
 
-void TanqueEnemigo::actualizar(float _dt)
+void TanqueEnemigo2::actualizar(float _dt)
 {
 	Tanque::actualizar(_dt);
 

@@ -1,11 +1,11 @@
-#include "TanqueEnemigo.h"
+#include "TanqueEnemigo1.h"
 #include "TanqueJugador.h"
 #include "Utilitarios.h"
 #include "Bala.h"
 #include "TanqueJugador.h"
 
 
-TanqueEnemigo::TanqueEnemigo()
+TanqueEnemigo1::TanqueEnemigo1()
 {
 	setTipoActor(TipoActor_TanqueEnemigo);
 	setDireccion(Direccion_Arriba);
@@ -19,12 +19,12 @@ TanqueEnemigo::TanqueEnemigo()
 	setEnergia(energiaEnemigo);
 	velocidad = velocidadEnemigo;
 	setDestruirDespuesMuerte(true);
-	setFisico(true);
+
 	//tanqueJugador = _tanqueJugador;
 }
 
 
-//TanqueEnemigo::TanqueEnemigo(Actor* _tanqueJugador)
+//TanqueEnemigo1::TanqueEnemigo(Actor* _tanqueJugador)
 //{
 //	tipoActor = TipoActor_TanqueEnemigo;
 //	analizarTiempo = tiempoAnalisisIAEnemiga;
@@ -40,12 +40,12 @@ TanqueEnemigo::TanqueEnemigo()
 //	setImagen(ColorConsola_CelesteOscuro, ColorConsola_Negro);
 //}
 
-TanqueEnemigo::~TanqueEnemigo()
+TanqueEnemigo1::~TanqueEnemigo1()
 {
 	
 }
 
-void TanqueEnemigo::analizar(Actor* _tanqueJugador)
+void TanqueEnemigo1::analizar(Actor* _tanqueJugador)
 {
 	float x = 0.0;
 	float y = 0.0;
@@ -105,12 +105,12 @@ void TanqueEnemigo::analizar(Actor* _tanqueJugador)
 	}
 
 	//Cambio de direccion
-	if (distancia == 1 || ((int)ultimoAnalisisX == (int)getX() && (int)ultimoAnalisisY == (int)getY())) {
-		//Se mueve en una direccion aleatoria
-		//moverDireccionRandom();
-		moverDireccionIA(_tanqueJugador);
-		return;
-	}
+	//if (distancia == 1 || ((int)ultimoAnalisisX == (int)getX() && (int)ultimoAnalisisY == (int)getY())) {
+	//	//Se mueve en una direccion aleatoria
+	//	//moverDireccionRandom();
+	//	moverDireccionIA(_tanqueJugador);
+	//	return;
+	//}
 
 	ultimoAnalisisX = getX();
 	ultimoAnalisisY = getY();
@@ -118,7 +118,7 @@ void TanqueEnemigo::analizar(Actor* _tanqueJugador)
 }
 
 
-void TanqueEnemigo::moverDireccionRandom()
+void TanqueEnemigo1::moverDireccionRandom()
 {
 	Direccion direccionAnterior = getDireccion();
 	Direccion direccionNueva;
@@ -132,7 +132,7 @@ void TanqueEnemigo::moverDireccionRandom()
 }
 
 
-void TanqueEnemigo::moverDireccionIA(Actor* _tanqueJugador){
+void TanqueEnemigo1::moverDireccionIA(Actor* _tanqueJugador){
 	Direccion direccionAnterior = getDireccion();
 	Direccion direccionNueva;
 
@@ -160,7 +160,7 @@ void TanqueEnemigo::moverDireccionIA(Actor* _tanqueJugador){
 	mover(direccionNueva);
 }
 
-void TanqueEnemigo::actualizar(float _dt)
+void TanqueEnemigo1::actualizar(float _dt)
 {
 	Tanque::actualizar(_dt);
 

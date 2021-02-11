@@ -7,6 +7,9 @@
 #include "InterfaceConsola\Panel.h"
 #include "InterfaceConsola\Menu.h"
 #include "InterfaceConsola\MenuItem.h"
+#include "FabricaNiveles.h"
+#include "FabricaNivel0.h"
+#include "FabricaNivel1.h"
 
 //#include "Tanque.h"
 //#include "Bala.h"
@@ -63,6 +66,8 @@ int main()
 	GameManager* gameManager = GameManager::getInstancia();
 
 	gameManager->configurarSistema();
+
+	//FabricaNivel0* fn0 = new FabricaNivel0(gameManager);
 	gameManager->inicializar();
 
 	while (gameManager->bucle());

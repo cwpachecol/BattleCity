@@ -7,6 +7,7 @@
 #include "TipoObstaculo.h"
 #include "SistemaRenderizacion.h"
 #include "Nivel.h"
+#include "FabricaNiveles.h"
 
 const int numeroMaximoActores = 1024;
 
@@ -41,6 +42,7 @@ private:
 	Actor* jugador2;
 
 	int contadorEnemigosMuertos;
+	int nivel;
 	
 	//Vector que almacena los enemigos destruidos, almacenando su numeroActor, TipoActor, x e y
 	//vector<DatosEnemigoMuerto> datosEnemigosMuertos;
@@ -53,6 +55,14 @@ private:
 
 public:
 	static GameManager* getInstancia();
+
+	int getContadorEnemigosMuertos() { return contadorEnemigosMuertos; }
+	int getNivel() { return nivel; }
+
+	void setContadorEnemigosMuertos(int _contadorEnemigosMuertos) { contadorEnemigosMuertos = _contadorEnemigosMuertos; }
+	void setNivel(int _nivel) { nivel = _nivel; }
+
+	/// REORDENAR
 
 	void configurarSistema();
 	void inicializar();

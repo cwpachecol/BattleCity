@@ -26,18 +26,18 @@ const unsigned char	celdaSimbolo_GeneradorEnemigo = 'S';
 
 
 
-const unsigned char datosNivel0[filasNivel][columnasNivel + 1] =
+const unsigned char mapaNivel0[filasNivel][columnasNivel + 1] =
 {
 	"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
 	"@S                                @@                              S                                @         @",
 	"@                                 @@                                                               @         @",
 	"@                                 @@                                                               @         @",
-	"@   ##   ##   @@@###### S   @@@        @@@ S   ######@@@   ##   ##                                 @         @",
-	"@   #######   @@@######     @@@        @@@     ######@@@   #######                                 @         @",
-	"@   #######&&&&&&&&&&&&&&&&&@@@        @@@                 #######                                 @         @",
-	"@   ##   ##&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@                 ##   ##                                 @         @",
-	"@          &&&&&&&&&&&&&&&&&      @@                                                               @         @",
-	"@                @@@              @@              @@@                                              @         @",
+	"@   ##   ##   @@@###### S   @@@        @@@ S   ######@@@   ##   ##            #######              @         @",
+	"@   #######   @@@######     @@@        @@@     ######@@@   #######            #    ##              @         @",
+	"@   #######&&&&&&&&&&&&&&&&&@@@        @@@                 #######            #   # #              @         @",
+	"@   ##   ##&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@                 ##   ##            #  #  #              @         @",
+	"@          &&&&&&&&&&&&&&&&&      @@                                          # #   #              @         @",
+	"@                @@@              @@              @@@                         #######              @         @",
 	"@                @@@              @@              @@@                                              @         @",
 	"@@@   @@@#####   ############            ############   #####@@@   @@                              @         @",
 	"@@@   @@@#####   ######@@######        ######@@######   #####@@@   @@                              @         @",
@@ -54,6 +54,37 @@ const unsigned char datosNivel0[filasNivel][columnasNivel + 1] =
 	"@                            ##        ##                                                          @         @",
 	"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
 };																						              
+
+const unsigned char mapaNivel1[filasNivel][columnasNivel + 1] =
+{
+	"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
+	"@S                                @@                              S                                @         @",
+	"@                                 @@                                                               @         @",
+	"@                                 @@                                                               @         @",
+	"@   ##   ##   @@@###### S   @@@        @@@ S   ######@@@   ##   ##                   #             @         @",
+	"@   #######   @@@######     @@@        @@@     ######@@@   #######                  ##             @         @",
+	"@   #######&&&&&&&&&&&&&&&&&@@@        @@@                 #######                 # #             @         @",
+	"@   ##   ##&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@                 ##   ##                   #             @         @",
+	"@          &&&&&&&&&&&&&&&&&      @@                                                 #             @         @",
+	"@                @@@              @@              @@@                               ###            @         @",
+	"@                @@@              @@              @@@                                              @         @",
+	"@@@   @@@#####   ############            ############   #####@@@   @@                              @         @",
+	"@@@   @@@#####   ######@@######        ######@@######   #####@@@   @@                              @         @",
+	"@@@   @@@#####   ######@@@#####        #####@@@######   #####@@@   @@                              @         @",
+	"@                   ###@@@@@###@@    @@###@@@@@###                                                 @         @",
+	"@                     #########@@@@@@@@#########                                                   @         @",
+	"@                           ##############                                                         @         @",
+	"@   ##   ##                    ########                    ##   ##                                 @         @",
+	"@   #######                                                #######                                 @         @",
+	"@   #######   @@@######                        ######@@@   #######                                 @         @",
+	"@   ##   ##   @@@######                        ######@@@   ##   ##                                 @         @",
+	"@                        2   ############ 1                                                        @         @",
+	"@                            ##B       ##                                                          @         @",
+	"@                            ##        ##                                                          @         @",
+	"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
+};
+
+
 
 //Paredes y arbustos
 const vAvatarDireccion vAvatarNingunaParedLadrillo = {
@@ -267,6 +298,67 @@ const mAvatarDireccion avatarTanqueEnemigo1{ make_pair(Direccion{Direccion_Izqui
 make_pair(Direccion{Direccion_Derecha}, vAvatarDerechaTanqueEnemigo1),
 make_pair(Direccion{Direccion_Arriba}, vAvatarArribaTanqueEnemigo1),
 make_pair(Direccion{Direccion_Abajo}, vAvatarAbajoTanqueEnemigo1) };
+
+
+//TANQUE ENEMIGO 02
+const vAvatarDireccion vAvatarIzquierdaTanqueEnemigo2 = {
+	DatosSimboloConsola{(char)220, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)196, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)4, ColorConsola_Violeta, ColorConsola_Negro},
+	DatosSimboloConsola{(char)221, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Rojo, ColorConsola_Negro} };
+
+const vAvatarDireccion vAvatarDerechaTanqueEnemigo2 = {
+	DatosSimboloConsola{(char)220, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)221, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)4, ColorConsola_Violeta, ColorConsola_Negro},
+	DatosSimboloConsola{(char)196, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Rojo, ColorConsola_Negro} };
+
+const vAvatarDireccion vAvatarArribaTanqueEnemigo2 = {
+	DatosSimboloConsola{(char)220, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)179, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)4, ColorConsola_Violeta, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)0, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Rojo, ColorConsola_Negro} };
+
+const vAvatarDireccion vAvatarAbajoTanqueEnemigo2 = {
+	DatosSimboloConsola{(char)220, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)0, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)4, ColorConsola_Violeta, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)179, ColorConsola_Rojo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Rojo, ColorConsola_Negro} };
+
+
+const mAvatarDireccion avatarTanqueEnemigo2{ make_pair(Direccion{Direccion_Izquierda}, vAvatarIzquierdaTanqueEnemigo2),
+make_pair(Direccion{Direccion_Derecha}, vAvatarDerechaTanqueEnemigo2),
+make_pair(Direccion{Direccion_Arriba}, vAvatarArribaTanqueEnemigo2),
+make_pair(Direccion{Direccion_Abajo}, vAvatarAbajoTanqueEnemigo2) };
+
 
 
 //const CeldaImagenTanque imagenTanqueNivel[Direccion_MAX][tamanoTanque][tamanoTanque] =

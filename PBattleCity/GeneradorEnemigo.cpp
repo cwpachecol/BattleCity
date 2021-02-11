@@ -1,6 +1,7 @@
 #include "GeneradorEnemigo.h"
 #include "Utilitarios.h"
-#include "TanqueEnemigo.h"
+#include "TanqueEnemigo1.h"
+#include "TanqueEnemigo2.h"
 
 GeneradorEnemigo::GeneradorEnemigo()
 {
@@ -25,7 +26,16 @@ void GeneradorEnemigo::actualizar(float _dt) {
 		if (enemigosDeReserva > 0 && enemigosEnElNivel < enemigosPorNivelEnUnMomento) {
 			//gameManager->crearActor(TipoActor_TanqueEnemigo, getX(), getY());
 			
-			TanqueEnemigo* tanqueEnemigo = getGameManager()->crearActor<TanqueEnemigo>(getX(), getY());
+			switch (getGameManager()->getNivel()) {
+			case 0: {
+				TanqueEnemigo1* tanqueEnemigo = getGameManager()->crearActor<TanqueEnemigo1>(getX(), getY());
+				break;
+			}
+			case 1: {
+				TanqueEnemigo2* tanqueEnemigo = getGameManager()->crearActor<TanqueEnemigo2>(getX(), getY());
+				break;
+			}
+			}
 			//tanqueEnemigo->setAvatar(avatarTanqueEnemigo1);
 
 		}

@@ -34,7 +34,7 @@ private:
 	int limiteSuperiorEnergia;
 	
 	bool destruirDespuesMuerte;
-	bool invulnerable;
+	bool invulnerable; //Indestructible_
 	bool fisico;
 	Direccion direccion;
 
