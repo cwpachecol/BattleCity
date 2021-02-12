@@ -9,6 +9,7 @@
 #include "Nivel.h"
 #include "FabricaNiveles.h"
 
+
 const int numeroMaximoActores = 1024;
 
 class Actor;
@@ -62,11 +63,11 @@ public:
 
 	void setContadorEnemigosMuertos(int _contadorEnemigosMuertos) { contadorEnemigosMuertos = _contadorEnemigosMuertos; }
 	void setNivel(int _nivel) { nivel = _nivel; }
-
+	void setJugador1(Actor* _tanqueJugador) { jugador1 = _tanqueJugador; }
 	/// REORDENAR
 
 	void configurarSistema();
-	void inicializar(int _nivel, FabricaNiveles* _fabricaNiveles);
+	void inicializar(FabricaNiveles* _fabricaNiveles);
 	bool bucle();
 	void abandonarJuego();
 

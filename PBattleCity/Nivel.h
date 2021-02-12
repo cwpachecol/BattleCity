@@ -17,16 +17,20 @@ const int columnasNivel = 110;
 
 const unsigned char	celdaSimbolo_Jugador1 = '1';
 const unsigned char	celdaSimbolo_Jugador2 = '2';
-const unsigned char	celdaSimbolo_Tanque = 'T';
-const unsigned char	celdaSimbolo_ParedLadrillo = '#';
-const unsigned char	celdaSimbolo_ParedMetal = '@';
-const unsigned char celdaSimbolo_Arbusto = '&';
-const unsigned char	celdaSimbolo_Base = 'B';
+const unsigned char	celdaSimbolo_Tanque = 'E';
 const unsigned char	celdaSimbolo_GeneradorEnemigo = 'S';
 
+const unsigned char celdaSimbolo_Arbusto = '&';
+const unsigned char celdaSimbolo_Charco = 'C';
+const unsigned char celdaSimbolo_Pantano = 'P';
+const unsigned char	celdaSimbolo_ParedLadrillo = '#';
+const unsigned char	celdaSimbolo_ParedMetal = '@';
+const unsigned char celdaSimbolo_Roca = 'R';
+const unsigned char celdaSimbolo_Tronca = 'T';
+
+const unsigned char	celdaSimbolo_Base = 'B';
 
 
-//const unsigned char mapaNivel0[filasNivel][columnasNivel + 1] =
 const vector<string> mapaNivel0 ={
 	string{"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"},
 	string{"@S                                @@                              S                                @         @"},
@@ -43,18 +47,18 @@ const vector<string> mapaNivel0 ={
 	string{"@@@   @@@#####   ######@@######        ######@@######   #####@@@   @@                              @         @"},
 	string{"@@@   @@@#####   ######@@@#####        #####@@@######   #####@@@   @@                              @         @"},
 	string{"@                   ###@@@@@###@@    @@###@@@@@###                                                 @         @"},
-	string{"@                     #########@@@@@@@@#########                                                   @         @"},
-	string{"@                           ##############                                                         @         @"},
-	string{"@   ##   ##                    ########                    ##   ##                                 @         @"},
-	string{"@   #######                                                #######                                 @         @"},
-	string{"@   #######   @@@######                        ######@@@   #######                                 @         @"},
+	string{"@                     #########@@@@@@@@#########                                &&&&               @         @"},
+	string{"@                           ##############                                     &&&&&&&             @         @"},
+	string{"@   ##   ##                    ########                    ##   ##              &&&&&&&&           @         @"},
+	string{"@   #######                                                #######            &&&&&&&              @         @"},
+	string{"@   #######   @@@######                        ######@@@   #######               &&&&&&&&          @         @"},
 	string{"@   ##   ##   @@@######                        ######@@@   ##   ##                                 @         @"},
 	string{"@                        2   ############ 1                                                        @         @"},
 	string{"@                            ##B       ##                                                          @         @"},
 	string{"@                            ##        ##                                                          @         @"},
 	string{"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"}};																						              
 
-//const unsigned char mapaNivel1[filasNivel][columnasNivel + 1] =
+
 const vector<string> mapaNivel1 ={
 	string{"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"},
 	string{"@S                                @@                              S                                @         @"},
@@ -62,10 +66,37 @@ const vector<string> mapaNivel1 ={
 	string{"@                                 @@                                                               @         @"},
 	string{"@   ##   ##   @@@###### S   @@@        @@@ S   ######@@@   ##   ##                   #             @         @"},
 	string{"@   #######   @@@######     @@@        @@@     ######@@@   #######                  ##             @         @"},
-	string{"@   #######&&&&&&&&&&&&&&&&&@@@        @@@                 #######                 # #             @         @"},
-	string{"@   ##   ##&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@                 ##   ##                   #             @         @"},
-	string{"@          &&&&&&&&&&&&&&&&&      @@                                                 #             @         @"},
-	string{"@                @@@              @@              @@@                               ###            @         @"},
+	string{"@   #######&                @@@        @@@                 #######                 # #             @         @"},
+	string{"@   ##   ##                 @@@@@@@@@@@@@@                 ##   ##                   #             @         @"},
+	string{"@                                 @@                                                 #             @         @"},
+	string{"@                @@@              @@              @@@                     R         ###            @         @"},
+	string{"@                @@@              @@              @@@                                              @         @"},
+	string{"@@@   @@@#####   ############            ############   #####@@@   @@                              @         @"},
+	string{"@@@   @@@#####   ######@@######        ######@@######   #####@@@   @@                              @         @"},
+	string{"@@@   @@@#####   ######@@@#####        #####@@@######   #####@@@   @@                    T         @         @"},
+	string{"@                   ###@@@@@###@@    @@###@@@@@###                                                 @         @"},
+	string{"@                     #########@@@@@@@@#########                              &                    @         @"},
+	string{"@                           ##############                                                         @         @"},
+	string{"@   ##   ##                    ########                    ##   ##               &                 @         @"},
+	string{"@   #######                                                #######                                 @         @"},
+	string{"@   #######   @@@######                        ######@@@   #######                        T        @         @"},
+	string{"@   ##   ##   @@@######                        ######@@@   ##   ##                                 @         @"},
+	string{"@                        2   ############ 1                                                        @         @"},
+	string{"@                            ##B       ##                                                          @         @"},
+	string{"@                            ##        ##                                                          @         @"},
+	string{"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"}};	
+
+const vector<string> mapaNivel2 = {
+	string{"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"},
+	string{"@S                                @@                              S                                @         @"},
+	string{"@                                 @@                                                               @         @"},
+	string{"@                                 @@                                                               @         @"},
+	string{"@   ##   ##   @@@###### S   @@@        @@@ S   ######@@@   ##   ##                #####            @         @"},
+	string{"@   #######   @@@######     @@@        @@@     ######@@@   #######               #    #            @         @"},
+	string{"@   #######&&&&&&&&&&&&&&&&&@@@        @@@                 #######                   #             @         @"},
+	string{"@   ##   ##&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@                 ##   ##                 #               @         @"},
+	string{"@          &&&&&&&&&&&&&&&&&      @@                                              #                @         @"},
+	string{"@                @@@              @@              @@@                             #####            @         @"},
 	string{"@                @@@              @@              @@@                                              @         @"},
 	string{"@@@   @@@#####   ############            ############   #####@@@   @@                              @         @"},
 	string{"@@@   @@@#####   ######@@######        ######@@######   #####@@@   @@                              @         @"},
@@ -80,8 +111,7 @@ const vector<string> mapaNivel1 ={
 	string{"@                        2   ############ 1                                                        @         @"},
 	string{"@                            ##B       ##                                                          @         @"},
 	string{"@                            ##        ##                                                          @         @"},
-	string{"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"}};	
-
+	string{"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"} };
 
 
 //Paredes y arbustos
@@ -92,6 +122,27 @@ const mAvatarDireccion avatarParedLadrillo{ make_pair(Direccion{Direccion_Ningun
 const vAvatarDireccion vAvatarNingunaParedMetal = {
 	DatosSimboloConsola{(char)254, ColorConsola_Gris, ColorConsola_GrisOscuro} };
 const mAvatarDireccion avatarParedMetal{ make_pair(Direccion{Direccion_Ninguna}, vAvatarNingunaParedMetal) };
+
+
+const vAvatarDireccion vAvatarNingunaArbustoN1 = {
+	DatosSimboloConsola{(char)190, ColorConsola_Blanco, ColorConsola_VerdeOscuro} };
+const mAvatarDireccion avatarArbustoN1{ make_pair(Direccion{Direccion_Ninguna}, vAvatarNingunaArbustoN1) };
+
+const vAvatarDireccion vAvatarNingunaArbustoN2 = {
+	DatosSimboloConsola{(char)190, ColorConsola_Blanco, ColorConsola_VerdeOscuro},
+	DatosSimboloConsola{(char)190, ColorConsola_Blanco, ColorConsola_VerdeOscuro},
+	DatosSimboloConsola{(char)190, ColorConsola_Blanco, ColorConsola_VerdeOscuro},
+	DatosSimboloConsola{(char)13, ColorConsola_Blanco, ColorConsola_VerdeOscuro},
+	DatosSimboloConsola{(char)190, ColorConsola_Blanco, ColorConsola_VerdeOscuro},
+	DatosSimboloConsola{(char)13, ColorConsola_Blanco, ColorConsola_VerdeOscuro},
+	DatosSimboloConsola{(char)190, ColorConsola_Blanco, ColorConsola_VerdeOscuro},
+	DatosSimboloConsola{(char)190, ColorConsola_Blanco, ColorConsola_VerdeOscuro} };
+const mAvatarDireccion avatarArbustoN2{ make_pair(Direccion{Direccion_Ninguna}, vAvatarNingunaArbustoN2) };
+
+
+
+
+
 
 //
 //const unsigned char	paredLadrilloSimbolo = 177;
@@ -120,7 +171,7 @@ struct CeldaImagenTanque
 	ColorTanque colorFondo;
 };
 
-//JUGADOR 01
+//JUGADOR NIVEL 01
 const vAvatarDireccion vAvatarIzquierdaTanqueJugador1 = {
 	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
 	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
@@ -178,6 +229,96 @@ const mAvatarDireccion avatarTanqueJugador1{ make_pair(Direccion{Direccion_Izqui
 make_pair(Direccion{Direccion_Derecha}, vAvatarDerechaTanqueJugador1), 
 make_pair(Direccion{Direccion_Arriba}, vAvatarArribaTanqueJugador1),
 make_pair(Direccion{Direccion_Abajo}, vAvatarAbajoTanqueJugador1) };
+
+
+//JUGADOR NIVEL 02
+const vAvatarDireccion vAvatarIzquierdaTanqueJugador1N2 = {
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)196, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)4, ColorConsola_Violeta, ColorConsola_Negro},
+	DatosSimboloConsola{(char)221, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro}};
+
+const vAvatarDireccion vAvatarDerechaTanqueJugador1N2 = {
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)221, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)4, ColorConsola_Violeta, ColorConsola_Negro},
+	DatosSimboloConsola{(char)196, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro}};
+
+const vAvatarDireccion vAvatarArribaTanqueJugador1N2 = {
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)179, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)4, ColorConsola_Violeta, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)0, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro} };
+
+const vAvatarDireccion vAvatarAbajoTanqueJugador1N2 = {
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)0, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)220, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)4, ColorConsola_Violeta, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)219, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)13, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)179, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro},
+	DatosSimboloConsola{(char)223, ColorConsola_Amarillo, ColorConsola_Negro} };
+
+
+const mAvatarDireccion avatarTanqueJugador1N2{ make_pair(Direccion{Direccion_Izquierda}, vAvatarIzquierdaTanqueJugador1N2),
+make_pair(Direccion{Direccion_Derecha}, vAvatarDerechaTanqueJugador1N2),
+make_pair(Direccion{Direccion_Arriba}, vAvatarArribaTanqueJugador1N2),
+make_pair(Direccion{Direccion_Abajo}, vAvatarAbajoTanqueJugador1N2) };
+
+
 
 //JUGADOR 02
 const vAvatarDireccion vAvatarIzquierdaTanqueJugador2 = {

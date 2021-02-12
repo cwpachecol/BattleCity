@@ -200,7 +200,6 @@
     <ClInclude Include="Misil.h" />
     <ClInclude Include="Municion.h" />
     <ClInclude Include="Nivel.h" />
-    <ClInclude Include="Nivel01.h" />
     <ClInclude Include="InterfaceConsola\ObjetoIC.h" />
     <ClInclude Include="Objeto.h" />
     <ClInclude Include="Obstaculo.h" />

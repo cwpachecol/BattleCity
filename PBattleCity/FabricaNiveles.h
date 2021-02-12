@@ -21,7 +21,8 @@ public:
 	void setGameManager(GameManager* _gameManager) { gameManager = _gameManager; }
 	void setMapaNivel(vector<string> _mapaNivel) { mapaNivel = _mapaNivel; }
 
-	virtual void crearInstanciaMapaNivel() = 0;
+	virtual void crearInstanciasMapaNivel() = 0;
+	virtual Actor* crearInstanciaArbusto(float _x, float _y) = 0;
 	virtual Actor* crearInstanciaParedMetal(float _x, float _y) = 0;
 	virtual Actor* crearInstanciaParedLadrillo(float _x, float _y) = 0;
 	virtual Actor* crearInstanciaTanqueEnemigo(float _x, float _y) = 0;

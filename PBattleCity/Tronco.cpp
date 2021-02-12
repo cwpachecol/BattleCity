@@ -1,5 +1,4 @@
 #include "Tronco.h"
-#include "Nivel01.h"
 
 //void Tronco::cargarDatosNivel()
 //{

@@ -8,11 +8,13 @@ class FabricaNivel0 :
 {
 public:
     FabricaNivel0(GameManager* _gameManager);
-    void crearInstanciaMapaNivel();
+    void crearInstanciasMapaNivel();
+    Actor* crearInstanciaArbusto(float _x, float _y);
     Actor* crearInstanciaParedMetal(float _x, float _y);
     Actor* crearInstanciaParedLadrillo(float _x, float _y);
     Actor* crearInstanciaTanqueEnemigo(float _x, float _y);
     Actor* crearInstanciaTanqueJugador(float _x, float _y);
     Actor* crearInstanciaObstaculo(float _x, float _y);
+
 };
 

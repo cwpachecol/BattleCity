@@ -194,9 +194,6 @@
     <ClInclude Include="Charco.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Nivel01.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="FactoryObstaculos.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>

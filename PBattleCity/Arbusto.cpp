@@ -1,5 +1,4 @@
 #include "Arbusto.h"
-#include "Nivel01.h"
 
 //void Arbusto::cargarDatosNivel()
 //{
@@ -27,7 +26,8 @@ Arbusto::Arbusto()
 {
 	setTipoActor(TipoActor_Obstaculo);
 	tipoObstaculo = TipoObstaculo_Arbusto;
-	setDireccion(Direccion_MAX);
+	setDireccion(Direccion_Ninguna);
+	setFisico(true);
 }
 
 

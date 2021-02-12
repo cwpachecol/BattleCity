@@ -6,6 +6,7 @@
 #include <list>
 #include <algorithm>
 
+#include "Arbusto.h"
 #include "ParedLadrillo.h"
 #include "ParedMetal.h"
 
@@ -209,7 +210,7 @@ void GameManager::actualizar(float _dt)
 
 	// Base destruida
 	if (base && base->getEnergia() <= 0)
-		inicializar(nivel, fabricaNiveles);
+		inicializar(fabricaNiveles);
 
 	// Jugador1 destruido
 	if (jugador1 && jugador1->getEnergia() <= 0)
@@ -227,7 +228,7 @@ void GameManager::actualizar(float _dt)
 
 	// Todos los enemigos destruidos
 	if (contadorEnemigosMuertos == enemigosPorNivel)
-		inicializar(nivel, fabricaNiveles);
+		inicializar(fabricaNiveles);
 }
 
 
@@ -253,203 +254,15 @@ Actor* GameManager::crearObstaculo(TipoObstaculo _tipoObstaculo, float _x, float
 	return obstaculo;
 }
 
-void GameManager::inicializar(int _nivel, FabricaNiveles* _fabricaNiveles)
+void GameManager::inicializar(FabricaNiveles* _fabricaNiveles)
 {
 	fabricaNiveles = _fabricaNiveles;
-	nivel = nivel;
 	abandonarJuego();
 	contadorEnemigosMuertos = 0;
 
-	for (int f = 0; f < fabricaNiveles->getMapaNivel().size(); f++) {
-		for (int c = 0; c < fabricaNiveles->getMapaNivel()[f].size(); c++) {
-			//cout << f << "--" << c << " + " << fabricaNiveles->getMapaNivel()[f][c] << endl;
-			unsigned char celdaSimbolo = fabricaNiveles->getMapaNivel()[f][c];
-			switch (celdaSimbolo) {
-			case celdaSimbolo_ParedMetal: {
-				ParedMetal* paredMetal = (ParedMetal*)fabricaNiveles->crearInstanciaParedMetal(c, f);
-				break;
-			}
-			case celdaSimbolo_ParedLadrillo:{
-				ParedLadrillo* paredLadrillo = (ParedLadrillo*)fabricaNiveles->crearInstanciaParedLadrillo(c, f);
-				break;
-			}
-			case celdaSimbolo_Jugador1: {
-				TanqueJugador* jugador1 = (TanqueJugador*)fabricaNiveles->crearInstanciaTanqueJugador(c + 0.5, f + 0.5);
-				jugador1->setTeclas(VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN, VK_SPACE, VK_TAB);
-				this->jugador1 = jugador1;
-				break;
-			}
-			}
-		}
-	}
+	_fabricaNiveles->crearInstanciasMapaNivel();
 
-	//for (int f = 0; f < filasNivel; f++) {
-	//	for (int c = 0; c < columnasNivel; c++) {
-	//		unsigned char celdaSimbolo = mapaNivel0[f][c];
-	//		switch (celdaSimbolo)
-	//		{
-	//		case celdaSimbolo_ParedLadrillo:
-	//		{
-	//			//Aqui se crea un actor ladrillo pared.
-	//			//ParedLadrillo* paredLadrillo = crearActor<ParedLadrillo>(c, f);
-	//			ParedLadrillo* paredLadrillo = (ParedLadrillo*)crearObstaculo(TipoObstaculo_ParedLadrillo, c, f);
-	//			break;
-	//		}
-	//		case celdaSimbolo_ParedMetal:
-	//		{
-	//			//Aqui se crea un actor bloque metal pared.
-	//			//Pared* pared = (Pared*)crearActor(TipoActor_Pared, c, f);
-	//			ParedMetal* paredMetal = crearActor<ParedMetal>(c, f);
-	//			paredMetal->setInvulnerable(true);
-	//			break;
-	//		}
-	//		case celdaSimbolo_Base:
-	//		{
-	//			//Aqui se crea un actor base.
-	//			//base = crearActor(TipoActor_Base, c, f);
-	//			base = crearActor<Base>(c, f);
-
-	//			break;
-	//		}
-	//		case celdaSimbolo_Jugador1:
-	//		{
-	//			//Aqui se crea un actor jugador 1.
-	//			//TanqueJugador* jugador1 = (TanqueJugador*)crearActor(TipoActor_TanqueJugador, c + 0.5, f + 0.5);
-	//			TanqueJugador* jugador1 = crearActor<TanqueJugador>(c + 0.5, f + 0.5);
-	//			//jugador1->setImagen(ColorConsola_Cafe, ColorConsola_Negro);
-	//			jugador1->setTeclas(VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN, VK_SPACE, VK_TAB);
-	//			this->jugador1 = jugador1;
-	//			break;
-	//		}
-	//		case celdaSimbolo_Jugador2:
-	//		{
-	//			//Aqui se crea un actor jugador 2.
-	//			break;
-	//		}
-	//		case celdaSimbolo_GeneradorEnemigo:
-	//		{
-	//			//Aqui se crea un actor generador de enemigos.
-	//			crearActor<GeneradorEnemigo>(c, f);
-	//			break;
-	//		}
-	//		}
-	//	}
-	//}
-
-
-	//switch (nivel) {
-	//case 0: {
-	//	for (int f = 0; f < filasNivel; f++) {
-	//		for (int c = 0; c < columnasNivel; c++) {
-	//			unsigned char celdaSimbolo = mapaNivel0[f][c];
-	//			switch (celdaSimbolo)
-	//			{
-	//			case celdaSimbolo_ParedLadrillo:
-	//			{
-	//				//Aqui se crea un actor ladrillo pared.
-	//				//ParedLadrillo* paredLadrillo = crearActor<ParedLadrillo>(c, f);
-	//				ParedLadrillo* paredLadrillo = (ParedLadrillo*)crearObstaculo(TipoObstaculo_ParedLadrillo, c, f);
-	//				break;
-	//			}
-	//			case celdaSimbolo_ParedMetal:
-	//			{
-	//				//Aqui se crea un actor bloque metal pared.
-	//				//Pared* pared = (Pared*)crearActor(TipoActor_Pared, c, f);
-	//				ParedMetal* paredMetal = crearActor<ParedMetal>(c, f);
-	//				paredMetal->setInvulnerable(true);
-	//				break;
-	//			}
-	//			case celdaSimbolo_Base:
-	//			{
-	//				//Aqui se crea un actor base.
-	//				//base = crearActor(TipoActor_Base, c, f);
-	//				base = crearActor<Base>(c, f);
-
-	//				break;
-	//			}
-	//			case celdaSimbolo_Jugador1:
-	//			{
-	//				//Aqui se crea un actor jugador 1.
-	//				//TanqueJugador* jugador1 = (TanqueJugador*)crearActor(TipoActor_TanqueJugador, c + 0.5, f + 0.5);
-	//				TanqueJugador* jugador1 = crearActor<TanqueJugador>(c + 0.5, f + 0.5);
-	//				//jugador1->setImagen(ColorConsola_Cafe, ColorConsola_Negro);
-	//				jugador1->setTeclas(VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN, VK_SPACE, VK_TAB);
-	//				this->jugador1 = jugador1;
-	//				break;
-	//			}
-	//			case celdaSimbolo_Jugador2:
-	//			{
-	//				//Aqui se crea un actor jugador 2.
-	//				break;
-	//			}
-	//			case celdaSimbolo_GeneradorEnemigo:
-	//			{
-	//				//Aqui se crea un actor generador de enemigos.
-	//				crearActor<GeneradorEnemigo>(c, f);
-	//				break;
-	//			}
-	//			}
-	//		}
-	//	}
-	//	break;
-	//}
-	//case 1: {
-	//	for (int f = 0; f < filasNivel; f++) {
-	//		for (int c = 0; c < columnasNivel; c++) {
-	//			unsigned char celdaSimbolo = mapaNivel1[f][c];
-	//			switch (celdaSimbolo)
-	//			{
-	//			case celdaSimbolo_ParedLadrillo:
-	//			{
-	//				//Aqui se crea un actor ladrillo pared.
-	//				//ParedLadrillo* paredLadrillo = crearActor<ParedLadrillo>(c, f);
-	//				ParedLadrillo* paredLadrillo = (ParedLadrillo*)crearObstaculo(TipoObstaculo_ParedLadrillo, c, f);
-	//				break;
-	//			}
-	//			case celdaSimbolo_ParedMetal:
-	//			{
-	//				//Aqui se crea un actor bloque metal pared.
-	//				//Pared* pared = (Pared*)crearActor(TipoActor_Pared, c, f);
-	//				ParedMetal* paredMetal = crearActor<ParedMetal>(c, f);
-	//				paredMetal->setInvulnerable(true);
-	//				break;
-	//			}
-	//			case celdaSimbolo_Base:
-	//			{
-	//				//Aqui se crea un actor base.
-	//				//base = crearActor(TipoActor_Base, c, f);
-	//				base = crearActor<Base>(c, f);
-
-	//				break;
-	//			}
-	//			case celdaSimbolo_Jugador1:
-	//			{
-	//				//Aqui se crea un actor jugador 1.
-	//				//TanqueJugador* jugador1 = (TanqueJugador*)crearActor(TipoActor_TanqueJugador, c + 0.5, f + 0.5);
-	//				TanqueJugador* jugador1 = crearActor<TanqueJugador>(c + 0.5, f + 0.5);
-	//				//jugador1->setImagen(ColorConsola_Cafe, ColorConsola_Negro);
-	//				jugador1->setTeclas(VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN, VK_SPACE, VK_TAB);
-	//				this->jugador1 = jugador1;
-	//				break;
-	//			}
-	//			case celdaSimbolo_Jugador2:
-	//			{
-	//				//Aqui se crea un actor jugador 2.
-	//				break;
-	//			}
-	//			case celdaSimbolo_GeneradorEnemigo:
-	//			{
-	//				//Aqui se crea un actor generador de enemigos.
-	//				crearActor<GeneradorEnemigo>(c, f);
-	//				break;
-	//			}
-	//			}
-	//		}
-	//	}
-	//	break;
-	//}
-	//}
-	}
+}
 
 bool GameManager::bucle()
 {

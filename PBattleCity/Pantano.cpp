@@ -1,5 +1,4 @@
 #include "Pantano.h"
-#include "Nivel01.h"
 
 //void Pantano::cargarDatosNivel() {
 //	DatosSimboloConsola imagen;
