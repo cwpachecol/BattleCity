@@ -72,7 +72,7 @@ void Actor::renderizar(SistemaRenderizacion* _sistemaRenderizacion)
 {
 	int auxAlto = 0;
 	int auxAncho = 0;
-
+	
 	if (avatar.size() > 0) {
 		itavatar = avatar.find(direccion);
 		vector<DatosSimboloConsola>::iterator iia;
@@ -85,19 +85,27 @@ void Actor::renderizar(SistemaRenderizacion* _sistemaRenderizacion)
 
 			if ((*iia).simbolo == 13){
 				fila++;
-				if (columna > auxAncho) {
-					auxAncho = abs(columna - int(getX()));
-				}
 				columna = int(getX());
 			}
 			else {
+				if (columna > auxAncho) {
+				auxAncho = columna;
+				}
 				columna++;
 			}
 		}
-		auxAlto = abs(fila - int(getY()));
+
+		auxAlto = fila;
 	}
-	setAncho(float(auxAncho + 1));
-	setAlto(float(auxAlto + 1));
+
+	setAncho(float(auxAncho - int(getX()) + 1));
+	setAlto(float(auxAlto - int(getY()) + 1));
+
+	/*int _ancho = auxAncho - int(getX());
+	int _alto = auxAlto - int(getY());
+	setAncho(float(_ancho + 1));
+	setAlto(float(_alto + 1));
+	*/
 }
 
 void Actor::actualizar(float _dt)
