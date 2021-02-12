@@ -70,6 +70,9 @@ Actor::Actor(GameManager* _gameManager, TipoActor _tipoActor, float _x, float _y
 
 void Actor::renderizar(SistemaRenderizacion* _sistemaRenderizacion)
 {
+	int auxAlto = 0;
+	int auxAncho = 0;
+
 	if (avatar.size() > 0) {
 		itavatar = avatar.find(direccion);
 		vector<DatosSimboloConsola>::iterator iia;
@@ -82,13 +85,19 @@ void Actor::renderizar(SistemaRenderizacion* _sistemaRenderizacion)
 
 			if ((*iia).simbolo == 13){
 				fila++;
+				if (columna > auxAncho) {
+					auxAncho = abs(columna - int(getX()));
+				}
 				columna = int(getX());
 			}
 			else {
 				columna++;
 			}
 		}
+		auxAlto = abs(fila - int(getY()));
 	}
+	setAncho(float(auxAncho + 1));
+	setAlto(float(auxAlto + 1));
 }
 
 void Actor::actualizar(float _dt)

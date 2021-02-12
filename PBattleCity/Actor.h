@@ -11,8 +11,6 @@
 
 using namespace std;
 
-
-
 class GameManager;
 
 class Actor : public Objeto

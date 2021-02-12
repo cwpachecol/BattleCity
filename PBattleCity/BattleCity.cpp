@@ -67,8 +67,8 @@ int main()
 
 	gameManager->configurarSistema();
 
-	gameManager->inicializar(new FabricaNivel1(gameManager));
-	//gameManager->inicializar(new FabricaNivel0(gameManager));
+	//gameManager->inicializar(new FabricaNivel1(gameManager));
+	gameManager->inicializar(new FabricaNivel0(gameManager));
 
 	while (gameManager->bucle());
 	gameManager->abandonarJuego();
