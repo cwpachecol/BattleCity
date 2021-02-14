@@ -6,6 +6,7 @@
 #include "..\Utilitarios.h"
 #include <iostream>
 #include <algorithm>
+#include "MenuItem.h"
 
 using namespace std;
 
@@ -28,9 +29,20 @@ Menu::Menu()
 
 void Menu::inicializar(int _x, int _y, int _ancho, int _alto, int _anchoBorde,
 	char _simboloFondoPanel, ColorConsola _colorSimboloFondoPanel, ColorConsola _colorFondoPanel,
-	char _simboloBordePanel, ColorConsola _colorSimboloBordePanel, ColorConsola _colorFondoBordePanel) {
+	char _simboloBordePanel, ColorConsola _colorSimboloBordePanel, ColorConsola _colorFondoBordePanel,
+	ColorConsola _colorSimboloFuente, ColorConsola _colorFondoFuente) {
 	Panel::inicializar(_x, _y, _ancho, _alto, _anchoBorde, _simboloFondoPanel, _colorSimboloFondoPanel, _colorFondoPanel,
-		_simboloBordePanel, _colorSimboloBordePanel, _colorFondoBordePanel);
+		_simboloBordePanel, _colorSimboloBordePanel, _colorFondoBordePanel, _colorSimboloFuente, _colorFondoFuente);
+}
+
+void Menu::renderizar(SistemaRenderizacion* _sistemaRenderizacion)
+{
+	Panel::renderizar(_sistemaRenderizacion);
+	vector<Panel*>::iterator itItems;
+
+	for (itItems = items.begin(); itItems != items.end(); ++itItems) {
+		(*itItems)->renderizar(_sistemaRenderizacion);
+	}
 }
 
 void Menu::agregarItem(Panel* _item)
@@ -68,18 +80,6 @@ void Menu::mostrar()
 		//(*itItems)->mostrar();
 
 	}
-
-	/*for (int i = 0; i < getAncho(); i++) {
-		for (int j = 0; j < getAlto(); j++) {
-			gotoxy(getX() + i, getY() + j);
-			cout << getCaracterBase() << endl;
-		}
-	}
-
-	for (unsigned int i = 0; i < hijos.size(); i++)
-	{
-		hijos[i]->Mostrar();
-	}*/
 }
 
 void Menu::MostrarSelector() {
@@ -102,7 +102,7 @@ void Menu::MostrarSelector() {
 bool Menu::getTecla() {
 	bool teclaPresionada = false;
 
-	/*char key = ';';
+	char key = ';';
 
 	if (_kbhit()) {
 		key = _getch();
@@ -111,23 +111,24 @@ bool Menu::getTecla() {
 	if (key == 72) {
 		teclaPresionada = true;
 
-		if (indiceElementoActual > 0)
-			indiceElementoActual--;
+		if (indiceItemActual > 0)
+			indiceItemActual--;
 	}
 
 	if (key == 80) {
 		teclaPresionada = true;
 
-		if (indiceElementoActual < numeroElementos - 1)
-			indiceElementoActual++;
+		if (indiceItemActual < items.size())
+			indiceItemActual++;
 	}
 
 	if (key == 13) {
 		teclaPresionada = true;
-		hijos[indiceElementoActual]->OnPressEnter();
-		opcionMenu = indiceElementoActual;
+		//items[indiceItemActual]->OnPressEnter();
+		opcionMenu = indiceItemActual;
+
 		opcionSalir = true;
-	}*/
+	}
 
 	/*
 	if (key == 75) {
@@ -151,23 +152,25 @@ bool Menu::getTecla() {
 	return teclaPresionada;
 }
 
-void Menu::Bucle() {
-	/*while (!opcionSalir) {
+int Menu::Bucle(SistemaRenderizacion* _sistemaRenderizacion) {
+	while (!opcionSalir) {
 
-		indiceElementoAnterior = indiceElementoActual;
+		indiceItemAnterior = indiceItemActual;
 
 		if (getTecla()) {
-			if (indiceElementoActual != indiceElementoAnterior) {
-				hijos[indiceElementoAnterior]->setSeleccionado(false);
-				hijos[indiceElementoAnterior]->Mostrar();
-				hijos[indiceElementoActual]->setSeleccionado(true);
-				hijos[indiceElementoActual]->Mostrar();
+			if (indiceItemActual != indiceItemAnterior) {
+				((MenuItem*)items[indiceItemAnterior])->seleccionarItem(false);
+
+				items[indiceItemAnterior]->renderizar(_sistemaRenderizacion);
+				((MenuItem*)items[indiceItemActual])->seleccionarItem(true);
+				items[indiceItemActual]->renderizar(_sistemaRenderizacion);
+				_sistemaRenderizacion->ejecutar();
 			}
 
 			gotoxy(27, 7);
 			EstablecerColor(0, 15);
 
-			switch (indiceElementoActual)
+			switch (indiceItemActual)
 			{
 			case 1:
 				cout << "Presione este boton para iniciar el juego." << endl;
@@ -176,13 +179,39 @@ void Menu::Bucle() {
 				cout << "Presione este boton para elegir el nivel de dificultada de juego." << endl;
 				break;
 			case 3:
+				cout << "Presione este boton para ver creditos." << endl;
+				break;
+			case 4:
 				cout << "Presione este boton para salir del juego." << endl;
 				break;
 			}
 
-			MostrarSelector();
+			//MostrarSelector();
 		}
+	}
+
+	/*switch (indiceItemActual) {
+	case 0:
+		/// <summary>
+		/// Ejecuta la funcion que eligio
+		/// </summary>
+		/// <param name="_sistemaRenderizacion"></param>
+		break;
+	case 1:
+		/// <summary>
+		/// Ejecuta la funcion que eligio
+		/// </summary>
+		/// <param name="_sistemaRenderizacion"></param>
+		break;
+	case 2:
+		/// <summary>
+		/// Ejecuta la funcion que eligio
+		/// </summary>
+		/// <param name="_sistemaRenderizacion"></param>
+		break;
+
 	}*/
+	return opcionMenu;
 }
 
 

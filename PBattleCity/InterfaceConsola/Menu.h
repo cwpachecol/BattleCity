@@ -23,12 +23,13 @@ public:
 
 	void mostrar();
 	bool getTecla();
-	void Bucle();
+	int Bucle(SistemaRenderizacion* _sistemaRenderizacion);
 	void Iniciar();
 	void MostrarSelector();
 	void inicializar(int _x, int _y, int _ancho, int _alto, int _anchoBorde,
 		char _simboloFondoPanel, ColorConsola _colorSimboloFondoPanel, ColorConsola _colorFondoPanel,
-		char _simboloBordePanel, ColorConsola _colorSimboloBordePanel, ColorConsola _colorFondoBordePanel);
+		char _simboloBordePanel, ColorConsola _colorSimboloBordePanel, ColorConsola _colorFondoBordePanel,
+		ColorConsola _colorSimboloFuente, ColorConsola _colorFondoFuente);
 
 	void setNumeroItems(int _numeroItems) { numeroItems = _numeroItems; }
 	int getNumeroItems() { return numeroItems; }
@@ -44,4 +45,8 @@ public:
 
 	void setOpcionMenu(int _opcionMenu) { opcionMenu = _opcionMenu; }
 	int getOpcionMenu() { return opcionMenu; }
+
+	virtual void renderizar(SistemaRenderizacion* _sistemaRenderizacion);
+	virtual void actualizar(float _dt) {};
+
 };
