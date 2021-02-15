@@ -389,12 +389,6 @@ bool GameManager::moverActorA(Actor* actor, float _x, float _y)
 			}
 			
 		}
-		else
-		{
-			if ((((Tanque*)actor)->getTipoActor() == TipoActor_TanqueJugador) || (((Tanque*)actor)->getTipoActor() == TipoActor_TanqueEnemigo)) {
-				((Tanque*)actor)->setVelocidad(velocidadJugador);
-			}
-		}
 	}
 	else {
 		if ((((Tanque*)actor)->getTipoActor() == TipoActor_TanqueJugador) || (((Tanque*)actor)->getTipoActor() == TipoActor_TanqueEnemigo)) {
