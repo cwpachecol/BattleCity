@@ -25,6 +25,7 @@ public:
 	virtual Actor* crearInstanciaArbusto(float _x, float _y) = 0;
 	virtual Actor* crearInstanciaParedMetal(float _x, float _y) = 0;
 	virtual Actor* crearInstanciaParedLadrillo(float _x, float _y) = 0;
+	virtual Actor* crearInstanciaPantano(float _x, float _y) = 0;
 	virtual Actor* crearInstanciaTanqueEnemigo(float _x, float _y) = 0;
 	virtual Actor* crearInstanciaTanqueJugador(float _x, float _y) = 0;
 	virtual Actor* crearInstanciaObstaculo(float _x, float _y) = 0;

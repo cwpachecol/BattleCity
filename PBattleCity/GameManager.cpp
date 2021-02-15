@@ -338,19 +338,32 @@ Actor* GameManager::detectarColisiones(float _x, float _y, float _ancho, float _
 
 	for (itActores = lActores.begin(); itActores != lActores.end(); ++itActores) {
 		
-		if ((*itActores) != NULL && (*itActores)->getFisico() && (*itActores) != _actorExcluido) {
-			int f10 = int((*itActores)->getY());
-			int c10 = int((*itActores)->getX());
-			int f11 = f10 + int((*itActores)->getAlto()) - 1;
-			int c11 = c10 + int((*itActores)->getAncho()) - 1;
+		if ((*itActores) != NULL && (*itActores) != _actorExcluido){
+			if ((*itActores)->getFisico() || ((*itActores)->getTipoActor() == TipoActor_Obstaculo)) {
+				int f10 = int((*itActores)->getY());
+				int c10 = int((*itActores)->getX());
+				int f11 = f10 + int((*itActores)->getAlto()) - 1;
+				int c11 = c10 + int((*itActores)->getAncho()) - 1;
 
-			if (f00 <= f11 && f01 >= f10 && c00 <= c11 && c01 >= c10) {
-				return (*itActores);
+				if (f00 <= f11 && f01 >= f10 && c00 <= c11 && c01 >= c10) {
+					return (*itActores);
+				}
 			}
+			//else if((*itActores)->getTipoActor() == TipoActor_Obstaculo) {
+			//	int f10 = int((*itActores)->getY());
+			//	int c10 = int((*itActores)->getX());
+			//	//int f11 = f10 + int((*itActores)->getAlto()) - 1;
+			//	//int c11 = c10 + int((*itActores)->getAncho()) - 1;
+
+			//	if (f00 == f10 && c00 == c10) {
+			//		return (*itActores);
+			//	}
+
+			//}
 		}
 	}
 		
-	return NULL;
+	return nullptr;
 }
 
 bool GameManager::moverActorA(Actor* actor, float _x, float _y)
@@ -369,10 +382,27 @@ bool GameManager::moverActorA(Actor* actor, float _x, float _y)
 
 	if (otroActor != NULL) {
 		actor->intersectar(otroActor);
+		if (otroActor->getTipoActor() == TipoActor_Obstaculo) {
+			if ((((Tanque*)actor)->getTipoActor() == TipoActor_TanqueJugador) || (((Tanque*)actor)->getTipoActor() == TipoActor_TanqueEnemigo)) {
+				((Tanque*)actor)->setVelocidad(3);
+				puedeMoverACelda = true;
+			}
+			
+		}
+		else
+		{
+			if ((((Tanque*)actor)->getTipoActor() == TipoActor_TanqueJugador) || (((Tanque*)actor)->getTipoActor() == TipoActor_TanqueEnemigo)) {
+				((Tanque*)actor)->setVelocidad(velocidadJugador);
+			}
+		}
 	}
-	else
+	else {
+		if ((((Tanque*)actor)->getTipoActor() == TipoActor_TanqueJugador) || (((Tanque*)actor)->getTipoActor() == TipoActor_TanqueEnemigo)) {
+			((Tanque*)actor)->setVelocidad(velocidadJugador);
+		}
+		
 		puedeMoverACelda = true;
-
+	}
 
 	if (puedeMoverACelda)
 	{

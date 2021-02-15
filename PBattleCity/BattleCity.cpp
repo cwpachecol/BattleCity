@@ -29,18 +29,18 @@ int main()
 	//El antes de GameManager sin Singleton
 	//GameManager gameManager;
 
-	SistemaRenderizacion* sr = new SistemaRenderizacion();
+	//SistemaRenderizacion* sr = new SistemaRenderizacion();
 
-	sr->inicializar();
+	//sr->inicializar();
 
 	/*Panel* p = new Panel();
 	p->inicializar(10, 5, 15, 20, 2, 176, ColorConsola_Azul, ColorConsola_Amarillo, 177, ColorConsola_Blanco, ColorConsola_Cafe, ColorConsola_Amarillo, ColorConsola_AzulOscuro);
 	p->setTexto("Panel prueba");
 	p->renderizar(sr);*/
 
-	Menu* mRoot = new Menu();
-	mRoot->inicializar(1, 1, 22, 14, 1, 176, ColorConsola_Azul, ColorConsola_Amarillo, 177, ColorConsola_Rojo, ColorConsola_CelesteOscuro, ColorConsola_Blanco, ColorConsola_GrisOscuro);
-	mRoot->setTexto("Menu principal");
+	//Menu* mRoot = new Menu();
+	//mRoot->inicializar(1, 1, 22, 14, 1, 176, ColorConsola_Azul, ColorConsola_Amarillo, 177, ColorConsola_Rojo, ColorConsola_CelesteOscuro, ColorConsola_Blanco, ColorConsola_GrisOscuro);
+	//mRoot->setTexto("Menu principal");
 	//mRoot->renderizar(sr);
 	//Menu* mSubMenu1 = new Menu();
 	//mSubMenu1->inicializar(35, 1, 15, 8, 1, 177, ColorConsola_Azul, ColorConsola_Amarillo, 178, ColorConsola_Blanco, ColorConsola_Cafe, ColorConsola_Amarillo, ColorConsola_Azul);
@@ -64,6 +64,7 @@ int main()
 	//mRoot->agregarItem(mSubMenu1);
 	//mRoot->agregarItem(mSubMenu2);
 
+	/*
 	MenuItem* mi01 = new MenuItem();
 	mi01->inicializar(1, 1, 20, 3, 1, 219, ColorConsola_Azul, ColorConsola_Amarillo, 240, ColorConsola_Blanco, ColorConsola_Cafe, ColorConsola_Azul, ColorConsola_RojoOscuro);
 	mi01->setTexto("Iniciar");
@@ -92,23 +93,18 @@ int main()
 
 	cin.get();
 
+	*/
 	
-	
-	
-	
+	GameManager* gameManager = GameManager::getInstancia();
 
-
-
-	//GameManager* gameManager = GameManager::getInstancia();
-
-	//gameManager->configurarSistema();
+	gameManager->configurarSistema();
 
 	////gameManager->inicializar(new FabricaNivel1(gameManager));
-	//gameManager->inicializar(new FabricaNivel0(gameManager));
+	gameManager->inicializar(new FabricaNivel0(gameManager));
 
-	//while (gameManager->bucle());
-	//gameManager->abandonarJuego();
-	//
+	while (gameManager->bucle());
+	gameManager->abandonarJuego();
+	
 	cin.get();
 	return 0;
 }

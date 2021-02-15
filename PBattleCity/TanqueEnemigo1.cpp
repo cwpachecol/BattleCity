@@ -3,7 +3,7 @@
 #include "Utilitarios.h"
 #include "Bala.h"
 #include "TanqueJugador.h"
-
+#include "Obstaculo.h"
 
 TanqueEnemigo1::TanqueEnemigo1()
 {
@@ -81,6 +81,16 @@ void TanqueEnemigo1::analizar(Actor* _tanqueJugador)
 		return;
 	}
 	
+	if (actor->getTipoActor() == TipoActor_Obstaculo) {
+		if (((Obstaculo*)actor)->getTipoObstaculo() == TipoObstaculo_Pantano) {
+			velocidad = 5;
+		}
+	}
+	else
+	{
+		velocidad = velocidadJugador;
+	}
+
 	//Atacar disparando
 	if (actor->getTipoActor() == TipoActor_TanqueJugador || actor->getTipoActor() == TipoActor_Base) {
 		disparar();

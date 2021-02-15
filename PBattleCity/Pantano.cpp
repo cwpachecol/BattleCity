@@ -25,7 +25,9 @@ Pantano::Pantano()
 {
 	setTipoActor(TipoActor_Obstaculo);
 	tipoObstaculo = TipoObstaculo_Pantano;
-	setDireccion(Direccion_MAX);
+	setDireccion(Direccion_Ninguna);
+	setAvatar(avatarPantanoN1);
+	setFisico(false);
 }
 
 

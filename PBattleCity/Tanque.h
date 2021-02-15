@@ -18,6 +18,9 @@ public:
 	void disparar();
 
 	virtual Tanque* clone(){ return NULL; };
+
+	void setVelocidad(float _velocidad) { velocidad = _velocidad; }
+	float getVelocidad() { return velocidad; }
 protected:
 	void calcularPosicionCeldaFrontal(float* _x, float* _y);
 

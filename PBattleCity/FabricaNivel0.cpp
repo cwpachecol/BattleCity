@@ -3,6 +3,7 @@
 #include "ParedMetal.h"
 #include "ParedLadrillo.h"
 #include "Arbusto.h"
+#include "Pantano.h"
 #include "GameManager.h"
 #include "Nivel.h"
 
@@ -10,6 +11,24 @@ FabricaNivel0::FabricaNivel0(GameManager* _gameManager):FabricaNiveles(_gameMana
 {
 	setMapaNivel(mapaNivel0);
 }
+
+Actor* FabricaNivel0::crearInstanciaPantano(float _x, float _y) {
+	Actor* actor = new Pantano();
+	actor->setAvatar(avatarPantanoN1);
+	actor->setX(_x);
+	actor->setY(_y);
+	actor->setGameManager(getGameManager());
+	if (getGameManager()->moverActorA(actor, _x, _y) == false)
+	{
+		delete actor;
+		return nullptr;
+	}
+
+	getGameManager()->lActores.push_back(actor);
+
+	return actor;
+}
+
 
 Actor* FabricaNivel0::crearInstanciaObstaculo(float _x, float _y)
 {
@@ -34,6 +53,10 @@ void FabricaNivel0::crearInstanciasMapaNivel()
 			}
 			case celdaSimbolo_ParedLadrillo: {
 				ParedLadrillo* paredLadrillo = (ParedLadrillo*)crearInstanciaParedLadrillo(c, f);
+				break;
+			}
+			case celdaSimbolo_Pantano: {
+				Pantano* pantano = (Pantano*)crearInstanciaPantano(c, f);
 				break;
 			}
 			case celdaSimbolo_Jugador1: {

@@ -43,10 +43,10 @@ const vector<string> mapaNivel0 ={
 	string{"@          &&&&&&&&&&&&&&&&&      @@                                          # #   #              @         @"},
 	string{"@                @@@              @@              @@@                         #######              @         @"},
 	string{"@                @@@              @@              @@@                                              @         @"},
-	string{"@@@   @@@#####   ############            ############   #####@@@   @@                              @         @"},
-	string{"@@@   @@@#####   ######@@######        ######@@######   #####@@@   @@                              @         @"},
-	string{"@@@   @@@#####   ######@@@#####        #####@@@######   #####@@@   @@                              @         @"},
-	string{"@                   ###@@@@@###@@    @@###@@@@@###                                                 @         @"},
+	string{"@@@   @@@#####   ############            ############   #####@@@   @@  PPPPPPPPPPP                 @         @"},
+	string{"@@@   @@@#####   ######@@######        ######@@######   #####@@@   @@  PPPPPPPPPPP                 @         @"},
+	string{"@@@   @@@#####   ######@@@#####        #####@@@######   #####@@@   @@  PPPPPPPPPPP                 @         @"},
+	string{"@                   ###@@@@@###@@    @@###@@@@@###                     PPPPPPPPPPP                 @         @"},
 	string{"@                     #########@@@@@@@@#########                                &&&&               @         @"},
 	string{"@                           ##############                                     &&&&&&&             @         @"},
 	string{"@   ##   ##                    ########                    ##   ##              &&&&&&&&           @         @"},
@@ -79,10 +79,10 @@ const vector<string> mapaNivel1 ={
 	string{"@                           ##############                                                         @         @"},
 	string{"@   ##   ##                    ########                    ##   ##               &                 @         @"},
 	string{"@   #######                                                #######                                 @         @"},
-	string{"@   #######   @@@######                        ######@@@   #######                        T        @         @"},
-	string{"@   ##   ##   @@@######                        ######@@@   ##   ##                                 @         @"},
-	string{"@                        2   ############ 1                                                        @         @"},
-	string{"@                            ##B       ##                                                          @         @"},
+	string{"@   #######   @@@######                        ######@@@   #######   PPPPPPPPPPPPP        T        @         @"},
+	string{"@   ##   ##   @@@######                        ######@@@   ##   ##   PPPPPPPPPPPPP                 @         @"},
+	string{"@                        2   ############ 1                          PPPPPPPPPPPPP                 @         @"},
+	string{"@                            ##B       ##                            PPPPPPPPPPPPP                 @         @"},
 	string{"@                            ##        ##                                                          @         @"},
 	string{"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"}};	
 
@@ -102,10 +102,10 @@ const vector<string> mapaNivel2 = {
 	string{"@@@   @@@#####   ######@@######        ######@@######   #####@@@   @@                              @         @"},
 	string{"@@@   @@@#####   ######@@@#####        #####@@@######   #####@@@   @@                              @         @"},
 	string{"@                   ###@@@@@###@@    @@###@@@@@###                                                 @         @"},
-	string{"@                     #########@@@@@@@@#########                                                   @         @"},
-	string{"@                           ##############                                                         @         @"},
-	string{"@   ##   ##                    ########                    ##   ##                                 @         @"},
-	string{"@   #######                                                #######                                 @         @"},
+	string{"@                     #########@@@@@@@@#########                         PPPPPPPPPPPPPP            @         @"},
+	string{"@                           ##############                               PPPPPPPPPPPPPP            @         @"},
+	string{"@   ##   ##                    ########                    ##   ##       PPPPPPPPPPPPPP            @         @"},
+	string{"@   #######                                                #######       PPPPPPPPPPPPPP            @         @"},
 	string{"@   #######   @@@######                        ######@@@   #######                                 @         @"},
 	string{"@   ##   ##   @@@######                        ######@@@   ##   ##                                 @         @"},
 	string{"@                        2   ############ 1                                                        @         @"},
@@ -140,8 +140,14 @@ const vAvatarDireccion vAvatarNingunaArbustoN2 = {
 const mAvatarDireccion avatarArbustoN2{ make_pair(Direccion{Direccion_Ninguna}, vAvatarNingunaArbustoN2) };
 
 
+// Pantano
+const vAvatarDireccion vAvatarNingunaPantanoN1 = {
+	DatosSimboloConsola{(char)207, ColorConsola_Amarillo, ColorConsola_Cafe} };
+const mAvatarDireccion avatarPantanoN1{ make_pair(Direccion{Direccion_Ninguna}, vAvatarNingunaPantanoN1) };
 
-
+const vAvatarDireccion vAvatarNingunaPantanoN2 = {
+	DatosSimboloConsola{(char)207, ColorConsola_Blanco, ColorConsola_Cafe} };
+const mAvatarDireccion avatarPantanoN2{ make_pair(Direccion{Direccion_Ninguna}, vAvatarNingunaPantanoN2) };
 
 
 //
