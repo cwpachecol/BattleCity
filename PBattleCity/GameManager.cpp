@@ -382,7 +382,7 @@ bool GameManager::moverActorA(Actor* actor, float _x, float _y)
 
 	if (otroActor != NULL) {
 		actor->intersectar(otroActor);
-		if (otroActor->getTipoActor() == TipoActor_Obstaculo) {
+		if (otroActor->getTipoActor() == TipoActor_Obstaculo && ((Obstaculo*)otroActor)->getTipoObstaculo() == TipoObstaculo_Pantano) {
 			if ((((Tanque*)actor)->getTipoActor() == TipoActor_TanqueJugador) || (((Tanque*)actor)->getTipoActor() == TipoActor_TanqueEnemigo)) {
 				((Tanque*)actor)->setVelocidad(3);
 				puedeMoverACelda = true;
